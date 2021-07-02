@@ -100,12 +100,13 @@ Class Conexion{
       $resultado=$statement->fetch();
       return $resultado;
     }
-    public function registroexp($conexion,$iduser,$fecha,$asunto,$nArea,$tipoExp,$estadoDoc){
+    public function registroexp($conexion,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc){
       $statement = $conexion->prepare('
-      INSERT INTO `documento` ( `iduser`, `fecha`, `Asunto`, `nomArea`,`tipoExp`,`estadoExp`) VALUES (:iduser, :fecha, :asunto, :nArea,:tipoExp,:estadoExp)');
+      INSERT INTO `documento` ( `iduser`, `fecha`, `Asunto`,`remitente` ,`nomArea`,`tipoExp`,`estadoExp`) VALUES (:iduser, :fecha, :asunto,:remitente, :nArea,:tipoExp,:estadoExp)');
       $statement->execute(array(
       ':iduser' =>$iduser,
       ':fecha'  =>$fecha,
+      ':remitente'=>$remitente,
       ':asunto' =>$asunto,
       ':nArea'  =>$nArea,
       'tipoExp' =>$tipoExp,
@@ -137,6 +138,23 @@ Class Conexion{
         ':area'=>$area
       ));
       return $consulta;
-  }
+    }
+    public function expIdDoc($conexion,$idDoc){
+      $consulta=$conexion-> prepare('
+      SELECT * FROM `documento` WHERE idDoc = :idDoc');
+      $consulta->execute(array(
+        ':idDoc'=>$idDoc
+      ));
+      $resultado=$consulta->fetch();
+      return $resultado;
+    }
+    public function cambioestado($conexion,$idDoc){
+      $consulta=$conexion->prepare(
+        'UPDATE `documento` SET `estadoExp` = "Abierto" WHERE `documento`.`idDoc` = :idDoc'
+      );
+      $consulta ->execute(array(
+        'idDoc'=> $idDoc
+      ));
+    }
   }
 ?>

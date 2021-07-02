@@ -21,12 +21,13 @@ if(isset($_GET['iduser'])){
     $iduser= $_GET['iduser'];
   }
 if($_SERVER['REQUEST_METHOD']=='POST'){
+    $remitente=$area;
     $fecha = date("Y-m-d H:i:s"); 
     $asunto=$_POST['asunto'];
     $nArea=$_POST['selectArea'];
     $tipoExp=$_POST['tipExp'];
     $estadoDoc=$_POST['estadoDoc'];
-    $nuevo->registroexp($con,$iduser,$fecha,$asunto,$nArea,$tipoExp,$estadoDoc);
+    $nuevo->registroexp($con,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc);
 }
 if(!empty($_GET['iduser'])){
     $dni="";
@@ -91,7 +92,7 @@ if(!empty($_GET['iduser'])){
             </div>
             <div class='col-md-6'>
             <div class='position-relative form-group text-center'><label for='exampleAddress' class=''>Estado</label>
-            <input name='estadoDoc' id='estadoDoc' value='Pendiente' readonly type='text' class='form-control text-center'>
+            <input name='estadoDoc' id='estadoDoc' value='Nuevo' readonly type='text' class='form-control text-center'>
             </div>
         </div>
         </div>

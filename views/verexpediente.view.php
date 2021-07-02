@@ -523,21 +523,25 @@
                                             <thead>
                                             <tr>
                                                 <th class="text-center">#</th>
+                                                <th class="text-center">Tipo</th>
                                                 <th>Asunto y Area</th>
                                                 <th class="text-center">Fecha</th>
-                                                <th class="text-center">Status</th>
-                                                <th class="text-center">Actions</th>
+                                                <th class="text-center">Estado</th>
+                                                <th class="text-center">Acciones</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <?php while($fila= $statement->fetch()){
                                                 $idDoc=$fila['idDoc'];
+                                                $tipoExp=$fila['tipoExp'];
                                                 $asunto=$fila['Asunto'];
                                                 $nomArea=$fila['nomArea'];
                                                 $fecha=$fila['fecha'];
+                                                $estadoDoc=$fila['estadoExp']
                                                 ?>
                                             <tr>
                                                 <td class="text-center text-muted"><?php echo $idDoc;?></td>
+                                                <td class="text-center"><?php echo $tipoExp;?></td>
                                                 <td>
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
@@ -551,10 +555,20 @@
                                                 </td>
                                                 <td class="text-center"><?php echo $fecha;?></td>
                                                 <td class="text-center">
-                                                    <div class="badge badge-warning">Pending</div>
+                                                    <div class="badge <?php switch($estadoDoc){
+                                                        case "Nuevo":
+                                                            echo "badge-warning";
+                                                            break;
+                                                        case "Abierto":
+                                                            echo "badge-danger";
+                                                            break;
+                                                        case "Completado":
+                                                            echo "badge-success";
+                                                            break;
+                                                    }?>"><?php echo $estadoDoc;?></div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Detalles</button>
                                                 </td>
                                             </tr>
                                             <?php } ?>
