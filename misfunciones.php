@@ -100,15 +100,16 @@ Class Conexion{
       $resultado=$statement->fetch();
       return $resultado;
     }
-    public function registroexp($conexion,$iduser,$fecha,$asunto,$nArea,$tipoExp){
+    public function registroexp($conexion,$iduser,$fecha,$asunto,$nArea,$tipoExp,$estadoDoc){
       $statement = $conexion->prepare('
-      INSERT INTO `documento` ( `iduser`, `fecha`, `Asunto`, `nomArea`,`tipoExp`) VALUES (:iduser, :fecha, :asunto, :nArea,:tipoExp)');
+      INSERT INTO `documento` ( `iduser`, `fecha`, `Asunto`, `nomArea`,`tipoExp`,`estadoExp`) VALUES (:iduser, :fecha, :asunto, :nArea,:tipoExp,:estadoExp)');
       $statement->execute(array(
       ':iduser' =>$iduser,
       ':fecha'  =>$fecha,
       ':asunto' =>$asunto,
       ':nArea'  =>$nArea,
-      'tipoExp' =>$tipoExp
+      'tipoExp' =>$tipoExp,
+      ':estadoExp'=>$estadoDoc
       ));
     }
     public function mostrarexp($conexion,$iduser){

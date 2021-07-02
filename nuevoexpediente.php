@@ -25,7 +25,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $asunto=$_POST['asunto'];
     $nArea=$_POST['selectArea'];
     $tipoExp=$_POST['tipExp'];
-    $nuevo->registroexp($con,$iduser,$fecha,$asunto,$nArea,$tipoExp);
+    $estadoDoc=$_POST['estadoDoc'];
+    $nuevo->registroexp($con,$iduser,$fecha,$asunto,$nArea,$tipoExp,$estadoDoc);
 }
 if(!empty($_GET['iduser'])){
     $dni="";
@@ -83,13 +84,17 @@ if(!empty($_GET['iduser'])){
                 $salida.= "<select>
             </div>
         </div>
-            <div class='col-md-12'>
+            <div class='col-md-6'>
                 <div class='position-relative form-group text-center'><label for='exampleAddress' class=''>Asunto</label>
                 <input name='asunto' id='asunto' placeholder='Ingrese Asunto' type='text' class='form-control' autocomplete='off'>
                 </div>
             </div>
-           
+            <div class='col-md-6'>
+            <div class='position-relative form-group text-center'><label for='exampleAddress' class=''>Estado</label>
+            <input name='estadoDoc' id='estadoDoc' value='Pendiente' disabled=»disabled» type='text' class='form-control text-center' autocomplete='off'>
             </div>
+        </div>
+        </div>
             <div> 
             <div class='form-row'>
                 <div class='col-md-6'>
