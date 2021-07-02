@@ -91,7 +91,7 @@ if(!empty($_GET['iduser'])){
             </div>
             <div class='col-md-6'>
             <div class='position-relative form-group text-center'><label for='exampleAddress' class=''>Estado</label>
-            <input name='estadoDoc' id='estadoDoc' value='Pendiente' disabled=»disabled» type='text' class='form-control text-center' autocomplete='off'>
+            <input name='estadoDoc' id='estadoDoc' value='Pendiente' readonly type='text' class='form-control text-center'>
             </div>
         </div>
         </div>
