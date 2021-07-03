@@ -11,6 +11,7 @@ $listado= $nuevo->roles($con,$user);
 $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
+$listaArea=$nuevo->selectArea($con);
 
 $id="";
 if(isset($_GET['idDoc'])){
@@ -18,19 +19,13 @@ if(isset($_GET['idDoc'])){
     $result=$nuevo->expIdDoc($con,$id);
 
     $idDoc=$result['idDoc'];
-    $remitente=$result['remitente'];
-    $tipoExp=$result['tipoExp'];
-    $asunto=$result['Asunto'];
-    $mensaje=$result['mensaje'];
-    
-    $estadoDoc=$result['estadoExp'];
-
     $nuevo->cambioestado($con,$id);
 }
-
-
+if(isset($_POST['selectArea'])){
+$selectArea =$_POST['selectArea'];
+$nuevo->derivar($con,$area,$selectArea,$id);}
 if(isset($_SESSION['usuario'])){
-    require 'views/abrirdoc.view.php';
+    require 'views/derivardoc.view.php';
   }else{
     header('Location: login.php');
   }

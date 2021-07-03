@@ -425,68 +425,43 @@
                                         <div class="form-row">
                                           <div class="col-md-3">
                                               <div class="position-relative form-group"><label class="">N° Expediente</label>
-                                                <input name="dni" id="dni" type="number" value="<?php echo $idDoc;?>" class="form-control" readonly>
+                                                <input name="nExp" id="nExp" type="number" value="<?php echo $idDoc;?>" class="form-control" readonly>
                                               </div>
                                           </div>
                                           <div class="col-md-4">
-                                              <div class="position-relative form-group"><label  class="">Nombres</label>
-                                                <input name="nombres" id="nombres" placeholder="Ingrese los nombres" type="text" class="form-control">
+                                              <div class="position-relative form-group"><label  class="">Remitente</label>
+                                                <input name="remitente" id="remitente" value="<?php echo $remitente;?>" type="text" class="form-control" readonly>
                                               </div>
                                           </div>
                                           <div class="col-md-5">
-                                              <div class="position-relative form-group"><label  class="">Apellidos</label>
-                                                <input name="apellidos" id="apellidos" placeholder="Ingrese los apellidos" type="text" class="form-control">
+                                              <div class="position-relative form-group"><label  class="">Tipo de Expediente</label>
+                                                <input name="tipExp" id="tipExp" value="<?php echo $tipoExp;?>" type="text" class="form-control" readonly>
                                               </div>
                                           </div>
                                         </div>
                                         <div class="form-row">
+                                        <div class="col-md-4">
+                                              <div class="position-relative form-group"><label  class="">Asunto</label>
+                                                <input name="asunto" id="asunto" value="<?php echo $asunto;?>" type="text" class="form-control" readonly>
+                                              </div>
+                                          </div>
                                           <div class="col-md-8">
                                             <div class="position-relative form-group">
-                                              <label for="examplePassword11" class="">Dirección</label>
-                                              <input name="direccion" id="direccion" placeholder="Ingrese la dirección" type="text" class="form-control">
+                                              <label for="examplePassword11" class="">Mensaje</label>
+                                              <input name="mensaje" id="mensaje" value="<?php echo $mensaje;?>" type="text" class="form-control" readonly>
                                             </div>
                                           </div>
-                                          <div class="col-md-4">
-                                            <div class="position-relative form-group"><label for="exampleEmail11" class="">Telefono</label>
-                                              <input name="telefono" id="telefono" placeholder="123-456-789" type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" >
-                                            </div>
-                                          </div>
+                                          
                                         </div>
-                                        <div class="form-row">
-                                          <div class="col-md-8">
-                                            <div class="position-relative form-group"><label for="examplePassword11" class="">Correo</label>
-                                              <input name="correo" id="correo" placeholder="Ingrese correo electrónico" type="email" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="col-md-4">
-                                            <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo Usuario</label>
-                                              <select class="mb-2 form-control">
-                                                <option value="tipouser">Normal</option>
-                                                <option value="tipouser">Jurídico</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="form-row">
-                                          <div class="col-md-6">
-                                            <div class="position-relative form-group"><label for="exampleAddress" class="">RUC</label>
-                                              <input name="ruc" id="ruc" placeholder="Ingrese RUC" type="text" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                            <div class="position-relative form-group"><label for="exampleAddress2" class="">Razón Social</label>
-                                              <input name="razonsocial" id="razonsocial" placeholder="Ingrese razón social" type="text" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div id="datos"></div>
-                                        </div>
+                                        
+                                        
                                         <div class="row">
                                             
                                                 <div class="col-md-4 text-center">
-                                                <a href="derivar.php" type="input" name="registrar" class="mt-2 btn btn-primary" >Derivar</a>
+                                                <a href="derivardoc.php?idDoc=<?php echo $idDoc;?>" type="input" name="registrar" class="mt-2 btn btn-primary" >Derivar</a>
                                                 </div>
                                                 <div class="col-md-4 text-center">
-                                                <a href="derivar.php" type="input" name="registrar" class="mt-2 btn btn-primary" >Concluir</a>
+                                                <a href="concluir.php" type="input" name="registrar" class="mt-2 btn btn-primary" >Concluir</a>
                                                 </div>
                                                 <div class="col-md-4 text-center">
                                                 <a href="area.php" type="input" name="registrar" class="mt-2 btn btn-primary" >Volver</a>

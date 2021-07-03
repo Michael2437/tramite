@@ -414,139 +414,55 @@
                 </div>
                 <div class="app-main__outer">
                     <div class="app-main__inner">
-                           <div class="row">
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-midnight-bloom">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Total de Expedientes</div>
-                                            <div class="widget-subheading">Last year expenses</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span> 2896 </span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-arielle-smile">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Clients</div>
-                                            <div class="widget-subheading">Total Clients Profit</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>$ 568</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-grow-early">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Followers</div>
-                                            <div class="widget-subheading">People Interested</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>46%</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-premium-dark">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Products Sold</div>
-                                            <div class="widget-subheading">Revenue streams</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-warning"><span>$14M</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
+
+                        <!-- form-->
+                        <form action="derivardoc.php" method="POST">
                         <div class="row">
-                            <div class="col-md-12">
+                                <div class="col-md-2">
+                                </div>
                                 <div class="main-card mb-3 card">
-                                    <div class="card-header">Active Users
-                                        <div class="btn-actions-pane-right">
-                                            <div role="group" class="btn-group-sm btn-group">
-                                                <button class="active btn btn-focus">Last Week</button>
-                                                <button class="btn btn-focus">All Month</button>
-                                            </div>
+                                    <div class="card-body"><h5 class="card-title">Visualizando Expediente</h5>
+                                     
+                                        <div class="form-row">
+                                                <div class="col-md-6">
+                                                <div class="position-relative form-group text-center"><label class="">N° Expediente</label>
+                                                    <input name="nExp" id="nExp" type="number" value="<?php echo $idDoc;?>" class="form-control text-center" readonly>
+                                                </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="position-relative form-group "><label for="exampleAddress" class="">Tipo de Expediente</label>
+                                                    <select class="form-control" id="selectArea" name="selectArea">";
+                                                            <?php
+                                                            while($selectArea=$listaArea->fetch()){?>
+                                                            <option value="<?php echo $selectArea['nomArea'];?>"><?php echo $selectArea['nomArea'];?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            
+                                          <div class="col-md-12">
+                                              <div class="position-relative form-group"><label  class="">Mensaje</label>
+                                                <input name="mensaje" id="mensaje" placeholder="Ingrese el mensaje" type="text" class="form-control">
+                                              </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                                <div class="col-md-6 text-center">
+                                                <button type="submit" name="aceptar" class="mt-2 btn btn-primary" >Aceptar</a>
+                                                </div>
+                                                <div class="col-md-6 text-center">
+                                                <a href="abrirdoc.php?idDoc=<?php echo $idDoc;?>" type="input" name="cancelar" class="mt-2 btn btn-primary" >Cancelar</a>
+                                                </div>
                                         </div>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th class="text-center">#</th>
-                                                <th class="text-center">Remitente</th>
-                                                <th class="text-center">Tipo</th>
-                                                <th>Asunto</th>
-                                                <th class="text-center">Fecha</th>
-                                                <th class="text-center">Estado</th>
-                                                <th class="text-center">Acciones</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <?php while($result=$consulta->fetch()){
-                                                $idDoc=$result['idDoc'];
-                                                $tipoExp=$result['tipoExp'];
-                                                $remitente=$result['remitente'];
-                                                $asunto=$result['Asunto'];
-                                                $fecha=$result['fecha'];
-                                                $estadoDoc=$result['estadoExp'];
-                                                ?>
-                                            <tr>
-                                                <td class="text-center text-muted"><?php echo $idDoc;?></td>
-                                                <td class="text-center"><?php echo $remitente;?></td>
-                                                <td class="text-center"><?php echo $tipoExp;?></td>
-                                                <td>
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            
-                                                            <div class="widget-content-left flex2">
-                                                                <div class="widget-heading"><?php echo $asunto;?></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center"><?php echo $fecha;?></td>
-                                                <td class="text-center">
-                                                    <div class="badge <?php switch($estadoDoc){
-                                                        case "Nuevo":
-                                                            echo "badge-warning";
-                                                            break;
-                                                        case "Abierto":
-                                                            echo "badge-danger";
-                                                            break;
-                                                        case "Completado":
-                                                            echo "badge-success";
-                                                            break;
-                                                    }?>"><?php echo $estadoDoc;?></div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="abrirdoc.php?idDoc=<?php echo $idDoc;?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
-                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
-                                                </td>
-                                            </tr>
-                                            <?php } ?>
-                                          
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="d-block text-center card-footer">
-                                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                                        <button class="btn-wide btn btn-success">Save</button>
-                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="col-md-2">
+
+                                </div>
+                              </div>
+                              </form>
+                        <!-- fin de form-->
                         
                     </div>
                    

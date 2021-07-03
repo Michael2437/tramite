@@ -71,7 +71,7 @@ if(!empty($_GET['iduser'])){
                     $salida.="<option value='".$tipExp['descTipoDoc']."'>".$tipExp['descTipoDoc']."</option>";
                     }
               
-                $salida.= "<select>
+                $salida.= "<7select>
                 </div>
             </div>
             <div class='col-md-6'>
@@ -82,7 +82,7 @@ if(!empty($_GET['iduser'])){
                     $salida.="<option value='".$selectArea['nomArea']."'>".$selectArea['nomArea']."</option>";
                     }
               
-                $salida.= "<select>
+                $salida.= "</select>
             </div>
         </div>
             <div class='col-md-6'>

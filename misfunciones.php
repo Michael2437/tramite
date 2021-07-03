@@ -156,5 +156,15 @@ Class Conexion{
         'idDoc'=> $idDoc
       ));
     }
+    public function derivar($conexion,$remitente,$nomArea,$idDoc){
+      $consulta=$conexion->prepare(
+        'UPDATE `documento` SET `remitente` = :remitente,`nomArea`=:nomArea,`estadoExp` ="Nuevo" WHERE `documento`.`idDoc` = :idDoc'
+      );
+      $consulta ->execute(array(
+        ':remitente'=>$remitente,
+        ':nomArea'=>$nomArea,
+        'idDoc'=> $idDoc
+      ));
+    }
   }
 ?>
