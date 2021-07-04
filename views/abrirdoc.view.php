@@ -458,7 +458,7 @@
                                         <div class="row">
                                             
                                                 <div class="col-md-4 text-center">
-                                                <a href="derivardoc.php?idDoc=<?php echo $idDoc;?>" type="input" name="registrar" class="mt-2 btn btn-primary" >Derivar</a>
+                                                <a href="derivardoc.php?idDoc=<?php echo $idDoc;?>" type="input" name="registrar" class="mt-2 btn btn-primary">Derivar</a>
                                                 </div>
                                                 <div class="col-md-4 text-center">
                                                 <a href="concluir.php" type="input" name="registrar" class="mt-2 btn btn-primary" >Concluir</a>

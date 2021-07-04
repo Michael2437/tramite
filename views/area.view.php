@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Contenido</title>
+    <title><?php echo $area;?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
@@ -532,7 +532,11 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="abrirdoc.php?idDoc=<?php echo $idDoc;?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
-                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                    <a href="area.php?idDoc=<?php echo $idDoc;?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
+                                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                                        Detalles
+                                                    </button>
+                                                    
                                                 </td>
                                             </tr>
                                             <?php } ?>
@@ -549,7 +553,30 @@
                         </div>
                         
                     </div>
-                   
+            </div>       
     </div>
-<script type="text/javascript" src="views/assets/scripts/main.js"></script></body>
+<script type="text/javascript" src="views/assets/scripts/main.js"></script>
+</body>
 </html>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-0"><?php 
+                echo $detalle;?></p>
+            </div>
+            <div class="modal-footer">
+             <!--   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

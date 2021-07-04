@@ -156,14 +156,24 @@ Class Conexion{
         'idDoc'=> $idDoc
       ));
     }
-    public function derivar($conexion,$remitente,$nomArea,$idDoc){
+    public function derivar($conexion,$remitente,$nomArea,$mensaje,$idDoc){
       $consulta=$conexion->prepare(
-        'UPDATE `documento` SET `remitente` = :remitente,`nomArea`=:nomArea,`estadoExp` ="Nuevo" WHERE `documento`.`idDoc` = :idDoc'
+        'UPDATE `documento` SET `remitente` = :remitente,`nomArea`=:nomArea,`estadoExp` ="Nuevo",`mensaje`=:mensaje WHERE `documento`.`idDoc` = :idDoc'
       );
       $consulta ->execute(array(
         ':remitente'=>$remitente,
         ':nomArea'=>$nomArea,
+        ':mensaje'=>$mensaje,
         'idDoc'=> $idDoc
+      ));
+    }
+    public function detalle($conexion,$detalle,$idDoc){
+      $consulta=$conexion->prepare(
+        'UPDATE `documento` SET `detalleExp` = :detalle WHERE `documento`.`idDoc` = :idDoc'
+      );
+      $consulta ->execute(array(
+        ':detalle'=>$detalle,
+        ':idDoc'=>$idDoc
       ));
     }
   }

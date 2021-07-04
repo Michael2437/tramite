@@ -91,21 +91,21 @@ if(!empty($_GET['iduser'])){
                 </div>
             </div>
             <div class='col-md-6'>
-            <div class='position-relative form-group text-center'><label for='exampleAddress' class=''>Estado</label>
-            <input name='estadoDoc' id='estadoDoc' value='Nuevo' readonly type='text' class='form-control text-center'>
+                <div class='position-relative form-group text-center'><label for='exampleAddress' class=''>Estado</label>
+                <input name='estadoDoc' id='estadoDoc' value='Nuevo' readonly type='text' class='form-control text-center'>
+                </div>
             </div>
         </div>
-        </div>
             <div> 
-            <div class='form-row'>
-                <div class='col-md-6'>
-                    <div class='text-center'>
-                    <button type='submit' class='mt-2 btn btn-primary'>Registrar Expediente</button>
+                <div class='form-row'>
+                    <div class='col-md-6'>
+                        <div class='text-center'>
+                        <button type='submit' class='mt-2 btn btn-primary'>Registrar Expediente</button>
+                        </div>
                     </div>
-                </div>
-                <div class='col-md-6'>
-                    <div class='text-center'>
-                    <a href='buscaruser.php?iduser=".$iduser."' class='mt-2 btn btn-primary'>Atras</a>
+                    <div class='col-md-6'>
+                        <div class='text-center'>
+                        <a href='buscaruser.php?iduser=".$iduser."' class='mt-2 btn btn-primary'>Atras</a>
                     </div>
                 </div>
             </div>

@@ -416,22 +416,19 @@
                     <div class="app-main__inner">
 
                         <!-- form-->
-                        <form action="derivardoc.php" method="POST">
-                        <div class="row">
-                                <div class="col-md-2">
-                                </div>
+                        <form name="envio" method="POST" >
                                 <div class="main-card mb-3 card">
                                     <div class="card-body"><h5 class="card-title">Visualizando Expediente</h5>
                                      
                                         <div class="form-row">
                                                 <div class="col-md-6">
-                                                <div class="position-relative form-group text-center"><label class="">N° Expediente</label>
-                                                    <input name="nExp" id="nExp" type="number" value="<?php echo $idDoc;?>" class="form-control text-center" readonly>
-                                                </div>
+                                                    <div class="position-relative form-group text-center"><label class="">N° Expediente</label>
+                                                        <input name="nExp" id="nExp" type="number" value="<?php echo $idDoc;?>" class="form-control text-center" readonly>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="position-relative form-group "><label for="exampleAddress" class="">Tipo de Expediente</label>
-                                                    <select class="form-control" id="selectArea" name="selectArea">";
+                                                    <div class="position-relative form-group "><label for="exampleAddress" class="">Area a derivar</label>
+                                                        <select class="form-control" id="selectArea" name="selectArea">";
                                                             <?php
                                                             while($selectArea=$listaArea->fetch()){?>
                                                             <option value="<?php echo $selectArea['nomArea'];?>"><?php echo $selectArea['nomArea'];?></option>
@@ -449,18 +446,14 @@
 
                                         <div class="row">
                                                 <div class="col-md-6 text-center">
-                                                <button type="submit" name="aceptar" class="mt-2 btn btn-primary" >Aceptar</a>
+                                                    <button type="submit" name="aceptar" class="mt-2 btn btn-primary" >Aceptar</button>
                                                 </div>
                                                 <div class="col-md-6 text-center">
-                                                <a href="abrirdoc.php?idDoc=<?php echo $idDoc;?>" type="input" name="cancelar" class="mt-2 btn btn-primary" >Cancelar</a>
+                                                    <a href="abrirdoc.php?idDoc=<?php echo $idDoc;?>" type="input" name="cancelar" class="mt-2 btn btn-primary" >Cancelar</a>
                                                 </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-
-                                </div>
-                              </div>
                               </form>
                         <!-- fin de form-->
                         
