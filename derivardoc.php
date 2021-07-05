@@ -25,7 +25,7 @@ if(isset($_GET['idDoc'])){
 if(isset($_POST['selectArea'])){
 $selectArea =$_POST['selectArea'];
 $mensaje=$_POST['mensaje'];
-$detalle .="El archivo es enviado de ".$area." la Area de: ".$selectArea." .Con el siguiente mensaje: ".$mensaje."/n";
+$detalle .="Enviado por: ".$area." A: ".$selectArea." . Mensaje: ".$mensaje."\n";
 $nuevo->derivar($con,$area,$selectArea,$mensaje,$id);
 $nuevo->detalle($con,$detalle,$idDoc);
 }

@@ -27,7 +27,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $nArea=$_POST['selectArea'];
     $tipoExp=$_POST['tipExp'];
     $estadoDoc=$_POST['estadoDoc'];
-    $nuevo->registroexp($con,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc);
+    $detalle ="Enviado por: ".$area." A: ".$nArea." . Fecha: ".$fecha."\n";
+    $nuevo->registroexp($con,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc,$detalle);
 }
 if(!empty($_GET['iduser'])){
     $dni="";
@@ -62,7 +63,7 @@ if(!empty($_GET['iduser'])){
                   </div>
               </div>
             </div>
-            <div class='form-row'>
+        <div class='form-row'>
             <div class='col-md-6'>
                 <div class='position-relative form-group'><label for='exampleAddress' class=''>Tipo de Expediente</label>
                 <select class='form-control' id='tipExp' name='tipExp'>";
@@ -71,20 +72,20 @@ if(!empty($_GET['iduser'])){
                     $salida.="<option value='".$tipExp['descTipoDoc']."'>".$tipExp['descTipoDoc']."</option>";
                     }
               
-                $salida.= "<7select>
+                $salida.= "</select>
                 </div>
             </div>
             <div class='col-md-6'>
-            <div class='position-relative form-group'><label for='exampleAddress2' class=''>Area</label>
-            <select class='form-control' id='selectArea' name='selectArea'>";
+               <div class='position-relative form-group'><label for='exampleAddress2' class=''>Area</label>
+                    <select class='form-control' id='selectArea' name='selectArea'>";
 
-                while($selectArea=$listaArea->fetch()){
-                    $salida.="<option value='".$selectArea['nomArea']."'>".$selectArea['nomArea']."</option>";
-                    }
-              
-                $salida.= "</select>
+                    while($selectArea=$listaArea->fetch()){
+                        $salida.="<option value='".$selectArea['nomArea']."'>".$selectArea['nomArea']."</option>";
+                        }
+                
+                    $salida.= "</select>
+                </div>
             </div>
-        </div>
             <div class='col-md-6'>
                 <div class='position-relative form-group text-center'><label for='exampleAddress' class=''>Asunto</label>
                 <input name='asunto' id='asunto' placeholder='Ingrese Asunto' type='text' class='form-control' autocomplete='off'>

@@ -100,17 +100,18 @@ Class Conexion{
       $resultado=$statement->fetch();
       return $resultado;
     }
-    public function registroexp($conexion,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc){
+    public function registroexp($conexion,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc,$detalle){
       $statement = $conexion->prepare('
-      INSERT INTO `documento` ( `iduser`, `fecha`, `Asunto`,`remitente` ,`nomArea`,`tipoExp`,`estadoExp`) VALUES (:iduser, :fecha, :asunto,:remitente, :nArea,:tipoExp,:estadoExp)');
+      INSERT INTO `documento` ( `iduser`, `fecha`, `Asunto`,`remitente` ,`nomArea`,`tipoExp`,`estadoExp`,`detalleExp`) VALUES (:iduser, :fecha, :asunto,:remitente, :nArea,:tipoExp,:estadoExp,:detalle)');
       $statement->execute(array(
       ':iduser' =>$iduser,
       ':fecha'  =>$fecha,
       ':remitente'=>$remitente,
       ':asunto' =>$asunto,
       ':nArea'  =>$nArea,
-      'tipoExp' =>$tipoExp,
-      ':estadoExp'=>$estadoDoc
+      ':tipoExp' =>$tipoExp,
+      ':estadoExp'=>$estadoDoc,
+      ':detalle'=>$detalle
       ));
     }
     public function mostrarexp($conexion,$iduser){
