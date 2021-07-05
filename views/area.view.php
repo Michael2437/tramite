@@ -15,7 +15,7 @@
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-            <img src="views/assets/logos/logo.png" alt="" class="logo-src">
+                <img src="views/assets/logos/logo.png" alt="" class="logo-src">
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -53,7 +53,7 @@
                         </div>
                         <button class="close"></button>
                     </div>
-                           </div>
+                </div>
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
                         <div class="widget-content p-0">
@@ -78,12 +78,12 @@
                                     <?php echo $rol;?>
                                     </div>
                                 </div>
-                                <div class="widget-content-right header-user-info ml-3">
-                                   
+                                <div class="widget-content-right header-user-info ml-3"> 
                                 </div>
                             </div>
                         </div>
-                    </div>        </div>
+                    </div>        
+                </div>
             </div>
         </div>
         <div class="ui-theme-settings">
@@ -414,7 +414,7 @@
                 </div>
                 <div class="app-main__outer">
                     <div class="app-main__inner">
-                           <div class="row">
+                        <div class="row">
                             <div class="col-md-6 col-xl-4">
                                 <div class="card mb-3 widget-content bg-midnight-bloom">
                                     <div class="widget-content-wrapper text-white">
@@ -468,7 +468,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+                      
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
@@ -483,63 +483,61 @@
                                     <div class="table-responsive">
                                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                                             <thead>
-                                            <tr>
-                                                <th class="text-center">#</th>
-                                                <th class="text-center">Remitente</th>
-                                                <th class="text-center">Tipo</th>
-                                                <th>Asunto</th>
-                                                <th class="text-center">Fecha</th>
-                                                <th class="text-center">Estado</th>
-                                                <th class="text-center">Acciones</th>
-                                            </tr>
+                                                <tr>
+                                                    <th class="text-center">#</th>
+                                                    <th class="text-center">Remitente</th>
+                                                    <th class="text-center">Tipo</th>
+                                                    <th>Asunto</th>
+                                                    <th class="text-center">Fecha</th>
+                                                    <th class="text-center">Estado</th>
+                                                    <th class="text-center">Acciones</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <?php while($result=$consulta->fetch()){
-                                                $idDoc=$result['idDoc'];
-                                                $tipoExp=$result['tipoExp'];
-                                                $remitente=$result['remitente'];
-                                                $asunto=$result['Asunto'];
-                                                $fecha=$result['fecha'];
-                                                $estadoDoc=$result['estadoExp'];
-                                                ?>
-                                            <tr>
-                                                <td class="text-center text-muted"><?php echo $idDoc;?></td>
-                                                <td class="text-center"><?php echo $remitente;?></td>
-                                                <td class="text-center"><?php echo $tipoExp;?></td>
-                                                <td>
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            
-                                                            <div class="widget-content-left flex2">
-                                                                <div class="widget-heading"><?php echo $asunto;?></div>
+                                                    <?php while($result=$consulta->fetch()){
+                                                        $idDoc=$result['idDoc'];
+                                                        $tipoExp=$result['tipoExp'];
+                                                        $remitente=$result['remitente'];
+                                                        $asunto=$result['Asunto'];
+                                                        $fecha=$result['fecha'];
+                                                        $estadoDoc=$result['estadoExp'];
+                                                        ?>
+                                                    <tr>
+                                                        <td class="text-center text-muted"><?php echo $idDoc;?></td>
+                                                        <td class="text-center"><?php echo $remitente;?></td>
+                                                        <td class="text-center"><?php echo $tipoExp;?></td>
+                                                        <td>
+                                                            <div class="widget-content p-0">
+                                                                <div class="widget-content-wrapper">
+                                                                    
+                                                                    <div class="widget-content-left flex2">
+                                                                        <div class="widget-heading"><?php echo $asunto;?></div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center"><?php echo $fecha;?></td>
-                                                <td class="text-center">
-                                                    <div class="badge <?php switch($estadoDoc){
-                                                        case "Nuevo":
-                                                            echo "badge-warning";
-                                                            break;
-                                                        case "Abierto":
-                                                            echo "badge-danger";
-                                                            break;
-                                                        case "Completado":
-                                                            echo "badge-success";
-                                                            break;
-                                                    }?>"><?php echo $estadoDoc;?></div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="abrirdoc.php?idDoc=<?php echo $idDoc;?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
-                                                    <a href="area.php?idDoc=<?php echo $idDoc;?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
-                                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
-                                                        Detalles
-                                                    </button>
+                                                        </td>
+                                                        <td class="text-center"><?php echo $fecha;?></td>
+                                                        <td class="text-center">
+                                                            <div class="badge <?php switch($estadoDoc){
+                                                                case "Nuevo":
+                                                                    echo "badge-warning";
+                                                                    break;
+                                                                case "Abierto":
+                                                                    echo "badge-danger";
+                                                                    break;
+                                                                case "Completado":
+                                                                    echo "badge-success";
+                                                                    break;
+                                                            }?>"><?php echo $estadoDoc;?></div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a href="abrirdoc.php?idDoc=<?php echo $idDoc;?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
+                                                            <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">Detalles</button>
+                                                            
+                                                        </td>
+                                                    </tr>
                                                     
-                                                </td>
-                                            </tr>
-                                            <?php } ?>
+                                                <?php } ?>
                                           
                                             </tbody>
                                         </table>
@@ -553,31 +551,31 @@
                         </div>
                         
                     </div>
-                    </div>
-            </div>       
+                </div>       
+        </div>
     </div>
 <script type="text/javascript" src="views/assets/scripts/main.js"></script>
 </body>
 </html>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="mb-0"><?php 
-                echo $detalle;?></p>
-            </div>
-            <div class="modal-footer">
-             <!--   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-            </div>
-        </div>
-    </div>
-</div>
+                    <!-- MODAL -->
+                    <div  id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel"><?php echo $idDoc;?></h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <!-- FIN MODAL-->
