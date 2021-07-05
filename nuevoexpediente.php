@@ -1,7 +1,7 @@
 <?php session_start();
 
 include_once 'misfunciones.php';
-
+date_default_timezone_set('America/Lima');
 $nuevo= new Conexion();
 $user =$_SESSION['usuario'];
 $con =$nuevo->conectar();

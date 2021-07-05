@@ -603,6 +603,7 @@
             let id_plan = $(this).attr('id');
             
             $("textarea#idmodal").val(id_plan);
+            $("p#idmodal").val(id_plan);
         });
     </script>
 
@@ -621,7 +622,8 @@
                 </button>
             </div>
             <div class="modal-body">
-            <textarea name="id" id="idmodal" cols="70" rows="10" readonly></textarea>
+            <textarea name="id" id="idmodal" cols="70" rows="10" style="border: none;resize: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;color: red;" readonly></textarea>
+            
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
