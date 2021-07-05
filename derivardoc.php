@@ -25,7 +25,8 @@ if(isset($_GET['idDoc'])){
 if(isset($_POST['selectArea'])){
 $selectArea =$_POST['selectArea'];
 $mensaje=$_POST['mensaje'];
-$detalle .="Enviado por: ".$area." A: ".$selectArea." . Mensaje: ".$mensaje."\n";
+$fecha = date("Y-m-d H:i:s"); 
+$detalle .="Enviado por: ".$area." A: ".$selectArea." . Fecha: ".$fecha."\n";
 $nuevo->derivar($con,$area,$selectArea,$mensaje,$id);
 $nuevo->detalle($con,$detalle,$idDoc);
 }

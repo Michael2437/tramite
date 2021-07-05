@@ -10,6 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Build whatever layout you need with our Architect framework.">
     <meta name="msapplication-tap-highlight" content="no">
+
+  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
 <link href="views/main.css" rel="stylesheet"></head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -537,7 +542,8 @@
                                                 $asunto=$fila['Asunto'];
                                                 $nomArea=$fila['nomArea'];
                                                 $fecha=$fila['fecha'];
-                                                $estadoDoc=$fila['estadoExp']
+                                                $estadoDoc=$fila['estadoExp'];
+                                                $detalle=$fila['detalleExp'];
                                                 ?>
                                             <tr>
                                                 <td class="text-center text-muted"><?php echo $idDoc;?></td>
@@ -568,7 +574,7 @@
                                                     }?>"><?php echo $estadoDoc;?></div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Detalles</button>
+                                                <a href="#" id="<?php echo $detalle; ?>" class="btn btn-primary btn-sm order-submit abrirmodal" data-toggle="modal" data-target="#myModal">Detalles</a>
                                                 </td>
                                             </tr>
                                             <?php } ?>
@@ -591,12 +597,40 @@
               </div>
         </div>
     </div>
-
+    <script>
+        $("a.abrirmodal").click(function() {
+            //Capturamos el valor del id para enviarlo al modal
+            let id_plan = $(this).attr('id');
+            
+            $("textarea#idmodal").val(id_plan);
+        });
+    </script>
 
 <script type="text/javascript" src="views/assets/scripts/main.js"></script>
 </body>
 </html>
 
+<!-- MODAL -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <textarea name="id" id="idmodal" cols="70" rows="10" readonly></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- FIN MODAL-->
 
 

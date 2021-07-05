@@ -37,12 +37,12 @@
             <?php endif;?>
             <div class="clearfix">
                 <!--<label class="float-left form-check-label"><input type="checkbox"> Recordar</label>-->
-                <a href="#" class="float-right">¿Olvidó la contraseña?</a>
+                
             </div>
 
 
         </form>
-        <p class="text-center"><a href="#">Crear una cuenta</a></p>
+        
     </div>
 </div>
 
