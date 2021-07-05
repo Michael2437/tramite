@@ -553,6 +553,7 @@
                         </div>
                         
                     </div>
+                    </div>
             </div>       
     </div>
 <script type="text/javascript" src="views/assets/scripts/main.js"></script>
