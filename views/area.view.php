@@ -498,6 +498,7 @@
                                                 <th>Asunto</th>
                                                 <th class="text-center">Fecha</th>
                                                 <th class="text-center">Estado</th>
+                                                <th class="text-center">Proceso</th>
                                                 <th class="text-center">Acciones</th>
                                             </tr>
                                         </thead>
@@ -508,6 +509,10 @@
                                                 $remitente = $result['remitente'];
                                                 $asunto = $result['Asunto'];
                                                 $fecha = $result['fecha'];
+
+                                                $fecha15dias=date("Y-m-d H:i:s",strtotime($fecha."+ 15 days"));
+                                                $fecha30dias=date("Y-m-d H:i:s",strtotime($fecha."+ 1 month"));
+                                              
                                                 $estadoDoc = $result['estadoExp'];
                                                 $detalle=$result['detalleExp'];
                                             ?>
@@ -538,6 +543,20 @@
                                                                                     echo "badge-success";
                                                                                     break;
                                                                             } ?>"><?php echo $estadoDoc; ?></div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="badge 
+                                                        <?php if($fecha15dias>$fechaactual && $fechaactual>=$fecha){
+                                                            echo "badge-warning";
+                                                            $procesoExp="En trámite";
+                                                        }else if($fecha30dias>$fechaactual && $fechaactual>= $fecha15dias){
+                                                            echo "badge-danger";
+                                                            $procesoExp="Por Expirar";
+                                                        } elseif($fechaactual>= $fecha30dias){
+                                                            echo "badge-success";
+                                                            $procesoExp="Expirado";
+                                                        }
+                                                         ?>"><?php echo $procesoExp; ?></div>
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="abrirdoc.php?idDoc=<?php echo $idDoc; ?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
@@ -586,7 +605,7 @@
                 </button>
             </div>
             <div class="modal-body">
-            <textarea name="id" id="idmodal" cols="70" rows="10" readonly></textarea>
+            <textarea name="id" id="idmodal" rows="15" style="border: none;resize: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;color: navy;" readonly></textarea>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -622,7 +622,7 @@
                 </button>
             </div>
             <div class="modal-body">
-            <textarea name="id" id="idmodal" cols="70" rows="10" style="border: none;resize: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;color: red;" readonly></textarea>
+            <textarea name="id" id="idmodal"  rows="15" style="border: none;resize: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;color: navy;" readonly></textarea>
             
             </div>
             <div class="modal-footer">

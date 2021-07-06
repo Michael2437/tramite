@@ -440,12 +440,12 @@
                                           </div>
                                         </div>
                                         <div class="form-row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-12">
                                               <div class="position-relative form-group"><label  class="">Asunto</label>
                                                 <input name="asunto" id="asunto" value="<?php echo $asunto;?>" type="text" class="form-control" readonly>
                                               </div>
                                           </div>
-                                          <div class="col-md-8">
+                                          <div class="col-md-12">
                                             <div class="position-relative form-group">
                                               <label for="examplePassword11" class="">Mensaje</label>
                                               <input name="mensaje" id="mensaje" value="<?php echo $mensaje;?>" type="text" class="form-control" readonly>
