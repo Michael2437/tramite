@@ -553,7 +553,7 @@
                                                             echo "badge-danger";
                                                             $procesoExp="Por Expirar";
                                                         } elseif($fechaactual>= $fecha30dias){
-                                                            echo "badge-success";
+                                                            echo "badge-info";
                                                             $procesoExp="Expirado";
                                                         }
                                                          ?>"><?php echo $procesoExp; ?></div>

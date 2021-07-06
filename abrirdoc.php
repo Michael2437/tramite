@@ -1,8 +1,8 @@
 <?php session_start();
 
-
+date_default_timezone_set('America/Lima');
 include_once 'misfunciones.php';
-
+$fechaactual = date("Y-m-d H:i:s"); 
 $nuevo= new Conexion();
 $user =$_SESSION['usuario'];
 $con =$nuevo->conectar();
