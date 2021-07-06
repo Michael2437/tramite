@@ -22,14 +22,16 @@ if(isset($_GET['idDoc'])){
     $detalle =$result['detalleExp'];
     $nuevo->cambioestado($con,$id);
 }
-if(isset($_POST['selectArea'])){
-$selectArea =$_POST['selectArea'];
-$mensaje=$_POST['mensaje'];
-$fecha = date("Y-m-d H:i:s"); 
-$detalle .="Derivado el: ".$fecha.". De: ".$area." A: ".$selectArea."\n";
-$nuevo->derivar($con,$area,$selectArea,$mensaje,$id);
-$nuevo->detalle($con,$detalle,$idDoc);
+ if(isset($_POST['selectArea'])){
+  $nExp=$_POST['nExp'];
+  $selectArea =$_POST['selectArea'];
+  $mensaje=$_POST['mensaje'];
+  $fecha = date("Y-m-d H:i:s"); 
+  $detalle .="Derivado el: ".$fecha.". De: ".$area." A: ".$selectArea."\n";
+  $derivado=$nuevo->derivar($con,$area,$selectArea,$mensaje,$nExp);
+  $nuevo->detalle($con,$detalle,$nExp);
 }
+
 if(isset($_SESSION['usuario'])){
     require 'views/derivardoc.view.php';
   }else{

@@ -608,8 +608,7 @@
             <textarea name="id" id="idmodal" rows="15" style="border: none;resize: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;color: navy;" readonly></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
             </div>
         </div>
     </div>

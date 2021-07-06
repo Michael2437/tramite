@@ -25,7 +25,17 @@ if(isset($_GET['idDoc'])){
     
     $estadoDoc=$result['estadoExp'];
 
-    $nuevo->cambioestado($con,$id);
+    if($estadoDoc=="Nuevo"){
+    $nuevo->cambioestado($con,$id);}
+
+}
+
+if(isset($_POST['remitente'])){
+  $nExp=$_POST['nExp'];
+  $result=$nuevo->expIdDoc($con,$nExp);
+  $detalle =$result['detalleExp'];
+  $detalle.="Completado el: ".$fechaactual;
+  $completado=$nuevo->estadocompleto($con,$nExp,$detalle);
 }
 
 

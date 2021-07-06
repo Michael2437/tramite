@@ -158,6 +158,17 @@ Class Conexion{
         'idDoc'=> $idDoc
       ));
     }
+    public function estadocompleto($conexion,$idDoc,$detalle){
+      $consulta=$conexion->prepare(
+        'UPDATE `documento` SET `estadoExp` = "Completado",`detalleExp`=:detalleDoc WHERE `documento`.`idDoc` = :idDoc'
+      );
+      $consulta ->execute(array(
+        'idDoc'=> $idDoc,
+        'detalleDoc'=>$detalle
+      ));
+      return $consulta;
+    }
+
     public function derivar($conexion,$remitente,$nomArea,$mensaje,$idDoc){
       $consulta=$conexion->prepare(
         'UPDATE `documento` SET `remitente` = :remitente,`nomArea`=:nomArea,`estadoExp` ="Nuevo",`mensaje`=:mensaje WHERE `documento`.`idDoc` = :idDoc'
@@ -168,6 +179,8 @@ Class Conexion{
         ':mensaje'=>$mensaje,
         'idDoc'=> $idDoc
       ));
+      
+      return $consulta;
     }
     public function detalle($conexion,$detalle,$idDoc){
       $consulta=$conexion->prepare(
