@@ -27,8 +27,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $nArea=$_POST['selectArea'];
     $tipoExp=$_POST['tipExp'];
     $estadoDoc=$_POST['estadoDoc'];
-    $detalle ="Enviado por: ".$area." A: ".$nArea." . Fecha: ".$fecha."\n";
-    $nuevo->registroexp($con,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc,$detalle);
+    $procesoDoc="En trámite";
+    $detalle ="Registrado el: ".$fecha.". Enviado a: ".$nArea."\n";
+    $nuevo->registroexp($con,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc,$procesoDoc,$detalle);
 }
 if(!empty($_GET['iduser'])){
     $dni="";
