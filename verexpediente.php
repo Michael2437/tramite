@@ -20,6 +20,18 @@ if(isset($_GET['iduser'])){
   $nombres=$resultado['nomUsuario'];
   $apellidos=$resultado['apeUsuario'];
 }
+if(isset($_POST['idDoc'])){
+  $idDoc= $_POST['idDoc'];
+  $dni="";
+  $statement = $nuevo->buscarExp($con,$idDoc);
+  $fila=$statement->fetch();
+  $iduser=$fila['iduser'];
+  $resultado = $nuevo->buscaruser($con,$dni,$iduser);
+
+  $dni=$resultado['dni'];
+  $nombres=$resultado['nomUsuario'];
+  $apellidos=$resultado['apeUsuario'];
+}
 
 
 if(isset($_SESSION['usuario'])){

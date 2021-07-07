@@ -422,7 +422,10 @@
                     <div class="app-main__inner">
 
                         <!-- form-->
-                        <form action="derivardoc.php" method="POST" >
+                        <form action="derivardoc.php" method="POST" name="derivar">
+                            <div class="row">
+                                <div class="col-md-2">
+                                </div>
                                 <div class="main-card mb-3 card">
                                     <div class="card-body"><h5 class="card-title">Visualizando Expediente</h5>
                                      
@@ -446,14 +449,17 @@
                                             
                                           <div class="col-md-12">
                                               <div class="position-relative form-group"><label  class="">Mensaje</label>
-                                                <input name="mensaje" id="mensaje" placeholder="Ingrese el mensaje" type="text" class="form-control">
+                                                <input name="mensaje" id="mensaje" placeholder="Ingrese el mensaje" type="text" class="form-control" autocomplete="off">
                                               </div>
                                           </div>
                                         </div>
 
                                         <div class="row">
                                                 <div class="col-md-6 text-center">
-                                                    <button type="submit" name="aceptar" id="aceptar" class="mt-2 btn btn-primary" >Aceptar</button>
+                                                <button type="button" class="mt-2 btn btn-primary" data-toggle="modal" data-target="#validarModal">
+                                                        Aceptar
+                                                        </button>
+                                                    
                                                 </div>
                                                 <div class="col-md-6 text-center">
                                                     <a href="abrirdoc.php?idDoc=<?php echo $idDoc;?>" type="input" name="cancelar" class="mt-2 btn btn-primary" >Cancelar</a>
@@ -462,11 +468,16 @@
                                     
                                     </div>
                                 </div>
+                                <div class="col-md-2">
+
+                                </div>
+                            </div>
                         </form>
                         <!-- fin de form-->
                         
                     </div>
                 </div>   
+        </div>
     </div>
     <?php if(isset($derivado)){
 
@@ -480,9 +491,29 @@
         }
     }?>
     
-<script type="text/javascript" src="views/assets/scripts/main.js"></script></body>
+<script type="text/javascript" src="views/assets/scripts/main.js"></script>
+</body>
 </html>
 
+<div id="validarModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¿Está Seguro?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Si deriva el expediente no lo volverá a ver en sus registros.</p>
+                </div>
+            <div class="modal-footer">
+                <button type="submit" name="concluir" class="btn btn-primary" onclick="derivar.submit()">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- MODAL -->
 <div id="myModal" class="modal fade">
     <div class="modal-dialog" role="document">

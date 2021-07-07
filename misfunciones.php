@@ -100,9 +100,9 @@ Class Conexion{
       $resultado=$statement->fetch();
       return $resultado;
     }
-    public function registroexp($conexion,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc,$procesoDoc,$detalle){
+    public function registroexp($conexion,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc,$detalle){
       $statement = $conexion->prepare('
-      INSERT INTO `documento` ( `iduser`, `fecha`, `Asunto`,`remitente` ,`nomArea`,`tipoExp`,`estadoExp`,`procesoExp`,`detalleExp`) VALUES (:iduser, :fecha, :asunto,:remitente, :nArea,:tipoExp,:estadoExp,:procesoExp,:detalle)');
+      INSERT INTO `documento` ( `iduser`, `fecha`, `Asunto`,`remitente` ,`nomArea`,`tipoExp`,`estadoExp`,`detalleExp`) VALUES (:iduser, :fecha, :asunto,:remitente, :nArea,:tipoExp,:estadoExp,:detalle)');
       $statement->execute(array(
       ':iduser' =>$iduser,
       ':fecha'  =>$fecha,
@@ -111,7 +111,6 @@ Class Conexion{
       ':nArea'  =>$nArea,
       ':tipoExp' =>$tipoExp,
       ':estadoExp'=>$estadoDoc,
-      ':procesoExp'=>$procesoDoc,
       ':detalle'=>$detalle
       ));
     }
@@ -129,8 +128,7 @@ Class Conexion{
       $statement->execute(array(
         ':idDoc' => $nExp
       ));
-      $resultado=$statement->fetch();
-      return $resultado;
+      return $statement;
     }
     /*Funciones para las areas */
     public function expArea($conexion,$area){

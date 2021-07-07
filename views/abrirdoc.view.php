@@ -423,7 +423,7 @@
 
                         <!-- form-->
                         <form action="abrirdoc.php" method="POST" name="completar" id="completar">
-                        <div class="row">
+                            <div class="row">
                                 <div class="col-md-2">
                                 </div>
                                 <div class="main-card mb-3 card">
@@ -461,15 +461,14 @@
                                           
                                         </div>
                                         
-                                                <?php if(isset($idDoc)){if($estadoDoc!="Completado"){ ?> 
-                                                <div class="row">
+                                                <?php if(isset($idDoc)){if($estadoDoc!="Completado"){ ?>  
+                                                <div class="form-row">
                                                     <div class="col-md-6 text-center">
                                                         <a href="derivardoc.php?idDoc=<?php echo $idDoc;?>" type="input" name="derivar" class="mt-2 btn btn-primary">Derivar</a>
                                                     </div>
                                                     <div class="col-md-6 text-center">
-                                                        <button type="button" class="mt-2 btn btn-primary" data-toggle="modal" data-target="#validarModal">
-                                                        Concluir
-                                                        </button>
+                                                    <a href="concluir.php?idDoc=<?php echo $idDoc;?>" type="input" name="concluir" class="mt-2 btn btn-primary">Concluir</a>
+                                                        
                                                     </div>
                                                 </div>
                                                 <?php }}?>
@@ -485,61 +484,14 @@
                                 <div class="col-md-2">
 
                                 </div>
-                              </div>
-                              </form>
+                            </div>
+                        </form>
                         <!-- fin de form-->
                         
                     </div>
                 </div>  
     </div>
-    <?php if(isset($completado)){
-
-        if($completado){
-        echo "<script>
-        $( document ).ready(function() {
-            $('#myModal').modal('toggle')
-        });
-        </script>";
-
-        }
-}?>
+    </div>
+    
 <script type="text/javascript" src="views/assets/scripts/main.js"></script></body>
 </html>
-
-<div id="validarModal" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">¿Está Seguro?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Si da el Expediente por concluido no podrá hacer más modificaciones.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" name="concluir" class="btn btn-primary" onclick="completar.submit()">Si</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- MODAL -->
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <div>
-                <h5 class="modal-title" id="exampleModalLabel">Expediente Completado</h5>
-                </div>
-                <div>
-                <a href="area.php" class="btn btn-secondary" >Aceptar</a>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</div>
-
-<!-- FIN MODAL-->

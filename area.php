@@ -16,7 +16,6 @@ $consulta=$nuevo->expArea($con,$area);
 $fechaactual = date("Y-m-d H:i:s"); 
 
 
- 
 if(isset($_SESSION['usuario'])){
     require 'views/area.view.php';
   }else{

@@ -13,13 +13,14 @@ if(isset($_POST['nExp'])){
     $nExp=$_POST['nExp'];
 }
 $resultado=$nuevo->buscarExp($con,$nExp);
+$fila= $resultado->fetch();
 $salida="";
-if($resultado){
-    $idDoc=$resultado['idDoc'];
-    $id=$resultado['iduser'];
-    $asunto=$resultado['Asunto'];
-    $fecha = $resultado['fecha'];
-    $nomArea =$resultado['nomArea'];
+if($fila){
+    $idDoc=$fila['idDoc'];
+    $id=$fila['iduser'];
+    $asunto=$fila['Asunto'];
+    $fecha = $fila['fecha'];
+    $nomArea =$fila['nomArea'];
 
     $salida .= "<div class='row'>
     <div class='col-md-2'></div>
@@ -28,11 +29,11 @@ if($resultado){
         <div class='card-body'>
           
           <div>
-    <form name='datos' method='post' >
+    <form name='datos' method='POST' action='verexpediente.php' >
     <div class='form-row'>
       <div class='col-md-3'>
             <div class='position-relative form-group'><label  class=''>N° Expediente</label>
-            <input name='idDoc' disabled=»disabled» id='idDoc' value=' ".$idDoc." 'type='text' class='form-control text-center'>
+            <input name='idDoc' readonly id='idDoc' value=' ".$idDoc." 'type='text' class='form-control text-center'>
           </div>
       </div>
       <div class='col-md-5'>
@@ -58,7 +59,7 @@ if($resultado){
     <div class='col-md-4'></div>
       <div class='col-md-4'>
         <div class='text-center'>
-        <a href='verexpediente.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Ver Expediente</a>
+        <button type='submit' class='mt-2 btn btn-primary' onclick='datos.submit()'>Ver Expediente</button>
           
         </div>
       </div>
