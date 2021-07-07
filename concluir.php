@@ -26,11 +26,11 @@ if(isset($_GET['idDoc'])){
 }
  if(isset($_POST['nExp'])){
   $nExp=$_POST['nExp'];
-  $detalle=$_POST['detalle'];
+  $mensaje=$_POST['detalle'];
   
   $result=$nuevo->expIdDoc($con,$nExp);
   $detalle =$result['detalleExp'];
-  $detalle.="Completado el: ".$fechaactual."\n";
+  $detalle.="Completado el: ".$fechaactual."<br>".$mensaje;
   $completado=$nuevo->estadocompleto($con,$nExp,$detalle);
 
   $script="<script>

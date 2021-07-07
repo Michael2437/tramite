@@ -16,9 +16,9 @@ $consulta=$nuevo->expArea($con,$area);
 $fechaactual = date("Y-m-d H:i:s"); 
 
 if(isset($_GET['idDoc'])){
-  $idDoc=$_GET['idDoc'];
+  $idDocu=$_GET['idDoc'];
 
-  $resultado=$nuevo->expIdDoc($con,$idDoc);
+  $resultado=$nuevo->expIdDoc($con,$idDocu);
   $detalle=$resultado['detalleExp'];
   $nomArea=$resultado['nomArea'];
   $script="

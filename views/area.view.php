@@ -588,7 +588,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detalles del Expediente N° <?php echo $idDocu;?></h5>
                 <a href="area.php" type="button" class="close"  aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </a>

@@ -25,7 +25,7 @@ if(isset($_GET['idDoc'])){
   $resultado=$nuevo->expIdDoc($con,$idDoc);
   $id=$resultado['iduser'];
   $detalle=$resultado['detalleExp'];
-  $nomArea=$resultado['nomArea'];
+  $areaAct=$resultado['nomArea'];
 
   $statement = $nuevo->mostrarexp($con,$id);
   $script="

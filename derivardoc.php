@@ -27,7 +27,10 @@ if(isset($_GET['idDoc'])){
   $selectArea =$_POST['selectArea'];
   $mensaje=$_POST['mensaje'];
   $fecha = date("Y-m-d H:i:s"); 
-  $detalle .="Derivado el: ".$fecha.". De: ".$area." A: ".$selectArea."\n";
+
+  $result=$nuevo->expIdDoc($con,$nExp);
+  $detalle =$result['detalleExp'];
+  $detalle .="Derivado el: ".$fecha.". De: ".$area." A: ".$selectArea."<br>";
   $derivado=$nuevo->derivar($con,$area,$selectArea,$mensaje,$nExp);
   $nuevo->detalle($con,$detalle,$nExp);
   $script="<script>

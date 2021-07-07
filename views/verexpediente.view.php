@@ -614,7 +614,7 @@
             </div>
             <div class="modal-body">
             <p><?php echo $detalle; ?></p>
-            <p><?php echo "Ahora está en: ".$nomArea; ?></p>
+            <p><?php echo "Ahora está en: ".$areaAct; ?></p>
             </div>
             <div class="modal-footer">
                 <a href="verexpediente.php?iduser=<?php echo $id;?>" type="button" class="btn btn-primary">Aceptar</a>
