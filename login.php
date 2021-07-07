@@ -2,7 +2,7 @@
 include_once 'misfunciones.php';
 $nuevo= new Conexion();
 if(isset($_SESSION['usuario'])){
-  header('Location: index.php');
+  header('Location: Index.php');
 }
 $errores ='';
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -16,10 +16,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   
   if($resultado !== false){
     $_SESSION['usuario'] = $ar;
-    header('Location: index.php');
+    header('Location: Index.php');
   }else {
     $errores .= '<p>Datos incorrectos</p>';
   }
 }
-require 'views/login.view.php';
+require 'views/Login.view.php';
  ?>
