@@ -476,12 +476,7 @@
     <?php if(isset($completado)){
 
         if($completado){
-        echo "<script>
-        $( document ).ready(function() {
-            $('#myModal').modal('toggle')
-        });
-        </script>";
-
+        echo $script;
         }
     }?>
     

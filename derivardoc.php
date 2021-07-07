@@ -30,6 +30,11 @@ if(isset($_GET['idDoc'])){
   $detalle .="Derivado el: ".$fecha.". De: ".$area." A: ".$selectArea."\n";
   $derivado=$nuevo->derivar($con,$area,$selectArea,$mensaje,$nExp);
   $nuevo->detalle($con,$detalle,$nExp);
+  $script="<script>
+  $( document ).ready(function() {
+      $('#myModal').modal('toggle')
+  });
+  </script>";
 }
 
 if(isset($_SESSION['usuario'])){

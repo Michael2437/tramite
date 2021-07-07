@@ -32,6 +32,12 @@ if(isset($_GET['idDoc'])){
   $detalle =$result['detalleExp'];
   $detalle.="Completado el: ".$fechaactual."\n";
   $completado=$nuevo->estadocompleto($con,$nExp,$detalle);
+
+  $script="<script>
+  $( document ).ready(function() {
+      $('#myModal').modal('toggle')
+  });
+  </script>";
 }
 
 

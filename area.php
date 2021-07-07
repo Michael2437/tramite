@@ -21,6 +21,12 @@ if(isset($_GET['idDoc'])){
   $resultado=$nuevo->expIdDoc($con,$idDoc);
   $detalle=$resultado['detalleExp'];
   $nomArea=$resultado['nomArea'];
+  $script="
+  <script>
+  $( document ).ready(function() {
+      $('#myModal').modal('toggle')
+  });
+  </script>";
 }
 
 if(isset($_SESSION['usuario'])){

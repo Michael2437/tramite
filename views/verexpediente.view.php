@@ -596,13 +596,7 @@
               </div>
         </div>
     </div>
-    <?php if(isset($_GET['idDoc'])){ echo "
-        <script>
-        $( document ).ready(function() {
-            $('#myModal').modal('toggle')
-        });
-        </script>"
-    ;} ?>
+    <?php if(isset($_GET['idDoc'])){ echo $script;} ?>
 
 <script type="text/javascript" src="views/assets/scripts/main.js"></script>
 </body>

@@ -28,6 +28,12 @@ if(isset($_GET['idDoc'])){
   $nomArea=$resultado['nomArea'];
 
   $statement = $nuevo->mostrarexp($con,$id);
+  $script="
+  <script>
+  $( document ).ready(function() {
+      $('#myModal').modal('toggle')
+  });
+  </script>";
 }
 
 

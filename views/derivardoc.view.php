@@ -482,11 +482,7 @@
     <?php if(isset($derivado)){
 
         if($derivado){
-        echo "<script>
-        $( document ).ready(function() {
-            $('#myModal').modal('toggle')
-        });
-        </script>";
+        echo $script;
 
         }
     }?>
