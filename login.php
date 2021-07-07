@@ -1,5 +1,5 @@
 <?php session_start();
-include_once 'misfunciones.php';
+include_once 'Funciones.php';
 $nuevo= new Conexion();
 if(isset($_SESSION['usuario'])){
   header('Location: Index.php');
