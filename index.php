@@ -2,12 +2,12 @@
 
 if(isset($_SESSION['usuario'])){
   if($_SESSION['usuario']== "Mesa de Partes"){
-    header('Location: contenido.php');}
+    header('Location: MesaDePartes\indexMDP.php');}
     else{
-      header('Location: area.php');
+      header('Location: Areas\indexAreas.php');
     }
 }else {
-  header('Location: login.php');
+  header('Location: Login.php');
 }
 
  ?>
