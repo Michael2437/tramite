@@ -10,12 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
-
-  
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <link href="views/main.css" rel="stylesheet">
 </head>
 
@@ -514,7 +511,6 @@
                                                 $fecha30dias=date("Y-m-d H:i:s",strtotime($fecha."+ 1 month"));
                                               
                                                 $estadoDoc = $result['estadoExp'];
-                                                $detalle=$result['detalleExp'];
                                             ?>
                                                 <tr>
                                                     <td class="text-center text-muted"><?php echo $idDoc; ?></td>
@@ -560,9 +556,8 @@
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="abrirdoc.php?idDoc=<?php echo $idDoc; ?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
-                                                        <a href="#" id="<?php echo $detalle; ?>" class="btn btn-primary btn-sm order-submit abrirmodal" data-toggle="modal" data-target="#myModal">Detalles</a>
-                                                                             
-                                                    </td>
+                                                        <a href="area.php?idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
+                                                     </td>
                                                 </tr>
 
                                             <?php } ?>
@@ -582,14 +577,14 @@
             </div>
         </div>
     </div>
-    <script>
-        $("a.abrirmodal").click(function() {
-            //Capturamos el valor del id para enviarlo al modal
-            let id_plan = $(this).attr('id');
-            
-            $("textarea#idmodal").val(id_plan);
+    <?php if(isset($_GET['idDoc'])){ echo "
+        <script>
+        $( document ).ready(function() {
+            $('#myModal').modal('toggle')
         });
-    </script>
+        </script>"
+    ;} ?>
+    
     <script type="text/javascript" src="views/assets/scripts/main.js"></script>
 </body>
 
@@ -600,15 +595,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <a href="area.php" type="button" class="close"  aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </a>
             </div>
             <div class="modal-body">
-            <textarea name="id" id="idmodal" rows="15" style="border: none;resize: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;color: navy;" readonly></textarea>
+            <p><?php echo $detalle; ?></p>
+            <p><?php echo "Ahora está en: ".$nomArea; ?></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                <a href="area.php" type="button" class="btn btn-primary">Aceptar</a>
             </div>
         </div>
     </div>

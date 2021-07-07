@@ -15,6 +15,13 @@ $consulta=$nuevo->expArea($con,$area);
 
 $fechaactual = date("Y-m-d H:i:s"); 
 
+if(isset($_GET['idDoc'])){
+  $idDoc=$_GET['idDoc'];
+
+  $resultado=$nuevo->expIdDoc($con,$idDoc);
+  $detalle=$resultado['detalleExp'];
+  $nomArea=$resultado['nomArea'];
+}
 
 if(isset($_SESSION['usuario'])){
     require 'views/area.view.php';

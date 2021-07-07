@@ -30,7 +30,7 @@ if(isset($_GET['idDoc'])){
   
   $result=$nuevo->expIdDoc($con,$nExp);
   $detalle =$result['detalleExp'];
-  $detalle.="Completado el: ".$fechaactual;
+  $detalle.="Completado el: ".$fechaactual."\n";
   $completado=$nuevo->estadocompleto($con,$nExp,$detalle);
 }
 
