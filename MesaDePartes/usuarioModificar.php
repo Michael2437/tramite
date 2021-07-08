@@ -10,6 +10,7 @@ $listado= $nuevo->roles($con,$user);
 $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
+
 if($_SERVER['REQUEST_METHOD']=='POST'){
             $dni = $_POST['dni'];
             $nombres= $_POST['nombres'];
@@ -32,6 +33,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
               print_r($sql->errorInfo()); 
               }
 }elseif($_SERVER['REQUEST_METHOD']=='GET'){
+  $iduser= $_GET['iduser'];
           $dni="";
           $resultado=$nuevo->buscaruser($con,$dni,$iduser);
 

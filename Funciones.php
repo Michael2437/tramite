@@ -55,10 +55,10 @@ Class Conexion{
     }
     public function buscaruser($conexion,$dni,$iduser){
         $statement = $conexion->prepare('
-        SELECT * FROM `usuario` WHERE `dni` = :dni OR `iduser` = :iduser');
+        SELECT * FROM `usuario` WHERE `iduser` = :iduser OR `dni` = :dni');
         $statement->execute(array(
-          ':dni' => $dni,
-          ':iduser' =>$iduser
+          ':iduser' =>$iduser,
+          ':dni' => $dni
         ));
         $resultado = $statement->fetch();
         return $resultado;

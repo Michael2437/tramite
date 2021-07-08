@@ -106,7 +106,7 @@ if(!empty($_GET['iduser'])){
                     </div>
                     <div class='col-md-6'>
                         <div class='text-center'>
-                        <a href='usuarioBuscar.php?iduser=".$iduser."' class='mt-2 btn btn-primary'>Atras</a>
+                        <a href='usuarioBuscar.php?iduser=".$id."' class='mt-2 btn btn-primary'>Atras</a>
                     </div>
                 </div>
             </div>
