@@ -15,7 +15,7 @@
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-                <div class="logo-src"></div>
+            <img src="../Views/assets/logos/logo.png" alt="" class="logo-src">
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -373,7 +373,7 @@
         <div class="app-main">
           <div class="app-sidebar sidebar-shadow">
               <div class="app-header__logo">
-                  <div class="logo-src"></div>
+              <img src="../Views/assets/logos/logo.png" alt="" class="logo-src">
                   <div class="header__pane ml-auto">
                       <div>
                           <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
