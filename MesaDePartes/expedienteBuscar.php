@@ -1,5 +1,5 @@
 <?php session_start();
-include_once 'misfunciones.php';
+include_once '../Funciones.php';
 
 $nuevo=new Conexion();
 $user=$_SESSION['usuario'];
@@ -60,7 +60,7 @@ if($fila){
                   <div class='col-md-4'></div>
                     <div class='col-md-4'>
                       <div class='text-center'>
-                        <a href='verexpediente.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Ver Expedientes</a> 
+                        <a href='expedienteVer.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Ver Expedientes</a> 
                       </div>
                     </div>
                   <div class='col-md-4'></div>
@@ -78,8 +78,8 @@ if($fila){
   }
 
 if(isset($_SESSION['usuario'])){
-    require "views/buscarexpediente.view.php";
+    require "Views/expedienteBuscar.view.php";
 }else{
-    header('Location:login.php');
+    header('Location: ../Login.php');
 }
 ?>

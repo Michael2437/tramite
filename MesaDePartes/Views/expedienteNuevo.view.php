@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Build whatever layout you need with our Architect framework.">
     <meta name="msapplication-tap-highlight" content="no">
-<link href="views/main.css" rel="stylesheet"></head>
+<link href="../Views/main.css" rel="stylesheet"></head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
@@ -70,7 +70,7 @@
                                             <h6 tabindex="-1" class="dropdown-header">Header</h6>
                                             <button type="button" tabindex="0" class="dropdown-item">Actions</button>
                                             <div tabindex="-1" class="dropdown-divider"></div>
-                                            <a href="cerrar.php"><button type="button" tabindex="0" class="dropdown-item" >Cerrar Sesion</button></a>
+                                            <a href="../cerrarLogin.php"><button type="button" tabindex="0" class="dropdown-item" >Cerrar Sesion</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                       <ul class="vertical-nav-menu">
                           <li class="app-sidebar__heading">Inicio</li>
                           <li>
-                              <a href="contenido.php" >
+                              <a href="indexMDP.php" >
                                   <i class="metismenu-icon pe-7s-rocket"></i>
                                   Principal
                               </a>
@@ -143,13 +143,13 @@
                               </a>
                               <ul >
                                   <li>
-                                      <a href="newuser.php" >
+                                      <a href="usuarioNuevo.php" >
                                           <i class="metismenu-icon"></i>
                                           Nuevo Usuario
                                       </a>
                                   </li>
                                   <li>
-                                      <a href="buscaruser.php" >
+                                      <a href="usuarioBuscar.php" >
                                           <i class="metismenu-icon">
                                           </i>Buscar usuario
                                       </a>
@@ -164,13 +164,13 @@
                               </a>
                               <ul class="mm-show">
                                   <li>
-                                      <a href="nuevoexpediente.php " class="mm-active">
+                                      <a href="expedienteNuevo.php " class="mm-active">
                                           <i class="metismenu-icon">
                                           </i>Nuevo Expediente
                                       </a>
                                   </li>
                                   <li>
-                                      <a href="buscarexpediente.php">
+                                      <a href="expedienteBuscar.php">
                                           <i class="metismenu-icon">
                                           </i>Buscar Expediente
                                       </a>
@@ -207,7 +207,7 @@
                                   <h5 class="card-title ">Nuevo Expediente</h5>
                                   <div>
                                   <?php if(!empty($iduser)){echo $salida;}else{echo 'No se ha seleccionado ningun DNI';
-                                  echo "</div><div><a href='buscaruser.php' class='mt-2 btn btn-primary'>Seleccionar DNI</a>";}
+                                  echo "</div><div><a href='usuarioBuscar.php' class='mt-2 btn btn-primary'>Seleccionar DNI</a>";}
                                    ?>
                                     </div>
                                 </div>
@@ -223,7 +223,7 @@
         </div>
     </div>
 
-<script type="text/javascript" src="views/assets/scripts/main.js"></script>
+<script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
 </body>
 </html>
 

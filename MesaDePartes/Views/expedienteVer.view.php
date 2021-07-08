@@ -15,7 +15,7 @@
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     
-<link href="views/main.css" rel="stylesheet"></head>
+<link href="../Views/main.css" rel="stylesheet"></head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
@@ -75,7 +75,7 @@
                                             <h6 tabindex="-1" class="dropdown-header">Header</h6>
                                             <button type="button" tabindex="0" class="dropdown-item">Actions</button>
                                             <div tabindex="-1" class="dropdown-divider"></div>
-                                            <a href="cerrar.php"><button type="button" tabindex="0" class="dropdown-item" >Cerrar Sesion</button></a>
+                                            <a href="../cerrarLogin.php"><button type="button" tabindex="0" class="dropdown-item" >Cerrar Sesion</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -412,7 +412,7 @@
                       <ul class="vertical-nav-menu">
                           <li class="app-sidebar__heading">Inicio</li>
                           <li>
-                              <a href="contenido.php" >
+                              <a href="indexMDP.php" >
                                   <i class="metismenu-icon pe-7s-rocket"></i>
                                   Principal
                               </a>
@@ -426,13 +426,13 @@
                               </a>
                               <ul>
                                   <li>
-                                      <a href="newuser.php" >
+                                      <a href="usuarioNuevo.php" >
                                           <i class="metismenu-icon"></i>
                                           Nuevo Usuario
                                       </a>
                                   </li>
                                   <li>
-                                      <a href="buscaruser.php">
+                                      <a href="usuarioBuscar.php">
                                           <i class="metismenu-icon">
                                           </i>Buscar usuario
                                       </a>
@@ -447,13 +447,13 @@
                               </a>
                               <ul>
                                   <li>
-                                      <a href="nuevoexpediente.php">
+                                      <a href="expedienteNuevo.php">
                                           <i class="metismenu-icon">
                                           </i>Nuevo Expediente
                                       </a>
                                   </li>
                                   <li>
-                                      <a href="buscarexpediente.php">
+                                      <a href="expedienteBuscar.php">
                                           <i class="metismenu-icon">
                                           </i>Buscar Expediente
                                       </a>
@@ -573,7 +573,7 @@
                                                     }?>"><?php echo $estadoDoc;?></div>
                                                 </td>
                                                 <td class="text-center">
-                                                <a href="verexpediente.php?idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
+                                                <a href="expedienteVer.php?idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
                                                 </td>
                                             </tr>
                                             <?php } ?>
@@ -583,7 +583,7 @@
                                     </div>
                                     <div class="d-block text-center card-footer">
                                         <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                                        <a href="buscaruser.php?iduser=<?php echo $iduser;?>" class="btn-wide btn btn-success">Volver</a>
+                                        <a href="usuarioBuscar.php?iduser=<?php echo $iduser;?>" class="btn-wide btn btn-success">Volver</a>
                                     </div>
                                 </div>
                             </div>
@@ -598,7 +598,7 @@
     </div>
     <?php if(isset($_GET['idDoc'])){ echo $script;} ?>
 
-<script type="text/javascript" src="views/assets/scripts/main.js"></script>
+<script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
 </body>
 </html>
 
@@ -608,7 +608,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
-                <a href="verexpediente.php?iduser=<?php echo $id;?>" type="button" class="close"  aria-label="Close">
+                <a href="expedienteVer.php?iduser=<?php echo $id;?>" type="button" class="close"  aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </a>
             </div>
@@ -617,7 +617,7 @@
             <p><?php echo "Ahora está en: ".$areaAct; ?></p>
             </div>
             <div class="modal-footer">
-                <a href="verexpediente.php?iduser=<?php echo $id;?>" type="button" class="btn btn-primary">Aceptar</a>
+                <a href="expedienteVer.php?iduser=<?php echo $id;?>" type="button" class="btn btn-primary">Aceptar</a>
             </div>
         </div>
     </div>

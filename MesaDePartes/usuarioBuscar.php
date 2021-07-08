@@ -1,5 +1,5 @@
 <?php session_start();
-include_once 'misfunciones.php';
+include_once '../Funciones.php';
 
 $nuevo= new Conexion();
 $user =$_SESSION['usuario'];
@@ -98,19 +98,19 @@ $resultado=$nuevo->buscaruser($con,$dni,$iduser);
 
               <div class='col-md-4'>
                 <div class='text-center'>
-                <a href='nuevoexpediente.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Nuevo Expediente</a>
+                <a href='expedienteNuevo.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Nuevo Expediente</a>
                   
                 </div>
               </div>
               <div class='col-md-4'>
                 <div class='text-center'>
-                <a href='verexpediente.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Ver Expedientes</a>
+                <a href='expedienteVer.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Ver Expedientes</a>
                   
                 </div>
               </div>
               <div class='col-md-4'>
                 <div class='text-center'>
-                <a href='modificaruser.php?iduser=".$id." ' class='mt-2 btn btn-primary'>Modificar</a>
+                <a href='usuarioModificar.php?iduser=".$id." ' class='mt-2 btn btn-primary'>Modificar</a>
                   
                     </div>
                   </div>
@@ -129,8 +129,8 @@ $resultado=$nuevo->buscaruser($con,$dni,$iduser);
 
 
 if(isset($_SESSION['usuario'])){
-  require "views/buscaruser.view.php";
+  require "Views/usuarioBuscar.view.php";
 } else {
-  header('Location: login.php');
+  header('Location: ../Login.php');
 }
  ?>

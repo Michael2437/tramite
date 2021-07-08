@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
-    <link href="views/main.css" rel="stylesheet">
+    <link href="../Views/main.css" rel="stylesheet">
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-            <img src="views/assets/logos/logo.png" alt="" class="logo-src">
+            <img src="../Views/assets/logos/logo.png" alt="" class="logo-src">
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -66,7 +66,7 @@
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                             
-                                            <a href="cerrar.php"><button type="button" tabindex="0" class="dropdown-item" >Cerrar Sesion</button></a>
+                                            <a href="../cerrarLogin.php"><button type="button" tabindex="0" class="dropdown-item" >Cerrar Sesion</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -368,7 +368,7 @@
         <div class="app-main">
                 <div class="app-sidebar sidebar-shadow">
                     <div class="app-header__logo">
-                    <img src="views/assets/logos/logo.png" alt="" class="logo-src">
+                    <img src="../Views/assets/logos/logo.png" alt="" class="logo-src">
                         <div class="header__pane ml-auto">
                             <div>
                                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -402,7 +402,7 @@
                             <ul class="vertical-nav-menu">
                                 <li class="app-sidebar__heading">Inicio</li>
                                 <li>
-                                    <a href="contenido.php" class="mm-active">
+                                    <a href="indexMDP.php" class="mm-active">
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Principal
                                     </a>
@@ -416,13 +416,13 @@
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="newuser.php">
+                                            <a href="usuarioNuevo.php">
                                                 <i class="metismenu-icon"></i>
                                                 Nuevo Usuario
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="buscaruser.php">
+                                            <a href="usuarioBuscar.php">
                                                 <i class="metismenu-icon">
                                                 </i>Buscar usuario
                                             </a>
@@ -437,13 +437,13 @@
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="nuevoexpediente.php">
+                                            <a href="expedienteNuevo.php">
                                                 <i class="metismenu-icon">
                                                 </i>Nuevo Expediente
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="buscarexpediente.php">
+                                            <a href="expedienteBuscar.php">
                                                 <i class="metismenu-icon">
                                                 </i>Buscar Expediente
                                             </a>
@@ -1109,5 +1109,5 @@
                         </div>
         </div>
     </div>
-<script type="text/javascript" src="views/assets/scripts/main.js"></script></body>
+<script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
 </html>

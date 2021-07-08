@@ -1,6 +1,6 @@
 <?php session_start();
 
-include_once 'misfunciones.php';
+include_once '../Funciones.php';
 $nuevo= new Conexion();
 
 $user =$_SESSION['usuario'];
@@ -28,8 +28,8 @@ if (isset($_POST['dni'])) {
 }
 
 if (isset($_SESSION['usuario'])) {
-  require 'views/newuser.view.php';
+  require 'Views/usuarioNuevo.view.php';
 } else {
-  header('Location: login.php');
+  header('Location: ../Login.php');
 }
 ?>

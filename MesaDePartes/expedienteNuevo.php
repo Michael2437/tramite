@@ -1,6 +1,6 @@
 <?php session_start();
 
-include_once 'misfunciones.php';
+include_once '../Funciones.php';
 date_default_timezone_set('America/Lima');
 $nuevo= new Conexion();
 $user =$_SESSION['usuario'];
@@ -106,7 +106,7 @@ if(!empty($_GET['iduser'])){
                     </div>
                     <div class='col-md-6'>
                         <div class='text-center'>
-                        <a href='buscaruser.php?iduser=".$iduser."' class='mt-2 btn btn-primary'>Atras</a>
+                        <a href='usuarioBuscar.php?iduser=".$iduser."' class='mt-2 btn btn-primary'>Atras</a>
                     </div>
                 </div>
             </div>
@@ -119,8 +119,8 @@ if(!empty($_GET['iduser'])){
 }
 
 if (isset($_SESSION['usuario'])) {
-    require "views/nuevoexpediente.view.php";
+    require "Views/expedienteNuevo.view.php";
 } else {
-    header('Location: login.php');
+    header('Location: ../Login.php');
 }
 ?>

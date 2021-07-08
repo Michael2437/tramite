@@ -21,5 +21,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $errores .= '<p>Datos incorrectos</p>';
   }
 }
-require 'views/Login.view.php';
+require 'Views/Login.view.php';
  ?>
