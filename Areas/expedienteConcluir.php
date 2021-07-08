@@ -2,7 +2,7 @@
 
 
 date_default_timezone_set('America/Lima');
-include_once 'misfunciones.php';
+include_once '../Funciones.php';
 $fechaactual = date("Y-m-d H:i:s"); 
 $nuevo= new Conexion();
 $user =$_SESSION['usuario'];
@@ -43,8 +43,8 @@ if(isset($_GET['idDoc'])){
 
 
 if(isset($_SESSION['usuario'])){
-    require 'views/concluir.view.php';
+    require 'Views/expedienteConcluir.view.php';
   }else{
-    header('Location: login.php');
+    header('Location: ../Login.php');
   }
 ?>

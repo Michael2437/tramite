@@ -9,12 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
-    <link href="views/main.css" rel="stylesheet">
+    <link href="../Views/main.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
 
 </head>
 <body>
@@ -72,7 +71,7 @@
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                             
-                                            <a href="cerrar.php"><button type="button" tabindex="0" class="dropdown-item" >Cerrar Sesion</button></a>
+                                            <a href="../cerrarLogin.php"><button type="button" tabindex="0" class="dropdown-item" >Cerrar Sesion</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -422,7 +421,7 @@
                     <div class="app-main__inner">
 
                         <!-- form-->
-                        <form action="abrirdoc.php" method="POST" name="completar" id="completar">
+                        <form  name="abrir" id="abrir">
                             <div class="row">
                                 <div class="col-md-2">
                                 </div>
@@ -464,17 +463,17 @@
                                                 <?php if(isset($idDoc)){if($estadoDoc!="Completado"){ ?>  
                                                 <div class="form-row">
                                                     <div class="col-md-6 text-center">
-                                                        <a href="derivardoc.php?idDoc=<?php echo $idDoc;?>" type="input" name="derivar" class="mt-2 btn btn-primary">Derivar</a>
+                                                        <a href="expedienteDerivar.php?idDoc=<?php echo $idDoc;?>" type="input" name="derivar" class="mt-2 btn btn-primary">Derivar</a>
                                                     </div>
                                                     <div class="col-md-6 text-center">
-                                                    <a href="concluir.php?idDoc=<?php echo $idDoc;?>" type="input" name="concluir" class="mt-2 btn btn-primary">Concluir</a>
+                                                    <a href="expedienteConcluir.php?idDoc=<?php echo $idDoc;?>" type="input" name="concluir" class="mt-2 btn btn-primary">Concluir</a>
                                                         
                                                     </div>
                                                 </div>
                                                 <?php }}?>
                                         <div class="row">
                                                 <div class="col-md-12 text-center">
-                                                <a href="area.php" type="input" name="volver" class="mt-2 btn btn-primary" >Volver</a>
+                                                <a href="indexAreas.php" type="input" name="volver" class="mt-2 btn btn-primary" >Volver</a>
                                                 </div>
                                             
                                         </div>
@@ -493,5 +492,5 @@
     </div>
     </div>
     
-<script type="text/javascript" src="views/assets/scripts/main.js"></script></body>
+<script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
 </html>

@@ -13,7 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <link href="views/main.css" rel="stylesheet">
+    <link href="../Views/main.css" rel="stylesheet">
 </head>
 
 <body>
@@ -71,7 +71,7 @@
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
 
-                                            <a href="cerrar.php"><button type="button" tabindex="0" class="dropdown-item">Cerrar Sesion</button></a>
+                                            <a href="../cerrarLogin.php"><button type="button" tabindex="0" class="dropdown-item">Cerrar Sesion</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -555,8 +555,8 @@
                                                          ?>"><?php echo $procesoExp; ?></div>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="abrirdoc.php?idDoc=<?php echo $idDoc; ?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
-                                                        <a href="area.php?idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
+                                                        <a href="expedienteAbrir.php?idDoc=<?php echo $idDoc; ?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
+                                                        <a href="indexAreas.php?idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
                                                      </td>
                                                 </tr>
 
@@ -579,7 +579,7 @@
     </div>
     <?php if(isset($_GET['idDoc'])){ echo $script;} ?>
     
-    <script type="text/javascript" src="views/assets/scripts/main.js"></script>
+    <script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
 </body>
 
 </html>
@@ -589,7 +589,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Detalles del Expediente N° <?php echo $idDocu;?></h5>
-                <a href="area.php" type="button" class="close"  aria-label="Close">
+                <a href="indexAreas.php" type="button" class="close"  aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </a>
             </div>
@@ -598,7 +598,7 @@
             <p><?php echo "Ahora está en: ".$nomArea; ?></p>
             </div>
             <div class="modal-footer">
-                <a href="area.php" type="button" class="btn btn-primary">Aceptar</a>
+                <a href="indexAreas.php" type="button" class="btn btn-primary">Aceptar</a>
             </div>
         </div>
     </div>

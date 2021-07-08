@@ -1,7 +1,7 @@
 <?php session_start();
 
 date_default_timezone_set('America/Lima');
-include_once 'misfunciones.php';
+include_once '../Funciones.php';
 $fechaactual = date("Y-m-d H:i:s"); 
 $nuevo= new Conexion();
 $user =$_SESSION['usuario'];
@@ -30,18 +30,10 @@ if(isset($_GET['idDoc'])){
 
 }
 
-if(isset($_POST['remitente'])){
-  $nExp=$_POST['nExp'];
-  $result=$nuevo->expIdDoc($con,$nExp);
-  $detalle =$result['detalleExp'];
-  $detalle.="Completado el: ".$fechaactual;
-  $completado=$nuevo->estadocompleto($con,$nExp,$detalle);
-}
-
 
 if(isset($_SESSION['usuario'])){
-    require 'views/abrirdoc.view.php';
+    require 'Views/expedienteAbrir.view.php';
   }else{
-    header('Location: login.php');
+    header('Location: ../Login.php');
   }
 ?>

@@ -1,7 +1,7 @@
 <?php session_start();
 
 
-include_once 'misfunciones.php';
+include_once '../Funciones.php';
 date_default_timezone_set('America/Lima');
 $nuevo= new Conexion();
 $user =$_SESSION['usuario'];
@@ -41,8 +41,8 @@ if(isset($_GET['idDoc'])){
 }
 
 if(isset($_SESSION['usuario'])){
-    require 'views/derivardoc.view.php';
+    require 'Views/expedienteDerivar.view.php';
   }else{
-    header('Location: login.php');
+    header('Location: ../Login.php');
   }
 ?>  

@@ -1,8 +1,7 @@
 <?php session_start();
+
+include_once '../Funciones.php';
 date_default_timezone_set('America/Lima');
-
-include_once 'misfunciones.php';
-
    
 $nuevo= new Conexion();
 $user =$_SESSION['usuario'];
@@ -30,8 +29,8 @@ if(isset($_GET['idDoc'])){
 }
 
 if(isset($_SESSION['usuario'])){
-    require 'views/area.view.php';
+    require 'Views/indexAreas.view.php';
   }else{
-    header('Location: login.php');
+    header('Location: ../Login.php');
   }
 ?>
