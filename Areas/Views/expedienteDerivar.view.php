@@ -422,7 +422,7 @@
                     <div class="app-main__inner">
 
                         <!-- form-->
-                        <form action="derivardoc.php" method="POST" name="derivar">
+                        <form action="expedienteDerivar.php" method="POST" name="derivar">
                             <div class="row">
                                 <div class="col-md-2">
                                 </div>

@@ -1,6 +1,6 @@
 <?php session_start();
 
-include_once 'misfunciones.php';
+include_once '../Funciones.php';
 
 $nuevo= new Conexion();
 $user =$_SESSION['usuario'];
@@ -17,9 +17,9 @@ $total = $tdoc->fetchColumn();
 
 
 if(isset($_SESSION['usuario'])){
-  require 'views/contenido.view.php';
+  require 'Views/indexAdmin.view.php';
 }else{
-  header('Location: login.php');
+  header('Location: ../Login.php');
 }
 
  ?>

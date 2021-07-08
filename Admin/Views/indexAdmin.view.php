@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
-    <link href="views/main.css" rel="stylesheet">
+    <link href="../Views/main.css" rel="stylesheet">
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -66,7 +66,7 @@
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                             
-                                            <a href="cerrar.php"><button type="button" tabindex="0" class="dropdown-item" >Cerrar Sesion</button></a>
+                                            <a href="../cerrarLogin.php"><button type="button" tabindex="0" class="dropdown-item" >Cerrar Sesion</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1109,5 +1109,5 @@
                         </div>
         </div>
     </div>
-<script type="text/javascript" src="views/assets/scripts/main.js"></script></body>
+<script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
 </html>

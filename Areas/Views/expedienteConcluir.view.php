@@ -422,7 +422,7 @@
                     <div class="app-main__inner">
 
                         <!-- form-->
-                        <form action="concluir.php" method="POST" name="completar">
+                        <form action="expedienteConcluir.php" method="POST" name="completar">
                             <div class="row">
                                 <div class="col-md-2">
                                 </div>
