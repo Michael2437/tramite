@@ -598,7 +598,7 @@
                 <p>¿Está seguro de cancelar sin guardar la modificación?</p>
             </div>
             <div class="modal-footer">
-                <a href="buscaruser.php?iduser=<?php echo $iduser;?>"><button type="button" class="btn btn-secondary" >Si</button></a>
+                <a href="usuarioBuscar.php?iduser=<?php echo $iduser;?>"><button type="button" class="btn btn-secondary" >Si</button></a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>

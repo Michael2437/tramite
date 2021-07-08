@@ -10,7 +10,6 @@ $listado= $nuevo->roles($con,$user);
 $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
-$iduser= $_GET['iduser'];
 if($_SERVER['REQUEST_METHOD']=='POST'){
             $dni = $_POST['dni'];
             $nombres= $_POST['nombres'];
