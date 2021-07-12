@@ -22,12 +22,12 @@ if(isset($_POST['tipExp'])){
     </script>";
 }
 
-if(isset($_GET['id'])){
-    $id=$_GET['id'];
+if(isset($_POST['idmodal'])){
+    $id=$_POST['idmodal'];
     $eliminar=$nuevo->eliminarTexp($con,$id);
     $script="<script>
     $( document ).ready(function() {
-        $('#Eliminar').modal('toggle')
+        $('#ConfEliminar').modal('toggle')
     });
     </script>";
 }

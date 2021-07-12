@@ -10,6 +10,13 @@
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="../Views/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+   
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -124,13 +131,13 @@
                             <ul class="vertical-nav-menu">
                                 <li class="app-sidebar__heading">Inicio</li>
                                 <li>
-                                    <a href="indexAdmin.php" class="mm-active">
+                                    <a href="indexAdmin.php" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Principal
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading">Crear</li>
-                                <li class="mm-show">
+                                <li >
                                     <a href="adminAreas.php" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Areas
@@ -144,8 +151,8 @@
                                     </a>
                                     <ul >
                                        <li>
-                                           <a href="crearTexpediente.php">
-                                               <i class="metismenu-icon mm-active""></i>
+                                           <a href="crearTexpediente.php" >
+                                               <i class="metismenu-icon"></i>
                                                 Tipo de Expediente
                                            </a>
                                        </li>
@@ -159,13 +166,13 @@
                                 </li>
                                 <li class="app-sidebar__heading">Modificar</li>
                                 <li >
-                                    <a href="modificarUsuario.php" >
+                                    <a href="modificarUsuario.php"  >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Usuario
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="modificarExpediente.php" >
+                                    <a href="modificarExpediente.php" class="mm-active">
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Expediente
                                     </a>
@@ -199,10 +206,141 @@
                 </div>
                 <div class="app-main__outer">
                     <div class="app-main__inner">
-                           
+                    <div class="tab-content">
+                          <div class="tab-pane tabs-animation fade show active"  role="tabpanel">
+
+                        <!-- Inicio del Formulario-->
+                        <div class="row">
+                              <div class="col-md-3"></div>
+                              <div class="col-md-6">
+                              <div class="main-card mb-3 card">
+                                <div class="card-body">
+                                  <h5 class="card-title ">Buscar Expediente</h5>
+                                  <div>
+                                    <form action=" <?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> " method="POST" >
+                                      <div class="form-row">
+                                        <div class="col-md-4">
+                                          <div class="text-center mt-2">
+                                            <label class=""> Ingrese N° de Expediente</label>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                          <div class="position-relative form-group">
+                                            <input name="nExp" id="nExp" type="number"  placeholder="N° Expediente" class="form-control">
+                                          </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                        <button  class="mt-1 btn btn-secondary">Buscar</button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                    </div>
+                                </div>
+                              </div></div>
+                              <div class="col-md-3"></div>
+                            </div>
+                            
+                            <?php if(isset($resultado)){if(!empty($nExp)){echo $salida ;}}?>
+                            
+                            <!-- fin del formulario-->
+                        </div>
+                </div> 
+
                     </div>
                 </div>  
         </div>
     </div>
+    <script>
+
+
+$(".abrirmodal").click(function() {
+  //Capturamos el valor del id para enviarlo al modal
+  let id_plan = $(this).attr('id');
+  $("input#idmodal").val(id_plan);
+});
+
+</script>
+ 
+    <?php if(isset($resultado)){ echo $script;}if(isset($eliminar)){ echo $script;} ?>
 <script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
 </html>
+
+<!-- MODAL DE NUEVO EXPEDIENTE-->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Insertar Nuevo Tipo de Expediente</h5>
+                <button data-dismiss="modal" type="button" class="close"  aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="crearTexpediente.php" method="POST" name="nuevoTexp">
+                <div class="modal-body">
+                <label>Ingrese Nombre</label>
+                <input class="form-control" id="tipExp" name="tipExp" type="text" placeholder="Tipo de Expediente" autocomplete="off">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" type="button" class="btn btn-primary">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->
+
+<!-- MODAL DE CONFIRMACION DE NUEVO EXPEDIENTE-->
+<div id="Confirmar" class="modal fade bd-example-modal-sm">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrado Existosamente</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="crearTexpediente.php"  type="button" class="btn btn-primary">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->
+
+<!-- MODAL DE ELIMINAR EXP-->
+<div id="Eliminar" class="modal fade bd-example-modal-sm">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Seguro de Eliminar?</h5>
+                <button data-dismiss="modal" type="button" class="close"  aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="crearTexpediente.php" method="POST" name="eliminar">
+                <input type="hidden" name="idmodal" id="idmodal" value=""> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-primary">Si</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->
+
+<!-- MODAL DE CONFIRMAR ELIMINACION-->
+<div id="ConfEliminar" class="modal fade bd-example-modal-sm">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminado</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="crearTexpediente.php"  type="button" class="btn btn-primary">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN MODAL-->

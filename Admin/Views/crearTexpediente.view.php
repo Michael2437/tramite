@@ -157,7 +157,7 @@
                                            </a>
                                        </li>
                                        <li>
-                                           <a href="crearTusuario.php">
+                                           <a href="#">
                                                <i class="metismenu-icon">
                                                </i>Tipo de Usuario
                                            </a>
@@ -166,13 +166,13 @@
                                 </li>
                                 <li class="app-sidebar__heading">Modificar</li>
                                 <li >
-                                    <a href="#" >
+                                    <a href="modificarUsuario.php" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Usuario
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="#" >
+                                    <a href="modificarExpediente.php" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Expediente
                                     </a>
@@ -249,7 +249,7 @@
                                                 
                                                 <td class="text-center">
                                                     <a href="#" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Modificar</a>
-                                                    <a href="crearTexpediente.php?id=<?php echo $id;?>" class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></a>
+                                                    <a href="#" id="<?php echo $id;?>" class="mr-2 btn-icon btn-icon-only btn btn-outline-danger abrirmodal" data-toggle="modal" data-target="#Eliminar"><i class="pe-7s-trash btn-icon-wrapper"> </i></a>
                                                 </td>
                                             </tr><?php }?>
                                             </tbody>
@@ -266,11 +266,22 @@
                 </div>  
         </div>
     </div>
-    <?php if(isset($resultado)){ echo $script;} if(isset($eliminar)){ echo $script;}?>
+    <script>
+
+
+$(".abrirmodal").click(function() {
+  //Capturamos el valor del id para enviarlo al modal
+  let id_plan = $(this).attr('id');
+  $("input#idmodal").val(id_plan);
+});
+
+</script>
+ 
+    <?php if(isset($resultado)){ echo $script;}if(isset($eliminar)){ echo $script;} ?>
 <script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
 </html>
 
-<!-- MODAL -->
+<!-- MODAL DE NUEVO EXPEDIENTE-->
 <div id="myModal" class="modal fade">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -283,7 +294,7 @@
             <form action="crearTexpediente.php" method="POST" name="nuevoTexp">
                 <div class="modal-body">
                 <label>Ingrese Nombre</label>
-                <input class="form-control" id="tipExp" name="tipExp" type="text" placeholder="Tipo de Expediente">
+                <input class="form-control" id="tipExp" name="tipExp" type="text" placeholder="Tipo de Expediente" autocomplete="off">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -296,7 +307,7 @@
 
 <!-- FIN MODAL-->
 
-<!-- MODAL -->
+<!-- MODAL DE CONFIRMACION DE NUEVO EXPEDIENTE-->
 <div id="Confirmar" class="modal fade bd-example-modal-sm">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -312,21 +323,40 @@
 
 <!-- FIN MODAL-->
 
-<!-- MODAL -->
+<!-- MODAL DE ELIMINAR EXP-->
 <div id="Eliminar" class="modal fade bd-example-modal-sm">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Eliminado</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Seguro de Eliminar?</h5>
                 <button data-dismiss="modal" type="button" class="close"  aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-footer">
-                <a href="crearTexpediente.php" type="button" class="btn btn-primary">Aceptar</a>
-            </div>
+            <form action="crearTexpediente.php" method="POST" name="eliminar">
+                <input type="hidden" name="idmodal" id="idmodal" value=""> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-primary">Si</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
+<!-- FIN MODAL-->
+
+<!-- MODAL DE CONFIRMAR ELIMINACION-->
+<div id="ConfEliminar" class="modal fade bd-example-modal-sm">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminado</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="crearTexpediente.php"  type="button" class="btn btn-primary">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- FIN MODAL-->

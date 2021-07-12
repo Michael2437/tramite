@@ -136,7 +136,7 @@
                                 </li>
                                 <li class="app-sidebar__heading">Crear</li>
                                 <li class="mm-show">
-                                    <a href="adminAreas.php" >
+                                    <a href="adminAreas.php" class="mm-active" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Areas
                                     </a>
@@ -150,12 +150,12 @@
                                     <ul >
                                        <li>
                                            <a href="crearTexpediente.php">
-                                               <i class="metismenu-icon mm-active""></i>
+                                               <i class="metismenu-icon"></i>
                                                 Tipo de Expediente
                                            </a>
                                        </li>
                                        <li>
-                                           <a href="crearTusuario.php">
+                                           <a href="#">
                                                <i class="metismenu-icon">
                                                </i>Tipo de Usuario
                                            </a>
@@ -164,13 +164,13 @@
                                 </li>
                                 <li class="app-sidebar__heading">Modificar</li>
                                 <li >
-                                    <a href="#" >
+                                    <a href="modificarUsuario.php" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Usuario
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="#" >
+                                    <a href="modificarExpediente.php" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Expediente
                                     </a>
