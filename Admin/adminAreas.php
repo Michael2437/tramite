@@ -10,11 +10,11 @@ $listado= $nuevo->roles($con,$user);
 $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
-
+$areas=$nuevo->MostrarAreas($con);
 
 
 if(isset($_SESSION['usuario'])){
-  require 'Views/indexAdmin.view.php';
+  require 'Views/adminAreas.view.php';
 }else{
   header('Location: ../Login.php');
 }

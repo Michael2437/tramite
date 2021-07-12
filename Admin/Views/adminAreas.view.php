@@ -10,6 +10,19 @@
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="../Views/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+	
+	$(document).ready(function () {
+	//CheckBox mostrar contraseña
+	$('#ShowPassword').click(function () {
+		$('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+	});
+});
+</script>
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -199,10 +212,90 @@
                 </div>
                 <div class="app-main__outer">
                     <div class="app-main__inner">
-                           
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-header">Areas Existentes
+                                        <div class="btn-actions-pane-right">
+                                            <div role="group" class="btn-group-sm btn-group">
+                                                <a href="crearArea.php" class="btn btn-primary">Nuevo</a>
+                                            <!--    <button class="active btn btn-focus">Last Week</button>
+                                                <button class="btn btn-focus">All Month</button>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive ">
+                                        <table class="align-middle  mb-0 table table-borderless table-striped table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center">Nombre de Area</th>
+                                                <th class="text-center">Contraseña</th>
+                                                <th class="text-center">Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php while($fila=$areas->fetch()){
+                                                    $id=$fila['idArea'];
+                                                    $nomArea=$fila['nomArea'];
+                                                    $constraseña=$fila['codArea'];
+                                                ?>
+                                            <tr>
+                                                <td  class="text-center">
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading"><?php echo $nomArea;?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="row">
+                                                        <div class="col-md-4"></div>
+                                                        
+                                                    
+                                                         <div class="col-md-4">
+                                                        <input class="form-control" id="Password" type="password" value="<?php echo $constraseña;?>" readonly>
+                                                        </div><div class="col-md-2">
+                                                        <div class="position-relative form-check"><label class="form-check-label">
+                                                            <input type="checkbox" id="ShowPassword" class="form-check-input"> Ver</label></div>
+                                                
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </td>
+                                                
+                                                <td class="text-center">
+                                                    <a href="modificarArea.php?id=<?php echo $id;?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Modificar</a>
+                                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                                                </td>
+                                            </tr><?php }?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="d-block text-center card-footer">
+                                    <input type="checkbox" id="ShowPassword" class="form-check-input"> 
+                                       <button class="btn-wide btn btn-success">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>  
         </div>
     </div>
+
+    <script>
+$(document).ready(function () {
+  $('#mostrar_contrasena').click(function () {
+    if ($('#mostrar_contrasena').is(':checked')) {
+      $('#contrasena').attr('type', 'text');
+    } else {
+      $('#contrasena').attr('type', 'password');
+    }
+  });
+});
+</script>
 <script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
 </html>

@@ -10,6 +10,11 @@
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="../Views/main.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -131,7 +136,7 @@
                                 </li>
                                 <li class="app-sidebar__heading">Crear</li>
                                 <li class="mm-show">
-                                    <a href="adminAreas.php" >
+                                    <a href="adminArea.php" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Areas
                                     </a>
@@ -199,10 +204,53 @@
                 </div>
                 <div class="app-main__outer">
                     <div class="app-main__inner">
-                           
+                        <div class="tab-content">
+                            <div class="tab-pane tabs-animation fade show active" id="tab-content-1" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                     <div class="col-md-6">
+                                        <div class="main-card mb-3 card">
+                                            <div class="card-body"><h5 class="card-title">Crear Nueva Area</h5>
+                                                <form action="crearArea.php" method="Post" name="crearArea">
+                                                    <div class="position-relative form-group">
+                                                        <label for="exampleEmail" class="">Nombre de Area</label>
+                                                        <input name="nomArea" id="nomArea" placeholder="Ingrese el nombre del Area" type="text" class="form-control" autocomplete="off">
+                                                    </div>
+                                                    <div class="position-relative form-group">
+                                                        <label for="examplePassword" class="">Contraseña</label>
+                                                        <div class="input-group">
+                                                        <input name="pass" id="pass" placeholder="Ingrese la contraseña" type="password"class="form-control">
+                                                        <div class="input-group-append">
+                                                            <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                                        </div>            
+                                                        </div>
+                                                    </div>
+                                                    <div class="position-relative form-group">
+                                                        <label for="examplePassword" class="">Confirmar Contraseña</label>
+                                                        <div class="input-group">
+                                                        <input name="passCon" id="passCon" placeholder="Confirme la contraseña" type="password"class="form-control">
+                                                        <div class="input-group-append">
+                                                            <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarConfirm()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <button type="submit" class="btn btn-primary">Crear</button>
+                                                        <a href="adminAreas.php" class="btn btn-primary">Cancelar</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>  
         </div>
     </div>
-<script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
+<script type="text/javascript" src="Views/js/funciones.js"></script> 
+<script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
+</body>
 </html>

@@ -189,5 +189,68 @@ Class Conexion{
         ':idDoc'=>$idDoc
       ));
     }
+
+/* Funciones del <Admin></Admin>*/
+/*Crear area*/
+      public function crearArea($conexion,$nomArea,$codArea){
+        $consulta=$conexion->prepare(
+          'INSERT INTO `area` (`idArea`, `nomArea`, `codArea`, `rol`) VALUES (NULL, :nomArea, :codArea, "Area")'
+        );
+        $consulta ->execute(array(
+          ':nomArea'=>$nomArea,
+          ':codArea'=>$codArea
+        ));
+        return $consulta;
+      }
+      public function crearListadoArea($conexion,$nomArea){
+        $consulta=$conexion->prepare(
+          'INSERT INTO `listadoarea` (`idArea`, `nomArea`) VALUES (NULL, :nomArea)'
+        );
+        $consulta ->execute(array(
+          ':nomArea'=>$nomArea
+        ));
+      }
+/*modificar areas 2 consultas */
+    public function modificarArea($conexion,$nomArea,$codArea,$id){
+      $consulta=$conexion->prepare(
+        'UPDATE `area` SET `nomArea`=:nomArea,`codArea` = :codArea WHERE `area`.`idArea` = :id'
+      );
+      $consulta ->execute(array(
+        ':nomArea'=>$nomArea,
+        ':codArea'=>$codArea,
+        ':id'=>$id
+      ));
+      return $consulta;
+    }
+    public function modificarListadoArea($conexion,$nomArea,$Area){
+      $consulta=$conexion->prepare(
+        'UPDATE `listadoarea` SET `nomArea`=:nomArea WHERE `listadoarea`.`nomArea`=:Area'
+      );
+      $consulta ->execute(array(
+        ':nomArea'=>$nomArea,
+        ':Area'=>$Area
+      ));
+    }
+/*Para ver las areas */
+      public function MostrarAreas($conexion){
+        $consulta=$conexion->prepare(
+          'SELECT * FROM `area`'
+        );
+        $consulta ->execute();
+        return $consulta;
+      }
+      /*obtener areas por id */
+      public function selectAreas($conexion,$id){
+        $consulta=$conexion->prepare(
+          'SELECT * FROM `area` Where `idArea` =:id'
+        );
+        $consulta ->execute(array(
+          ':id'=>$id
+        ));
+        $resultado=$consulta->fetch();
+        return $resultado;
+      }
+
+
   }
 ?>

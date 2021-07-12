@@ -10,6 +10,13 @@
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="../Views/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -131,7 +138,7 @@
                                 </li>
                                 <li class="app-sidebar__heading">Crear</li>
                                 <li class="mm-show">
-                                    <a href="adminAreas.php" >
+                                    <a href="adminArea.php" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Areas
                                     </a>
@@ -199,10 +206,79 @@
                 </div>
                 <div class="app-main__outer">
                     <div class="app-main__inner">
-                           
+                        <div class="tab-content">
+                            <div class="tab-pane tabs-animation fade show active" id="tab-content-1" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                     <div class="col-md-6">
+                                        <div class="main-card mb-3 card">
+                                            <div class="card-body"><h5 class="card-title">Modificar Area Area</h5>
+                                                <form action="modificarArea.php" method="POST" name="modificarArea">
+                                                    <div class="position-relative form-group">
+                                                        <label for="exampleEmail" class="">Nombre de Area</label>
+                                                        <input name="idArea" id="idArea" placeholder="Ingrese Nuevo Nombre" type="hidden" class="form-control" value="<?php echo $idArea; ?>">
+                                                        <input name="nomArea" id="nomArea" placeholder="Ingrese Nuevo Nombre" type="text" class="form-control" value="<?php echo $nomArea; ?>">
+                                                    </div>
+                                                    <div class="position-relative form-group">
+                                                        <label for="examplePassword" class="">Cambiar Contraseña</label>
+                                                        <div class="input-group">
+                                                        <input name="pass" id="pass" placeholder="Ingrese la nueva contraseña" type="password"class="form-control">
+                                                        <div class="input-group-append">
+                                                            <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                                        </div>            
+                                                        </div>
+                                                    </div>
+                                                    <div class="position-relative form-group">
+                                                        <label for="examplePassword" class="">Confirmar Contraseña</label>
+                                                        <div class="input-group">
+                                                        <input name="passCon" id="passCon" placeholder="Confirme la nueva contraseña" type="password"class="form-control">
+                                                        <div class="input-group-append">
+                                                            <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarConfirm()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="text-center">
+                                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                                        <a href="adminAreas.php" class="btn btn-primary">Cancelar</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>  
         </div>
     </div>
-<script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
+<?php if(isset($resultado)){ echo $script;} ?>
+<script type="text/javascript" src="Views/js/funciones.js"></script> 
+<script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
+</body>
 </html>
+
+<!-- MODAL -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                <a href="indexAreas.php" type="button" class="close"  aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+            <p>Modificado Existosamente</p>
+            </div>
+            <div class="modal-footer">
+                <a href="indexAdmin.php" type="button" class="btn btn-primary">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->
