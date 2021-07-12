@@ -13,6 +13,18 @@ $rol=$listado['rol'];
 $dni="";
 $iduser="";
 $salida="";
+
+if(isset($_POST['nombresreg'])){
+  $dniantiguo=$_POST['dni'];
+  $dni=$_POST['dnir'];
+  $nombresreg=$_POST['nombresreg'];
+  $apellidosreg=$_POST['apellidosreg'];
+  $direccionreg=$_POST['direccionreg'];
+  $telefonoreg=$_POST['telefonoreg'];
+  $result=$nuevo->modificaruser($con,$dni,$nombresreg,$apellidosreg,$direccionreg,$telefonoreg,$dniantiguo);
+    
+}
+
 if(isset($_POST['dni']) ){
   $dni = $_POST['dni'];
 }
@@ -36,21 +48,22 @@ $resultado=$nuevo->buscaruser($con,$dni,$iduser);
                 <div class='card-body'>
                   
                   <div>
-            <form name='datos' method='post' >
+            <form name='datos' method='POST' action='modificarUsuario.php'>
             <div class='form-row'>
               <div class='col-md-3'>
+                    <input name='dni' id='dni' value='".$dni."' type='hidden'>
                     <div class='position-relative form-group'><label  class=''>DNI</label>
-                    <input name='dnir' disabled=»disabled» id='nombres' value=' ".$dni." 'type='text' class='form-control text-center'>
+                    <input name='dnir'  id='dnir' value='".$dni."' type='text' class='form-control text-center'>
                   </div>
               </div>
               <div class='col-md-5'>
                   <div class='position-relative form-group'><label  class=''>Nombres</label>
-                    <input name='nombresreg' disabled=»disabled» id='nombres' value= ' ".$nombres." ' type='text' class='form-control'>
+                    <input name='nombresreg'  id='nombres' value= '".$nombres."' type='text' class='form-control'>
                   </div>
               </div>
               <div class='col-md-4'>
                   <div class='position-relative form-group'><label  class=''>Apellidos</label>
-                    <input name='apellidosreg' disabled=»disabled» id='apellidos' value= ' ".$apellidos." ' type='text' class='form-control'>
+                    <input name='apellidosreg'  id='apellidos' value= '".$apellidos."' type='text' class='form-control'>
                   </div>
               </div>
             </div>
@@ -58,12 +71,12 @@ $resultado=$nuevo->buscaruser($con,$dni,$iduser);
               <div class='col-md-8'>
                 <div class='position-relative form-group'>
                   <label for='examplePassword11' class=''>Dirección</label>
-                  <input name='direccionreg' disabled=»disabled» id='direccion' value= ' ".$direccion." ' type='text' class='form-control'>
+                  <input name='direccionreg'  id='direccion' value= '".$direccion."' type='text' class='form-control'>
                 </div>
               </div>
               <div class='col-md-4'>
                 <div class='position-relative form-group'><label for='exampleEmail11' class=''>Telefono</label>
-                  <input name='telefonoreg' disabled=»disabled» id='telefono' value=' ".$telefono." ' type='tel' class='form-control'>
+                  <input name='telefonoreg'  id='telefono' value='".$telefono."' type='tel' class='form-control'>
                 </div>
               </div>
             </div>
@@ -96,38 +109,24 @@ $resultado=$nuevo->buscaruser($con,$dni,$iduser);
 
             </div>
             <div class='form-row'>
-
-              <div class='col-md-4'>
+              <div class='col-md-12'>
                 <div class='text-center'>
-                <a href='expedienteNuevo.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Nuevo Expediente</a>
-                  
-                </div>
-              </div>
-              <div class='col-md-4'>
-                <div class='text-center'>
-                <a href='expedienteVer.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Ver Expedientes</a>
-                  
-                </div>
-              </div>
-              <div class='col-md-4'>
-                <div class='text-center'>
-                <a href='usuarioModificar.php?iduser=".$id." ' class='mt-2 btn btn-primary'>Modificar</a>
+                  <button type='submit' class='mt-2 btn btn-primary'>Modificar</button>
                   
                     </div>
                   </div>
                 </div>
             </form>
+              </div>
+              </div>
+              </div>
             </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class='col-md-2'></div>
-                            </div>";
+          <div class='col-md-2'></div>
+    </div>";
           }else {
             $salida.="<div class='text-center'>El DNI no está registrado</div>";
           }
     
-
 
 if(isset($_SESSION['usuario'])){
   require 'Views/modificarUsuario.view.php';

@@ -11,6 +11,21 @@ $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
 $nExp="";
+
+if(isset($_POST['idDoc'])){
+  $nExp=$_POST['idDoc'];
+  $nExpAntes=$_POST['nExpAntes'];
+  $asunto=$_POST['Asunto'];
+  $fecha=$_POST['fecha'];
+  $nomArea=$_POST['nomArea'];
+  $result=$nuevo->modificarexp($con,$nExp,$fecha,$asunto,$nomArea,$nExpAntes);
+  if($result){
+    $error="<div class='text-center'> Modificado Exitosamente</div>";
+  }else{$error="<div class='text-center'>No se puede modificar porque ya existe el numero de expediente</div>";}
+    
+}
+
+
 if(isset($_POST['nExp'])){
     $nExp=$_POST['nExp'];
 }
@@ -32,21 +47,22 @@ if($fila){
         <div class='main-card mb-3 card'>
           <div class='card-body'>
             <div>
-              <form name='datos' method='POST'  >
+              <form name='datos' method='POST' action='modificarExpediente.php'>
                 <div class='form-row'>
                   <div class='col-md-3'>
+                  <input name='nExpAntes' id='nExpAntes' value='".$idDoc."' type='hidden'>
                     <div class='position-relative form-group'><label  class=''>N° Expediente</label>
-                      <input name='idDoc' readonly id='idDoc' value=' ".$idDoc." 'type='text' class='form-control text-center'>
+                      <input name='idDoc'  id='idDoc' value='".$idDoc."'type='text' class='form-control text-center'>
                     </div>
                   </div>
                   <div class='col-md-5'>
                     <div class='position-relative form-group'><label  class=''>Asunto</label>
-                      <input name='Asunto' disabled=»disabled» id='asunto' value= ' ".$asunto." ' type='text' class='form-control'>
+                      <input name='Asunto'  id='asunto' value= '".$asunto."' type='text' class='form-control'>
                      </div>
                   </div>
                   <div class='col-md-4'>
                       <div class='position-relative form-group'><label  class=''>Fecha</label>
-                        <input name='fecha' disabled=»disabled» id='fecha' value= ' ".$fecha." ' type='text' class='form-control'>
+                        <input name='fecha'  id='fecha' value= '".$fecha."' type='text' class='form-control'>
                       </div>
                   </div>
                 </div>
@@ -54,7 +70,7 @@ if($fila){
                   <div class='col-md-12'>
                     <div class='position-relative form-group'>
                       <label for='examplePassword11' class=''>Area</label>
-                      <input name='nomArea' disabled=»disabled» id='nomArea' value= ' ".$nomArea." ' type='text' class='form-control'>
+                      <input name='nomArea' id='nomArea' value= '".$nomArea."' type='text' class='form-control'>
                     </div>
                   </div>
                 </div>
@@ -62,7 +78,7 @@ if($fila){
                   <div class='col-md-4'></div>
                     <div class='col-md-4'>
                       <div class='text-center'>
-                        <a href='expedienteVer.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Ver Expedientes</a> 
+                        <button type='submit' class='mt-2 btn btn-primary'>Modificar</button> 
                       </div>
                     </div>
                   <div class='col-md-4'></div>

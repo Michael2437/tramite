@@ -63,17 +63,19 @@ Class Conexion{
         $resultado = $statement->fetch();
         return $resultado;
     }
-    public function modificaruser($conexion,$dni,$nombres,$apellidos,$direccion,$telefono){
+    public function modificaruser($conexion,$dni,$nombres,$apellidos,$direccion,$telefono,$dniantiguo){
       $sql = $conexion->prepare('
-            UPDATE `usuario` SET `dni` = :dnimod, `nomUsuario` = :nombresmod, `apeUsuario` = :apellidosmod, `dirUsuario` = :direccionmod, `telUsuario` = :telefonomod WHERE `usuario`.`dni` = :dnimod;
+            UPDATE `usuario` SET `dni` = :dnimod, `nomUsuario` = :nombresmod, `apeUsuario` = :apellidosmod, `dirUsuario` = :direccionmod, `telUsuario` = :telefonomod WHERE `usuario`.`dni` = :dniantiguo;
             ');
       $sql->execute(array(
         ':dnimod'=> $dni,
         ':nombresmod'=>$nombres,
         ':apellidosmod'=>$apellidos,
         ':direccionmod' =>$direccion,
-        ':telefonomod' =>$telefono
+        ':telefonomod' =>$telefono,
+        ':dniantiguo'=>$dniantiguo
       ));
+      return $sql;
     }
     
     /*estas 2 funciones son para los select de tipo de expediente y area respectivamente. */
@@ -270,7 +272,23 @@ Class Conexion{
         $resultado=$consulta->fetch();
         return $resultado;
       }
+/*Modificar expediente*/
 
-
+public function modificarexp($conexion,$nExp,$fecha,$asunto,$nArea,$nExpAntes){
+      $statement = $conexion->prepare('
+      UPDATE `documento` SET `idDoc`=:nExp, `fecha`=:fecha,`Asunto`=:asunto ,`nomArea`=:nArea WHERE `documento`.`idDoc`=:nExpAntes');
+     try{
+      $statement->execute(array(
+      ':nExp' =>$nExp,
+      ':fecha'  =>$fecha,
+      ':asunto' =>$asunto,
+      ':nArea'  =>$nArea,
+      ':nExpAntes'=>$nExpAntes
+      ));}
+      catch(PDOException $ex){
+        $statement= false;
+      }
+      return $statement;
+    }
   }
 ?>

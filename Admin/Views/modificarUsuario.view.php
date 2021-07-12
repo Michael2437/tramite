@@ -226,7 +226,7 @@
                                         </div>
                                         <div class="col-md-4">
                                           <div class="position-relative form-group">
-                                            <input name="dni" id="dni" type="number"  placeholder="N° DNI" class="form-control">
+                                            <input name="dni" id="dni" type="number" value="<?php if(isset($dni)){echo $dni;}?>"  placeholder="N° DNI" class="form-control">
                                           </div>
                                         </div>
                                         <div class="col-md-3">
@@ -241,7 +241,6 @@
                             </div>
                             
                             <?php if(isset($resultado)){if(!empty($dni)){echo $salida ;}}?>
-                            
                             <!-- fin del formulario-->
                         </div>
                 </div> 
@@ -250,97 +249,7 @@
                 </div>  
         </div>
     </div>
-    <script>
 
-
-$(".abrirmodal").click(function() {
-  //Capturamos el valor del id para enviarlo al modal
-  let id_plan = $(this).attr('id');
-  $("input#idmodal").val(id_plan);
-});
-
-</script>
  
-    <?php if(isset($resultado)){ echo $script;}if(isset($eliminar)){ echo $script;} ?>
 <script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
 </html>
-
-<!-- MODAL DE NUEVO EXPEDIENTE-->
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Insertar Nuevo Tipo de Expediente</h5>
-                <button data-dismiss="modal" type="button" class="close"  aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="crearTexpediente.php" method="POST" name="nuevoTexp">
-                <div class="modal-body">
-                <label>Ingrese Nombre</label>
-                <input class="form-control" id="tipExp" name="tipExp" type="text" placeholder="Tipo de Expediente" autocomplete="off">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" type="button" class="btn btn-primary">Enviar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- FIN MODAL-->
-
-<!-- MODAL DE CONFIRMACION DE NUEVO EXPEDIENTE-->
-<div id="Confirmar" class="modal fade bd-example-modal-sm">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrado Existosamente</h5>
-            </div>
-            <div class="modal-footer">
-                <a href="crearTexpediente.php"  type="button" class="btn btn-primary">Aceptar</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- FIN MODAL-->
-
-<!-- MODAL DE ELIMINAR EXP-->
-<div id="Eliminar" class="modal fade bd-example-modal-sm">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Seguro de Eliminar?</h5>
-                <button data-dismiss="modal" type="button" class="close"  aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="crearTexpediente.php" method="POST" name="eliminar">
-                <input type="hidden" name="idmodal" id="idmodal" value=""> 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-primary">Si</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- FIN MODAL-->
-
-<!-- MODAL DE CONFIRMAR ELIMINACION-->
-<div id="ConfEliminar" class="modal fade bd-example-modal-sm">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Eliminado</h5>
-            </div>
-            <div class="modal-footer">
-                <a href="crearTexpediente.php"  type="button" class="btn btn-primary">Aceptar</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- FIN MODAL-->
