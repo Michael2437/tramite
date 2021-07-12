@@ -138,7 +138,7 @@
                                 </li>
                                 <li class="app-sidebar__heading">Crear</li>
                                 <li class="mm-show">
-                                    <a href="adminArea.php" >
+                                    <a href="adminAreas.php" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Areas
                                     </a>
@@ -151,7 +151,7 @@
                                     </a>
                                     <ul >
                                        <li>
-                                           <a href="crearTexp.php">
+                                           <a href="crearTexpediente.php">
                                                <i class="metismenu-icon mm-active""></i>
                                                 Tipo de Expediente
                                            </a>
@@ -212,7 +212,7 @@
                                     <div class="col-md-3"></div>
                                      <div class="col-md-6">
                                         <div class="main-card mb-3 card">
-                                            <div class="card-body"><h5 class="card-title">Modificar Area Area</h5>
+                                            <div class="card-body"><h5 class="card-title">Modificar Area</h5>
                                                 <form action="modificarArea.php" method="POST" name="modificarArea">
                                                     <div class="position-relative form-group">
                                                         <label for="exampleEmail" class="">Nombre de Area</label>

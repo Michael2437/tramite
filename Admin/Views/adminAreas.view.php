@@ -144,7 +144,7 @@
                                 </li>
                                 <li class="app-sidebar__heading">Crear</li>
                                 <li class="mm-show">
-                                    <a href="adminAreas.php" >
+                                    <a href="adminAreas.php" class="mm-active">
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Areas
                                     </a>
@@ -157,7 +157,7 @@
                                     </a>
                                     <ul >
                                        <li>
-                                           <a href="crearTexp.php">
+                                           <a href="crearTexpediente.php">
                                                <i class="metismenu-icon mm-active""></i>
                                                 Tipo de Expediente
                                            </a>

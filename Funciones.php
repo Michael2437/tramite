@@ -84,6 +84,26 @@ Class Conexion{
             $statement->execute();
             return $statement;
           }
+          public function nuevoTexp($con,$tipExp){
+            $statement=$con->prepare(
+              'INSERT INTO `tipodocumento` ( `descTipoDoc`) VALUES (:tipExp)'
+            );
+            $statement->execute(array(
+              ':tipExp'=>$tipExp
+            ));
+            return $statement;
+          }
+          public function eliminarTexp($con,$idTexp){
+            $statement=$con->prepare(
+              'DELETE FROM `tipodocumento` WHERE `tipodocumento`.`idTipoDoc` = :idTexp'
+            );
+            $statement->execute(array(
+              ':idTexp'=>$idTexp
+            ));
+            return $statement;
+          }
+
+
           public function selectArea($conexion){
             $statement=$conexion->prepare(
               'SELECT * FROM `listadoarea`'

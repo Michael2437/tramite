@@ -10,11 +10,13 @@
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="../Views/main.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+   
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -135,7 +137,7 @@
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading">Crear</li>
-                                <li class="mm-show">
+                                <li >
                                     <a href="adminAreas.php" >
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Areas
@@ -147,10 +149,10 @@
                                         Mesa de Partes
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
-                                    <ul >
+                                    <ul class="mm-show">
                                        <li>
-                                           <a href="crearTexpediente.php">
-                                               <i class="metismenu-icon mm-active""></i>
+                                           <a href="crearTexpediente.php" class="mm-active">
+                                               <i class="metismenu-icon"></i>
                                                 Tipo de Expediente
                                            </a>
                                        </li>
@@ -204,45 +206,59 @@
                 </div>
                 <div class="app-main__outer">
                     <div class="app-main__inner">
-                        <div class="tab-content">
-                            <div class="tab-pane tabs-animation fade show active" id="tab-content-1" role="tabpanel">
-                                <div class="row">
-                                    <div class="col-md-3"></div>
-                                     <div class="col-md-6">
-                                        <div class="main-card mb-3 card">
-                                            <div class="card-body"><h5 class="card-title">Crear Nueva Area</h5>
-                                                <form action="crearArea.php" method="Post" name="crearArea">
-                                                    <div class="position-relative form-group">
-                                                        <label for="exampleEmail" class="">Nombre de Area</label>
-                                                        <input name="nomArea" id="nomArea" placeholder="Ingrese el nombre del Area" type="text" class="form-control" autocomplete="off">
-                                                    </div>
-                                                    <div class="position-relative form-group">
-                                                        <label for="examplePassword" class="">Contraseña</label>
-                                                        <div class="input-group">
-                                                        <input name="pass" id="pass" placeholder="Ingrese la contraseña" type="password"class="form-control">
-                                                        <div class="input-group-append">
-                                                            <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
-                                                        </div>            
-                                                        </div>
-                                                    </div>
-                                                    <div class="position-relative form-group">
-                                                        <label for="examplePassword" class="">Confirmar Contraseña</label>
-                                                        <div class="input-group">
-                                                        <input name="passCon" id="passCon" placeholder="Confirme la contraseña" type="password"class="form-control">
-                                                        <div class="input-group-append">
-                                                            <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarConfirm()"> <span class="fa fa-eye-slash icon"></span> </button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <button type="submit" class="btn btn-primary">Crear</button>
-                                                        <a href="adminAreas.php" class="btn btn-primary">Cancelar</a>
-                                                    </div>
-                                                </form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-header">Documentos Existentes
+                                        <div class="btn-actions-pane-right">
+                                            <div role="group" class="btn-group-sm btn-group">
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Nuevo</button>
+                                            <!--    <button class="active btn btn-focus">Last Week</button>
+                                                <button class="btn btn-focus">All Month</button>-->
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3"></div>
+                                    <div class="table-responsive ">
+                                        <table class="align-middle  mb-0 table table-borderless table-striped table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center">#</th>
+                                                <th class="text-center">Tipo de Expediente</th>
+                                                <th class="text-center">Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php while($fila=$areas->fetch()){
+                                                    $id=$fila['idTipoDoc'];
+                                                    $nomTipoDoc=$fila['descTipoDoc'];
+                                                ?>
+                                            <tr>
+                                                <td  class="text-center">
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading"><?php echo $id;?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                         <?php echo $nomTipoDoc;?>
+                                                </td>
+                                                
+                                                <td class="text-center">
+                                                    <a href="#" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Modificar</a>
+                                                    <a href="crearTexpediente.php?id=<?php echo $id;?>" class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></a>
+                                                </td>
+                                            </tr><?php }?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="d-block text-center card-footer">
+                                    <input type="checkbox" id="ShowPassword" class="form-check-input"> 
+                                       <button class="btn-wide btn btn-success">Save</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -250,7 +266,67 @@
                 </div>  
         </div>
     </div>
-<script type="text/javascript" src="Views/js/funciones.js"></script> 
-<script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
-</body>
+    <?php if(isset($resultado)){ echo $script;} if(isset($eliminar)){ echo $script;}?>
+<script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
 </html>
+
+<!-- MODAL -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Insertar Nuevo Tipo de Expediente</h5>
+                <button data-dismiss="modal" type="button" class="close"  aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="crearTexpediente.php" method="POST" name="nuevoTexp">
+                <div class="modal-body">
+                <label>Ingrese Nombre</label>
+                <input class="form-control" id="tipExp" name="tipExp" type="text" placeholder="Tipo de Expediente">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" type="button" class="btn btn-primary">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->
+
+<!-- MODAL -->
+<div id="Confirmar" class="modal fade bd-example-modal-sm">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrado Existosamente</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="crearTexpediente.php"  type="button" class="btn btn-primary">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->
+
+<!-- MODAL -->
+<div id="Eliminar" class="modal fade bd-example-modal-sm">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminado</h5>
+                <button data-dismiss="modal" type="button" class="close"  aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <a href="crearTexpediente.php" type="button" class="btn btn-primary">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->

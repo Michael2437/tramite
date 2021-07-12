@@ -124,7 +124,7 @@
                             <ul class="vertical-nav-menu">
                                 <li class="app-sidebar__heading">Inicio</li>
                                 <li>
-                                    <a href="indexAdmin.php" >
+                                    <a href="indexAdmin.php" class="mm-active">
                                         <i class="metismenu-icon pe-7s-rocket"></i>
                                         Principal
                                     </a>
@@ -144,7 +144,7 @@
                                     </a>
                                     <ul >
                                        <li>
-                                           <a href="crearTexp.php">
+                                           <a href="crearTexpediente.php">
                                                <i class="metismenu-icon mm-active""></i>
                                                 Tipo de Expediente
                                            </a>
