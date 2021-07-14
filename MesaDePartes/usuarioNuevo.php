@@ -10,6 +10,8 @@ $listado= $nuevo->roles($con,$user);
 $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
+$salida="";
+
 if (isset($_POST['dni'])) {
   $dni = $_POST['dni'];
   $nombres = $_POST['nombres'];
@@ -26,6 +28,26 @@ if (isset($_POST['dni'])) {
     $error .= '<p>Registrado correctamente</p>';
   }
 }
+
+if(isset($_POST['consulta'])){
+  $consulta = $_POST['consulta'];
+      if($consulta=="Jurídico"){
+        $salida.="<div class='form-row'>
+        <div class='col-md-6'>
+          <div class='position-relative form-group'><label for='exampleAddress' class=''>RUC</label>
+          <input name='ruc' id='ruc' placeholder='Ingrese RUC' type='text' class='form-control'>
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <div class='position-relative form-group'><label for='exampleAddress2' class=''>Razón Social</label>
+            <input name='razonsocial' id='razonsocial' placeholder='Ingrese razón social' type='text' class='form-control'>
+          </div>
+        </div>
+      </div>";
+      }
+   echo $salida;
+}
+
 
 if (isset($_SESSION['usuario'])) {
   require 'Views/usuarioNuevo.view.php';

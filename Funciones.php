@@ -42,6 +42,7 @@ Class Conexion{
         $validacion = $validar->fetch();
         return $validacion;
     }
+     
     public function registrouser($conexion,$dni,$nombres,$apellidos,$direccion,$telefono){
         $statement = $conexion->prepare('
         INSERT INTO `usuario` (`dni`, `nomUsuario`, `apeUsuario`, `dirUsuario`, `telUsuario`) VALUES (:dni,  :nombres ,  :apellidos ,  :direccion,  :telefono );');

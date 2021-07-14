@@ -6,11 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Form Layouts - Build whatever layout you need with our Architect framework.</title>
+    <title>Nuevo Usuario</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Build whatever layout you need with our Architect framework.">
     <meta name="msapplication-tap-highlight" content="no">
-<link href="../Views/main.css" rel="stylesheet"></head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    
+<link href="../Views/main.css" rel="stylesheet">
+
+</head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
@@ -247,26 +251,16 @@
                                           </div>
                                           <div class="col-md-4">
                                             <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo Usuario</label>
-                                              <select class="mb-2 form-control">
-                                                <option value="tipouser">Normal</option>
-                                                <option value="tipouser">Jurídico</option>
+                                              <select onchange="buscar_archivos()" type="select" class="mb-2 form-control" name="TipoUser" id="TipoUser">
+                                                <option value="Normal">Normal</option>
+                                                <option value="Jurídico">Jurídico</option>
                                               </select>
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="form-row">
-                                          <div class="col-md-6">
-                                            <div class="position-relative form-group"><label for="exampleAddress" class="">RUC</label>
-                                              <input name="ruc" id="ruc" placeholder="Ingrese RUC" type="text" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                            <div class="position-relative form-group"><label for="exampleAddress2" class="">Razón Social</label>
-                                              <input name="razonsocial" id="razonsocial" placeholder="Ingrese razón social" type="text" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div id="datos"></div>
-                                        </div>
+                                        
+                                        <?php if(!empty($salida)){echo $salida;} ?>
+
                                         <?php if(!empty($error)):echo $error; endif;?>
                                         
                                         <div class="text-center">
@@ -291,7 +285,25 @@
                 </div>
         </div>
     </div>
-
+<script type="text/javascript">
+   function buscar_archivos() {
+	var consulta = document.getElementById("TipoUser").value;
+    
+	$.ajax({
+		url: 'usuarioNuevo.php',
+		type: 'POST',
+		dataType: 'html',
+		data: { consulta: consulta },
+	})
+		.done(function (respuesta) {
+			$("#selectorder").html(respuesta);
+		})
+		.fail(function () {
+			console.log("error");
+		});
+    }
+    
+</script>
 <script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
 
 
