@@ -42,7 +42,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <tr> <?php if(isset($idDoc)){?>
                                                     <th><?php echo $idDoc;?></th>
                                                     <th><?php echo $asunto;?></th>
                                                     <th><?php echo $areaA;?></th>
@@ -50,12 +50,16 @@
                                                         <input type="hidden" value="<?php echo $idDoc;?>" id="idD" name="idD">
                                                         <button type="submit" onclick="exp.submit()" class="btn btn-primary">Detalle</button> 
                                                     </form>
-                                                    </th>
+                                                    </th><?php } ?>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                </div> <form action="buscarDNI.php" method="POST" name="dni">
+                                </div> 
+                                <?php if(!empty($error)){
+                                    echo $error;
+                                } ?>
+                                <form action="buscarDNI.php" method="POST" name="dni">
                                     <input type="hidden" name="idDoc" id="idDoc" value="<?php echo $idDoc; ?>">
                                 </form>
                                 <a href="index.php" class="btn btn-primary">Volver</a>

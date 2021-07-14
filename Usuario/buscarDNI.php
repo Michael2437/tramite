@@ -5,14 +5,18 @@ $nuevo=new Conexion();
 $con=$nuevo->conectar();
 $iduser="";
 $dni="";
+$error="";
 if(isset($_POST['dni'])){
     $dni=$_POST['dni'];
     $datos=$nuevo->buscaruser($con,$dni,$iduser);
-    
+    if($datos){
     $iduser=$datos['iduser'];
     $resultado=$nuevo->mostrarexp($con,$iduser);
-    
+    }else {
+        $error.="<div class='text-center'>El DNI no está registrado</div>";
+    }
 }
+
 if(isset($_POST['idDoc'])){
     $idDoc=$_POST['idDoc'];
     $datos=$nuevo->buscarExp($con,$idDoc);

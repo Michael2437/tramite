@@ -4,15 +4,19 @@ include_once '../Funciones.php';
 $nuevo=new Conexion();
 $con=$nuevo->conectar();
 
+$error="";
 if(isset($_POST['nExp'])){
     $nExp=$_POST['nExp'];
     $resultado=$nuevo->buscarExp($con,$nExp);
     
     $fila=$resultado->fetch();
-    if($fila){
-    $idDoc=$fila['idDoc'];
-    $asunto=$fila['Asunto'];
-    $areaA=$fila['nomArea'];
+        if($fila){
+        $idDoc=$fila['idDoc'];
+        $asunto=$fila['Asunto'];
+        $areaA=$fila['nomArea'];
+        }
+    else{
+        $error.="<div class='text-center'>El expediente NO está registrado</div>";
     }
 }
 

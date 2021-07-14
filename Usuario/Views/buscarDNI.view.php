@@ -42,7 +42,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php while($fila=$resultado->fetch()){
+                                                <?php if(isset($resultado)){
+                                                 while($fila=$resultado->fetch()){
                                                         $nExp=$fila['idDoc'];
                                                         $asunto=$fila['Asunto'];
                                                         $areaA=$fila['nomArea'];
@@ -53,11 +54,14 @@
                                                     <th><?php echo $areaA;?></th>
                                                     <th><a href="#" id="<?php echo $nExp;?>"  data-toggle="modal" data-target="#exampleModal" class="btn btn-primary abrirmodal">Ver detalle</a></th>
                                                     </tr>
-                                                <?php } ?>
+                                                <?php } }?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div> 
+                                <div>
+                                    <?php if(!empty($error)){echo $error;} ?>
+                                </div>
                                 <a href="index.php" class="btn btn-primary">Volver</a>
                             </div>
                             <div class="col-md-1"></div>
