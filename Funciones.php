@@ -145,6 +145,36 @@ Class Conexion{
         ));
         return $statement;
     }
+
+    public function filtrarexpUser($conexion,$estado,$iduser){
+      switch ($estado){
+        case 2: $e="Completado"; break;
+        case 3: $e="Nuevo"; break;
+        case 4: $e="Abierto"; break;
+      }
+      $statement=$conexion->prepare('
+      SELECT * FROM `documento` where `documento`.`estadoExp` =:e and `documento`.`iduser`=:iduser');
+      $statement->execute(array(
+        ':iduser'=>$iduser,
+        ':e'=>$e
+      ));
+      return $statement;
+    }
+    public function filtrarexpArea($conexion,$estado,$nomarea){
+      switch ($estado){
+        case 2: $e="Completado"; break;
+        case 3: $e="Nuevo"; break;
+        case 4: $e="Abierto"; break;
+      }
+      $statement=$conexion->prepare('
+      SELECT * FROM `documento` where `documento`.`estadoExp` =:e and `documento`.`nomArea`=:nomarea');
+      $statement->execute(array(
+        ':nomarea'=>$nomarea,
+        ':e'=>$e
+      ));
+      return $statement;
+    }
+
     public function buscarExp($conexion,$nExp){
       $statement = $conexion->prepare('
       SELECT * FROM `documento` WHERE `idDoc` = :idDoc');

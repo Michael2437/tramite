@@ -10,8 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Build whatever layout you need with our Architect framework.">
     <meta name="msapplication-tap-highlight" content="no">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    
 <link href="../Views/main.css" rel="stylesheet">
 
 </head>
@@ -212,7 +210,7 @@
                                 </div>
                                 <div class="main-card mb-3 card">
                                     <div class="card-body"><h5 class="card-title">Nuevo Usuario</h5>
-                                      <form action=" <?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> " method="post" name="nuevousuario">
+                                      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" name="nuevousuario">
                                         <div class="form-row">
                                           <div class="col-md-3">
                                               <div class="position-relative form-group"><label class="">DNI</label>
@@ -251,16 +249,14 @@
                                           </div>
                                           <div class="col-md-4">
                                             <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo Usuario</label>
-                                              <select onchange="buscar_archivos()" type="select" class="mb-2 form-control" name="TipoUser" id="TipoUser">
+                                              <select name="tipouser" id="tipouser" onchange="buscar_tipo()" type="select" class="mb-2 form-control" >
                                                 <option value="Normal">Normal</option>
-                                                <option value="Jurídico">Jurídico</option>
+                                                <option value="Juridico">Juridico</option>
                                               </select>
                                             </div>
                                           </div>
                                         </div>
                                         
-                                        <?php if(!empty($salida)){echo $salida;} ?>
-
                                         <?php if(!empty($error)):echo $error; endif;?>
                                         
                                         <div class="text-center">
@@ -271,7 +267,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-
+                                
                                 </div>
                               </div>
 
@@ -284,23 +280,25 @@
                     </div>
                 </div>
         </div>
+        <div id="a"></div>
     </div>
-<script type="text/javascript">
-   function buscar_archivos() {
-	var consulta = document.getElementById("TipoUser").value;
     
-	$.ajax({
-		url: 'usuarioNuevo.php',
-		type: 'POST',
-		dataType: 'html',
-		data: { consulta: consulta },
-	})
-		.done(function (respuesta) {
-			$("#selectorder").html(respuesta);
-		})
-		.fail(function () {
-			console.log("error");
-		});
+<script type="text/javascript">
+   function buscar_tipo() {
+	var select = document.getElementById("tipouser").value;
+    
+        $.ajax({
+            url: 'ruc.php',
+            type: 'POST',
+            dataType: 'html',
+            data: { consulta: select },
+            })
+            .done(function (respuesta) {
+                $("#a").html(respuesta);
+            })
+            .fail(function () {
+                console.log("error");
+            });
     }
     
 </script>

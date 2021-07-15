@@ -14,6 +14,14 @@ $consulta=$nuevo->expArea($con,$area);
 
 $fechaactual = date("Y-m-d H:i:s"); 
 
+if(isset($_GET['e'])){
+  $e=$_GET['e'];
+  $class="active";
+  if($e==1){
+    $consulta=$nuevo->expArea($con,$area);
+  }else{
+  $consulta=$nuevo->filtrarexpArea($con,$e,$area);}
+}
 if(isset($_GET['idDoc'])){
   $idDocu=$_GET['idDoc'];
 

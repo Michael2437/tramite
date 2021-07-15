@@ -407,7 +407,7 @@
                         <ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Inicio</li>
                             <li>
-                                <a href="area.php" class="mm-active">
+                                <a href="indexAreas.php" class="mm-active">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Principal
                                 </a>
@@ -477,12 +477,15 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="main-card mb-3 card">
-                                <div class="card-header">Active Users
+                                <div class="card-header">Expedientes
                                     <div class="btn-actions-pane-right">
+                                        <label for="">Ver: </label>
                                         <div role="group" class="btn-group-sm btn-group">
-                                            <button class="active btn btn-focus">Last Week</button>
-                                            <button class="btn btn-focus">All Month</button>
-                                        </div>
+                                                <a href="indexAreas.php?e=1" class="<?php if($e==1){echo $class;}?> btn btn-focus">Todos</a>
+                                                <a href="indexAreas.php?e=2" class="<?php if($e==2){echo $class;}?> btn btn-focus">Completados</a>
+                                                <a href="indexAreas.php?e=3" class="<?php if($e==3){echo $class;}?> btn btn-focus">Nuevos</a>
+                                                <a href="indexAreas.php?e=4" class="<?php if($e==4){echo $class;}?> btn btn-focus">Abiertos</a>
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="table-responsive">

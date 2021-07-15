@@ -491,9 +491,12 @@
                                 <div class="main-card mb-3 card">
                                     <div class="card-header">Expedientes de <?php if(isset($nombres)){echo $nombres;}?>
                                         <div class="btn-actions-pane-right">
+                                        <label for="">Ver:</label>
                                             <div role="group" class="btn-group-sm btn-group">
-                                                <button class="active btn btn-focus">Last Week</button>
-                                                <button class="btn btn-focus">All Month</button>
+                                                <a href="expedienteVer.php?iduser=<?php echo $iduser?>&e=1" class="<?php if($e==1){echo $class;}?> btn btn-focus">Todos</a>
+                                                <a href="expedienteVer.php?iduser=<?php echo $iduser?>&e=2" class="<?php if($e==2){echo $class;}?> btn btn-focus">Completados</a>
+                                                <a href="expedienteVer.php?iduser=<?php echo $iduser?>&e=3" class="<?php if($e==3){echo $class;}?> btn btn-focus">Nuevos</a>
+                                                <a href="expedienteVer.php?iduser=<?php echo $iduser?>&e=4" class="<?php if($e==4){echo $class;}?> btn btn-focus">Abiertos</a>
                                             </div>
                                         </div>
                                     </div>

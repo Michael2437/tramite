@@ -488,6 +488,7 @@
                                       <div class="form-row">
                                         <div class="col-md-3">
                                             <div class="position-relative form-group"><label class="">DNI</label>
+                                            <input type="hidden" name="dnir" id="dnir" value="<?php if(!empty($dni)){echo $dni;}?>">
                                               <input name="dni" value="<?php if(!empty($dni)){echo $dni;} ?>" id="dni" type="number" placeholder="N° DNI" class="form-control">
                                             </div>
                                         </div>

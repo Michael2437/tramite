@@ -45,7 +45,6 @@ if(isset($_POST['consulta'])){
         </div>
       </div>";
       }
-   echo $salida;
 }
 
 

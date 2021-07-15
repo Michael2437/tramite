@@ -12,14 +12,18 @@ $rol=$listado['rol'];
 
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
+            $dnir=$_POST['dnir'];
             $dni = $_POST['dni'];
+            $iduser="";
+            $fila=$nuevo->buscaruser($con,$dni,$iduser);
+            $iduser=$fila['iduser'];
             $nombres= $_POST['nombres'];
             $apellidos = $_POST['apellidos'];
             $direccion = $_POST['direccion'];
             $telefono = $_POST['telefono'];
             
             $error='';
-           $nuevo->modificaruser($con,$dni,$nombres,$apellidos,$direccion,$telefono);
+           $sql=$nuevo->modificaruser($con,$dni,$nombres,$apellidos,$direccion,$telefono,$dnir);
             if($sql->rowCount() > 0)
               {
               $count = $sql -> rowCount();
@@ -33,7 +37,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
               print_r($sql->errorInfo()); 
               }
 }elseif($_SERVER['REQUEST_METHOD']=='GET'){
-  $iduser= $_GET['iduser'];
+          $iduser= $_GET['iduser'];
           $dni="";
           $resultado=$nuevo->buscaruser($con,$dni,$iduser);
 

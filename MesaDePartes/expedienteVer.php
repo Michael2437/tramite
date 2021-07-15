@@ -12,8 +12,15 @@ $rol=$listado['rol'];
 
 if(isset($_GET['iduser'])){
   $iduser= $_GET['iduser'];
+  $e=$_GET['e'];
+  $class="active";
+  if($e==1){
+    $statement=$nuevo->mostrarexp($con,$iduser);
+  }else {
+    $statement=$nuevo->filtrarexpUser($con,$e,$iduser);
+  }
+  
   $dni="";
-  $statement = $nuevo->mostrarexp($con,$iduser);
   $resultado = $nuevo->buscaruser($con,$dni,$iduser);
 
   $dni=$resultado['dni'];
