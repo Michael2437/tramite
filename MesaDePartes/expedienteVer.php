@@ -28,9 +28,11 @@ if(isset($_GET['iduser'])){
   $apellidos=$resultado['apeUsuario'];
 }
 if(isset($_GET['idDoc'])){
+  $e=$_GET['e'];
   $idDoc=$_GET['idDoc'];
   $resultado=$nuevo->expIdDoc($con,$idDoc);
   $id=$resultado['iduser'];
+  $nExp=$resultado['idDoc'];
   $detalle=$resultado['detalleExp'];
   $areaAct=$resultado['nomArea'];
 

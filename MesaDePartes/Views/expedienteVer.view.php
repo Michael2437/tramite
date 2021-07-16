@@ -576,7 +576,7 @@
                                                     }?>"><?php echo $estadoDoc;?></div>
                                                 </td>
                                                 <td class="text-center">
-                                                <a href="expedienteVer.php?idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
+                                                <a href="expedienteVer.php?idDoc=<?php echo $idDoc?>&e=<?php if(isset($e)){echo $e;}?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
                                                 </td>
                                             </tr>
                                             <?php } ?>
@@ -610,8 +610,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
-                <a href="expedienteVer.php?iduser=<?php echo $id;?>" type="button" class="close"  aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles del expediente <?php echo $nExp; ?></h5>
+                <a href="expedienteVer.php?iduser=<?php echo $id;?>&e=<?php echo $e; ?>" type="button" class="close"  aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </a>
             </div>
@@ -620,7 +620,7 @@
             <p><?php echo "Ahora está en: ".$areaAct; ?></p>
             </div>
             <div class="modal-footer">
-                <a href="expedienteVer.php?iduser=<?php echo $id;?>" type="button" class="btn btn-primary">Aceptar</a>
+                <a href="expedienteVer.php?iduser=<?php echo $id;?>&e=<?php echo $e; ?>" type="button" class="btn btn-primary">Aceptar</a>
             </div>
         </div>
     </div>

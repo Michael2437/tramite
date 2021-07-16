@@ -1,19 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Language" content="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Nuevo Usuario</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-    <meta name="description" content="Build whatever layout you need with our Architect framework.">
-    <meta name="msapplication-tap-highlight" content="no">
-<link href="../Views/main.css" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="../Views/main.css" rel="stylesheet">
+    <title>Document</title>
 </head>
 <body>
+
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
@@ -95,7 +91,7 @@
         </div>
         
         <div class="app-main">
-          <div class="app-sidebar sidebar-shadow">
+            <div class="app-sidebar sidebar-shadow">
               <div class="app-header__logo">
               <img src="../Views/assets/logos/logo.png" alt="" class="logo-src">
                   <div class="header__pane ml-auto">
@@ -197,114 +193,91 @@
                       </ul>
                   </div>
               </div>
-          </div>
+            </div>
           
-          <div class="app-main__outer">
-                    <div class="app-main__inner">
-                        <div class="tab-content">
-                            <div class="tab-pane tabs-animation fade show active"  role="tabpanel">
-                              <!-- Inicio del Formulario-->
-                              <div class="row">
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="tab-content">
+                        <div class="tab-pane tabs-animation fade show active"  role="tabpanel">
+                            <!-- Inicio del Formulario-->
+                            <div class="row">
                                 <div class="col-md-2">
 
                                 </div>
-                                <div class="main-card mb-3 card">
-                                    <div class="card-body"><h5 class="card-title">Nuevo Usuario</h5>
-                                      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" name="nuevousuario">
-                                        <div class="form-row">
-                                          <div class="col-md-3">
-                                              <div class="position-relative form-group"><label class="">DNI</label>
-                                                <input name="dni" id="dni" type="number" placeholder="N° DNI" class="form-control">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-4">
-                                              <div class="position-relative form-group"><label  class="">Nombres</label>
-                                                <input name="nombres" id="nombres" placeholder="Ingrese los nombres" type="text" class="form-control">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-5">
-                                              <div class="position-relative form-group"><label  class="">Apellidos</label>
-                                                <input name="apellidos" id="apellidos" placeholder="Ingrese los apellidos" type="text" class="form-control">
-                                              </div>
-                                          </div>
-                                        </div>
-                                        <div class="form-row">
-                                          <div class="col-md-8">
-                                            <div class="position-relative form-group">
-                                              <label for="examplePassword11" class="">Dirección</label>
-                                              <input name="direccion" id="direccion" placeholder="Ingrese la dirección" type="text" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="col-md-4">
-                                            <div class="position-relative form-group"><label for="exampleEmail11" class="">Telefono</label>
-                                              <input name="telefono" id="telefono" placeholder="123-456-789" type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" >
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="form-row">
-                                          <div class="col-md-8">
-                                            <div class="position-relative form-group"><label for="examplePassword11" class="">Correo</label>
-                                              <input name="correo" id="correo" placeholder="Ingrese correo electrónico" type="email" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="col-md-4">
-                                            <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo Usuario</label>
-                                              <select name="tipouser" id="tipouser" onchange="buscar_tipo()" type="select" class="mb-2 form-control" >
-                                                <option value="Normal">Normal</option>
-                                                <option value="Juridico">Juridico</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                        </div>
+                                    <div class="main-card mb-3 card">
+                                        <div class="card-body"><h5 class="card-title">Nuevo Usuario</h5>
+                                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" name="nuevousuario">
+                                                <div class="form-row">
+                                                    <div class="col-md-3">
+                                                        <div class="position-relative form-group"><label class="">DNI</label>
+                                                            <input name="dni" id="dni" type="number" placeholder="N° DNI" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="position-relative form-group"><label  class="">Nombres</label>
+                                                            <input name="nombres" id="nombres" placeholder="Ingrese los nombres" type="text" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="position-relative form-group"><label  class="">Apellidos</label>
+                                                            <input name="apellidos" id="apellidos" placeholder="Ingrese los apellidos" type="text" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col-md-8">
+                                                        <div class="position-relative form-group">
+                                                            <label for="examplePassword11" class="">Dirección</label>
+                                                            <input name="direccion" id="direccion" placeholder="Ingrese la dirección" type="text" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="position-relative form-group"><label for="exampleEmail11" class="">Telefono</label>
+                                                            <input name="telefono" id="telefono" placeholder="123-456-789" type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col-md-8">
+                                                        <div class="position-relative form-group"><label for="examplePassword11" class="">Correo</label>
+                                                            <input name="correo" id="correo" placeholder="Ingrese correo electrónico" type="email" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo Usuario</label>
+                                                            <select name="tipo" id="tipo" onchange="buscar_archivos()" type="select" class="mb-2 form-control" required>
+                                                                <option></option>
+                                                                <option value="Normal">Normal</option>
+                                                                <option value="Jurídico">Jurídico</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id ="selectorder"></div>
+                                                <?php if(!empty($error)):echo $error; endif;?>
                                         
-                                        <?php if(!empty($error)):echo $error; endif;?>
-                                        
-                                        <div class="text-center">
-                                          <button type="input" name="registrar" class="mt-2 btn btn-primary" >Registrar</button>
+                                                <div class="text-center">
+                                                    <button type="input" name="registrar" class="mt-2 btn btn-primary" >Registrar</button>
+                                                </div>
+                                            </form>
                                         </div>
-
-                                      </form>
                                     </div>
-                                </div>
                                 <div class="col-md-2">
                                 
                                 </div>
-                              </div>
-
-                              <!-- fin del formulario-->
-
-
                             </div>
-
+                            <!-- fin del formulario-->
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-        <div id="a"></div>
     </div>
     
-<script type="text/javascript">
-   function buscar_tipo() {
-	var select = document.getElementById("tipouser").value;
-    
-        $.ajax({
-            url: 'ruc.php',
-            type: 'POST',
-            dataType: 'html',
-            data: { consulta: select },
-            })
-            .done(function (respuesta) {
-                $("#a").html(respuesta);
-            })
-            .fail(function () {
-                console.log("error");
-            });
-    }
-    
-</script>
-<script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
 
+<script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
+<script type="text/javascript" src="../Views/assets/scripts/funciones.js"></script>
+<script type="text/javascript" src="../Views/assets/scripts/jquery.min.js"></script>
 
 </body>
 </html>
-

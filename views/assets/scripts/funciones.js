@@ -69,4 +69,20 @@ function buscarExp() {
 		searchExp();
 	}
 }
+/*Para tipo de usuario, normal y juridico, usuarioNuevo */
+function buscar_archivos() {
+	var combo = document.getElementById("tipo").value;
+	$.ajax({
+		url: 'ajax.php',
+		type: 'POST',
+		dataType: 'html',
+		data: { consulta: combo },
+	})
+		.done(function (respuesta) {
+			$("#selectorder").html(respuesta);
+		})
+		.fail(function () {
+			console.log("error");
+		});
+    }
 
