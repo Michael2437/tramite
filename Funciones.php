@@ -146,6 +146,7 @@ Class Conexion{
         return $statement;
     }
 
+    /*Filtrar expediente por usuario */
     public function filtrarexpUser($conexion,$estado,$iduser){
       switch ($estado){
         case 2: $e="Completado"; break;
@@ -160,18 +161,52 @@ Class Conexion{
       ));
       return $statement;
     }
-    public function filtrarexpArea($conexion,$estado,$nomarea){
+    /*Filtrar expediente por area */
+    public function filtrarexpArea($conexion,$estado,$nomarea,$start,$cant){
       switch ($estado){
         case 2: $e="Completado"; break;
         case 3: $e="Nuevo"; break;
         case 4: $e="Abierto"; break;
       }
-      $statement=$conexion->prepare('
-      SELECT * FROM `documento` where `documento`.`estadoExp` =:e and `documento`.`nomArea`=:nomarea');
-      $statement->execute(array(
-        ':nomarea'=>$nomarea,
-        ':e'=>$e
-      ));
+      if($estado ==1){
+        $statement=$conexion->prepare('
+        SELECT * FROM `documento` where `nomArea`=:nomArea ORDER BY `fecha` ASC LIMIT '.$start.', '.$cant);
+        $statement->execute(array(
+          ':nomArea'=>$nomarea
+        ));
+      }else{
+        $statement=$conexion->prepare('
+        SELECT * FROM `documento` where `estadoExp` =:e and `nomArea`=:nomarea ORDER BY `fecha` ASC LIMIT '.$start.', '.$cant);
+        $statement->execute(array(
+          ':nomarea'=>$nomarea,
+          ':e'=>$e
+        ));
+      }
+      return $statement;
+    }
+    /*Contador de expedientes totales, completados,nuevos, abiertos */
+    public function contarExp($conexion,$estado,$nomarea){
+      switch ($estado){
+        case 2: $e="Completado"; break;
+        case 3: $e="Nuevo"; break;
+        case 4: $e="Abierto"; break;
+      }
+      if($estado ==1){
+        $statement=$conexion->prepare('
+        SELECT COUNT(*) FROM `documento` WHERE `nomArea` = :nomArea'
+        );
+        $statement->execute(array(
+          ':nomArea'=>$nomarea
+        ));
+      }else{
+        $statement=$conexion->prepare('
+        SELECT COUNT(*) FROM `documento` where `nomArea` = :nomArea and `estadoExp` =:estado'
+        );
+        $statement->execute(array(
+          ':nomArea'=>$nomarea,
+          ':estado'=>$e
+        ));
+      }
       return $statement;
     }
 
@@ -192,6 +227,9 @@ Class Conexion{
       ));
       return $consulta;
     }
+
+
+/** */
     public function expIdDoc($conexion,$idDoc){
       $consulta=$conexion-> prepare('
       SELECT * FROM `documento` WHERE idDoc = :idDoc');

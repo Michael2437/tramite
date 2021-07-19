@@ -15,6 +15,8 @@ $rol=$listado['rol'];
 $id="";
 if(isset($_GET['idDoc'])){
     $id=$_GET['idDoc'];
+    $page=$_GET['page'];
+    $e=$_GET['e'];
     $result=$nuevo->expIdDoc($con,$id);
 
     $idDoc=$result['idDoc'];

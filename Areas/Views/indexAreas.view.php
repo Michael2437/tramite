@@ -128,7 +128,7 @@
                         <ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Inicio</li>
                             <li>
-                                <a href="indexAreas.php" class="mm-active">
+                                <a href="indexAreas.php?page=<?php echo $page;?>" class="mm-active">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Principal
                                 </a>
@@ -149,7 +149,7 @@
                                         <div class="widget-subheading">Last year expenses</div>
                                     </div>
                                     <div class="widget-content-right">
-                                        <div class="widget-numbers text-white"><span> 2896 </span></div>
+                                        <div class="widget-numbers text-white"><span> <?php echo $total;?> </span></div>
                                     </div>
                                 </div>
                             </div>
@@ -158,11 +158,11 @@
                             <div class="card mb-3 widget-content bg-arielle-smile">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
-                                        <div class="widget-heading">Clients</div>
+                                        <div class="widget-heading">Los expedientes se muestran de a:</div>
                                         <div class="widget-subheading">Total Clients Profit</div>
                                     </div>
                                     <div class="widget-content-right">
-                                        <div class="widget-numbers text-white"><span>$ 568</span></div>
+                                        <div class="widget-numbers text-white"><span><?php echo CANT_EXP;?></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -171,11 +171,11 @@
                             <div class="card mb-3 widget-content bg-grow-early">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
-                                        <div class="widget-heading">Followers</div>
+                                        <div class="widget-heading">Cantidad de Paginas</div>
                                         <div class="widget-subheading">People Interested</div>
                                     </div>
                                     <div class="widget-content-right">
-                                        <div class="widget-numbers text-white"><span>46%</span></div>
+                                        <div class="widget-numbers text-white"><span><?php echo $totalpag;?></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -202,10 +202,10 @@
                                     <div class="btn-actions-pane-right">
                                         <label for="">Ver: </label>
                                         <div role="group" class="btn-group-sm btn-group">
-                                                <a href="indexAreas.php?e=1" class="<?php if($e==1){echo $class;}?> btn btn-focus">Todos</a>
-                                                <a href="indexAreas.php?e=2" class="<?php if($e==2){echo $class;}?> btn btn-focus">Completados</a>
-                                                <a href="indexAreas.php?e=3" class="<?php if($e==3){echo $class;}?> btn btn-focus">Nuevos</a>
-                                                <a href="indexAreas.php?e=4" class="<?php if($e==4){echo $class;}?> btn btn-focus">Abiertos</a>
+                                                <a href="indexAreas.php?page=<?php echo $page;?>&e=1" class="<?php if($e==1){echo $class;}?> btn btn-focus">Todos</a>
+                                                <a href="indexAreas.php?page=<?php echo $page;?>&e=2" class="<?php if($e==2){echo $class;}?> btn btn-focus">Completados</a>
+                                                <a href="indexAreas.php?page=<?php echo $page;?>&e=3" class="<?php if($e==3){echo $class;}?> btn btn-focus">Nuevos</a>
+                                                <a href="indexAreas.php?page=<?php echo $page;?>&e=4" class="<?php if($e==4){echo $class;}?> btn btn-focus">Abiertos</a>
                                             </div>
                                     </div>
                                 </div>
@@ -279,8 +279,8 @@
                                                          ?>"><?php echo $procesoExp; ?></div>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="expedienteAbrir.php?idDoc=<?php echo $idDoc; ?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
-                                                        <a href="indexAreas.php?idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
+                                                        <a href="expedienteAbrir.php?page=<?php echo $page;?>&e=<?php echo $e;?>&idDoc=<?php echo $idDoc?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
+                                                        <a href="indexAreas.php?page=<?php echo $page;?>&e=<?php echo $e;?>&idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
                                                      </td>
                                                 </tr>
 
@@ -293,14 +293,28 @@
                                 <div class="d-block text-center card-footer">
                                         <nav class="" aria-label="Page navigation example">
                                             <ul class="pagination">
-                                                <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                                                <li class="page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
-                                                <li class="page-item active"><a href="javascript:void(0);" class="page-link">2</a></li>
-                                                <li class="page-item"><a href="javascript:void(0);" class="page-link">3</a></li>
-                                                <li class="page-item"><a href="javascript:void(0);" class="page-link">4</a></li>
-                                                <li class="page-item"><a href="javascript:void(0);" class="page-link">5</a></li>
-                                                <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-                                            </ul>
+                                                <?php if($totalpag>1){
+                                                    if($page!=1){?>
+                                                    <li class="page-item"><a href="indexAreas.php?page=<?php echo ($page-1);if(isset($e)){echo "&e=".$e;} ?>" class="page-link" ><span aria-hidden="true">&laquo;</span></a></li>
+                                                    <?php }
+                                                    for($i=1;$i<=$totalpag;$i++){
+                                                        if($page == $i){
+                                                          ?>  <li class="page-item active"><a href="#" class="page-link"><?php echo $page; ?></a></li>
+                                                    <?php
+                                                        }else{
+                                                            ?><li class="page-item"><a href="indexAreas.php?page=<?php echo $i;if(isset($e)){echo "&e=".$e;}?>" class="page-link"><?php echo $i;?></a></li>
+                                                
+                                                    <?php
+                                                        }
+                                                    }
+                                                        if($page!=$totalpag){
+                                                            ?><li class="page-item"><a href="indexAreas.php?page=<?php echo ($page+1);if(isset($e)){echo "&e=".$e;}?>" class="page-link"><span aria-hidden="true">&raquo;</span></a></li> 
+                                                            <?php
+                                                        }
+                                                    
+                                                 } ?>
+                                                    
+                                                 </ul>
                                         </nav>
                                 </div>
                             </div>
@@ -332,7 +346,7 @@
             <p><?php echo "Ahora está en: ".$nomArea; ?></p>
             </div>
             <div class="modal-footer">
-                <a href="indexAreas.php" type="button" class="btn btn-primary">Aceptar</a>
+                <a href="indexAreas.php?page=<?php echo $page;?>&e=<?php echo $e;?>" type="button" class="btn btn-primary">Aceptar</a>
             </div>
         </div>
     </div>

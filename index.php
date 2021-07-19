@@ -6,7 +6,7 @@ if(isset($_SESSION['usuario'])){
   elseif($_SESSION['usuario']== "Mesa de Partes"){
     header('Location: MesaDePartes\indexMDP.php');}
     else{
-      header('Location: Areas\indexAreas.php');
+      header('Location: Areas\indexAreas.php?page=1&e=1');
     }
 }else {
   header('Location: Login.php');

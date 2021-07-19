@@ -475,7 +475,7 @@
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Total de Expedientes</div>
-                                            <div class="widget-subheading">Last year expenses</div>
+                                            <div class="widget-subheading">a</div>
                                         </div>
                                         <div class="widget-content-right">
                                             <div class="widget-numbers text-white"><span> <?php echo $total;?> </span></div>

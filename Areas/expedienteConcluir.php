@@ -16,6 +16,8 @@ $listaArea=$nuevo->selectArea($con);
 
 $id="";
 if(isset($_GET['idDoc'])){
+    $page=$_GET['page'];
+    $e=$_GET['e'];
     $id=$_GET['idDoc'];
     $result=$nuevo->expIdDoc($con,$id);
 
