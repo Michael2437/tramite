@@ -128,7 +128,7 @@
                         <ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Inicio</li>
                             <li>
-                                <a href="indexAreas.php?page=<?php echo $page;?>" class="mm-active">
+                                <a href="indexAreas.php?page=<?php echo $page;?>&e=<?php echo $e;?>" class="mm-active">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Principal
                                 </a>
@@ -146,7 +146,6 @@
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
                                         <div class="widget-heading">Total de Expedientes</div>
-                                        <div class="widget-subheading">Last year expenses</div>
                                     </div>
                                     <div class="widget-content-right">
                                         <div class="widget-numbers text-white"><span> <?php echo $total;?> </span></div>
@@ -159,7 +158,6 @@
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
                                         <div class="widget-heading">Los expedientes se muestran de a:</div>
-                                        <div class="widget-subheading">Total Clients Profit</div>
                                     </div>
                                     <div class="widget-content-right">
                                         <div class="widget-numbers text-white"><span><?php echo CANT_EXP;?></span></div>
@@ -172,7 +170,6 @@
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
                                         <div class="widget-heading">Cantidad de Paginas</div>
-                                        <div class="widget-subheading">People Interested</div>
                                     </div>
                                     <div class="widget-content-right">
                                         <div class="widget-numbers text-white"><span><?php echo $totalpag;?></span></div>

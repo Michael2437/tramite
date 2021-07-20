@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ver expediente</title>
     <link rel="stylesheet" href="../Views/main.css">
 </head>
 <body>
@@ -16,12 +16,22 @@
                             <div class="col-md-1"></div>
                             <div class="col-md-10">
                                 <div class="app-page-title">
-                                    <div class="page-title-heading ">
-                                        <div>Ver estado de Expediente
-                                            <div class="page-title-subheading">Bienvenido!! Seleccione el metodo para buscar
+                                    <div class="page-title-wrapper">
+                                        <div class="page-title-heading ">
+                                            <div>Ver estado de Expediente
+                                                <div class="page-title-subheading">Bienvenido!! Seleccione el metodo para buscar
+                                                </div>
                                             </div>
+                                        
                                         </div>
-                                    </div> 
+                                        <div class="page-title-actions">
+                                            <div class="d-inline-block dropdown">
+                                                <a href="registrar.php" class="btn-shadow btn btn-info">
+                                                    Registrar
+                                                </a>
+                                            </div>
+                                        </div> 
+                                    </div>
                                 </div>    
                                 <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
                                 <li class="nav-item">

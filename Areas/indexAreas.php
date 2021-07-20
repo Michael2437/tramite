@@ -2,7 +2,7 @@
 
 include_once '../Funciones.php';
 date_default_timezone_set('America/Lima');
-define('CANT_EXP',5);
+define('CANT_EXP',4);
 
 $nuevo= new Conexion();
 $user =$_SESSION['usuario'];
@@ -46,10 +46,6 @@ if(isset($_GET['page'])){
   }
   
 }
-
-
-
-/*Filtrar por Estado de Expediente */
 
 
 /*Ver Detalle del expediente */

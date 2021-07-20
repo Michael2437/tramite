@@ -60,7 +60,7 @@ if($fila){
                   <div class='col-md-4'></div>
                     <div class='col-md-4'>
                       <div class='text-center'>
-                        <a href='expedienteVer.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Ver Expedientes</a> 
+                        <a href='expedienteVer.php?iduser=". $id."&e=1 ' class='mt-2 btn btn-primary'>Ver Expedientes</a> 
                       </div>
                     </div>
                   <div class='col-md-4'></div>

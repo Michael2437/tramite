@@ -170,7 +170,7 @@ Class Conexion{
       }
       if($estado ==1){
         $statement=$conexion->prepare('
-        SELECT * FROM `documento` where `nomArea`=:nomArea ORDER BY `fecha` ASC LIMIT '.$start.', '.$cant);
+        SELECT * FROM `documento` D left join estadodoc E on E.estado=D.estadoExp WHERE D.nomArea=:nomArea ORDER BY E.id  LIMIT '.$start.', '.$cant);
         $statement->execute(array(
           ':nomArea'=>$nomarea
         ));
