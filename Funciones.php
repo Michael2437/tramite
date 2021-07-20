@@ -43,17 +43,23 @@ Class Conexion{
         return $validacion;
     }
      
-    public function registrouser($conexion,$dni,$nombres,$apellidos,$direccion,$telefono){
+    public function registrouser($conexion,$dni,$nombres,$apellidos,$direccion,$telefono,$correo,$tipouser,$ruc,$razonsocial){
         $statement = $conexion->prepare('
-        INSERT INTO `usuario` (`dni`, `nomUsuario`, `apeUsuario`, `dirUsuario`, `telUsuario`) VALUES (:dni,  :nombres ,  :apellidos ,  :direccion,  :telefono );');
+        INSERT INTO `usuario` (`dni`, `nomUsuario`, `apeUsuario`, `dirUsuario`, `telUsuario`, `Correo`,`tipoUsuario`,`ruc`,`razonSocial`) VALUES (:dni,  :nombres ,  :apellidos ,  :direccion,  :telefono, :correo, :tipouser, :ruc, :razonsocial );');
         $statement->execute(array(
         ':dni' => $dni,
         ':nombres' => $nombres,
         ':apellidos' => $apellidos,
         ':direccion' => $direccion,
-        ':telefono' => $telefono
+        ':telefono' => $telefono,
+        ':correo' =>$correo,
+        ':tipouser'=>$tipouser,
+        ':ruc'=>$ruc,
+        ':razonsocial'=>$razonsocial
         ));
+        return $statement;
     }
+    
     public function buscaruser($conexion,$dni,$iduser){
         $statement = $conexion->prepare('
         SELECT * FROM `usuario` WHERE `iduser` = :iduser OR `dni` = :dni');
