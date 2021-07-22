@@ -16,11 +16,12 @@ $resultado=$nuevo->buscarExp($con,$nExp);
 $fila= $resultado->fetch();
 $salida="";
 if($fila){
-    $idDoc=$fila['idDoc'];
-    $id=$fila['iduser'];
-    $asunto=$fila['Asunto'];
-    $fecha = $fila['fecha'];
-    $nomArea =$fila['nomArea'];
+    $idDoc=$fila['idExp'];
+    $id=$fila['idUser'];
+    $asunto=$fila['asuntoExp'];
+    $fecha = $fila['fechaExp'];
+    $idarea =$fila['idArea'];
+    $nomArea=$nuevo->obtenerdescarea($con,$idarea);
 
     $salida .= "
     <div class='row'>

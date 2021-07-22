@@ -21,12 +21,19 @@ if(isset($_GET['iduser'])){
 $resultado=$nuevo->buscaruser($con,$dni,$iduser);
 
           if($resultado){
-            $id=$resultado['iduser'];
+            $id=$resultado['idUser'];
             $dni=$resultado['dni'];
-            $nombres = $resultado['nomUsuario'];
-            $apellidos =$resultado['apeUsuario'];
-            $direccion =$resultado['dirUsuario'];
-            $telefono=$resultado['telUsuario'];
+            $nombres = $resultado['nomUser'];
+            $apellidos =$resultado['apeUser'];
+            $direccion =$resultado['dirUser'];
+            $correo=$resultado['correo'];
+            $telefono=$resultado['telUser'];
+
+            $tipuser=$resultado['idTipoUser'];
+            $desctipo=$nuevo->obtenerTipoUser($con,$tipuser);
+
+            $ruc=$resultado['ruc'];
+            $razonsocial=$resultado['razonsocial'];
 
             $salida .= "<div class='row'>
             <div class='col-md-2'></div>
@@ -39,17 +46,17 @@ $resultado=$nuevo->buscaruser($con,$dni,$iduser);
             <div class='form-row'>
               <div class='col-md-3'>
                     <div class='position-relative form-group'><label  class=''>DNI</label>
-                    <input name='dnir' disabled=»disabled» id='nombres' value=' ".$dni." 'type='text' class='form-control text-center'>
+                    <input name='dnir' disabled=»disabled» id='nombres' value='".$dni."'type='text' class='form-control text-center'>
                   </div>
               </div>
               <div class='col-md-5'>
                   <div class='position-relative form-group'><label  class=''>Nombres</label>
-                    <input name='nombresreg' disabled=»disabled» id='nombres' value= ' ".$nombres." ' type='text' class='form-control'>
+                    <input name='nombresreg' disabled=»disabled» id='nombres' value= '".$nombres."' type='text' class='form-control'>
                   </div>
               </div>
               <div class='col-md-4'>
                   <div class='position-relative form-group'><label  class=''>Apellidos</label>
-                    <input name='apellidosreg' disabled=»disabled» id='apellidos' value= ' ".$apellidos." ' type='text' class='form-control'>
+                    <input name='apellidosreg' disabled=»disabled» id='apellidos' value= '".$apellidos."' type='text' class='form-control'>
                   </div>
               </div>
             </div>
@@ -57,48 +64,49 @@ $resultado=$nuevo->buscaruser($con,$dni,$iduser);
               <div class='col-md-8'>
                 <div class='position-relative form-group'>
                   <label for='examplePassword11' class=''>Dirección</label>
-                  <input name='direccionreg' disabled=»disabled» id='direccion' value= ' ".$direccion." ' type='text' class='form-control'>
+                  <input name='direccionreg' disabled=»disabled» id='direccion' value= '".$direccion."' type='text' class='form-control'>
                 </div>
               </div>
               <div class='col-md-4'>
                 <div class='position-relative form-group'><label for='exampleEmail11' class=''>Telefono</label>
-                  <input name='telefonoreg' disabled=»disabled» id='telefono' value=' ".$telefono." ' type='tel' class='form-control'>
+                  <input name='telefonoreg' disabled=»disabled» id='telefono' value=' ".$telefono."' type='tel' class='form-control'>
                 </div>
               </div>
             </div>
             <div class='form-row'>
               <div class='col-md-8'>
                 <div class='position-relative form-group'><label for='examplePassword11' class=''>Correo</label>
-                  <input name='correo' id='correo' placeholder='Ingrese correo electrónico' type='email' class='form-control'>
+                  <input name='correo' id='correo' type='email' value='".$correo."' class='form-control' readonly>
                 </div>
               </div>
               <div class='col-md-4'>
                 <div class='position-relative form-group'><label for='exampleAddress' class=''>Tipo Usuario</label>
-                  <select class='mb-2 form-control'>
-                    <option value='tipouse'>Normal</option>
-                    <option value='tipouser'>Jurídico</option>
-                  </select>
+                <input name='tipuser' id='tipuser'  type='text' value='".$desctipo."' class='form-control' readonly>
                 </div>
               </div>
             </div>
-            <div class='form-row'>
+
+            ";
+          if($tipuser==2){
+            $salida.="<div class='form-row'>
               <div class='col-md-6'>
                 <div class='position-relative form-group'><label for='exampleAddress' class=''>RUC</label>
-                  <input name='ruc' id='ruc' placeholder='Ingrese RUC' type='text' class='form-control'>
+                  <input name='ruc' id='ruc' value='".$ruc."' type='text' class='form-control' readonly>
                 </div>
               </div>
               <div class='col-md-6'>
                 <div class='position-relative form-group'><label for='exampleAddress2' class=''>Razón Social</label>
-                  <input name='razonsocial' id='razonsocial' placeholder='Ingrese razón social' type='text' class='form-control'>
+                  <input name='razonsocial' id='razonsocial' value='".$razonsocial."' type='text' class='form-control' readonly>
                 </div>
               </div>
+            </div>";
+          }
 
-            </div>
-            <div class='form-row'>
+          $salida.="<div class='form-row'>
 
               <div class='col-md-4'>
                 <div class='text-center'>
-                <a href='expedienteNuevo.php?iduser=". $id." ' class='mt-2 btn btn-primary'>Nuevo Expediente</a>
+                <a href='expedienteNuevo.php?iduser=". $id."' class='mt-2 btn btn-primary'>Nuevo Expediente</a>
                   
                 </div>
               </div>

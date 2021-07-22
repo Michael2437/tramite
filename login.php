@@ -10,12 +10,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $pass = $_POST['contraseña'];
 
   $con=$nuevo->conectar();
-  $listado=$nuevo->login($con,$area,$pass);
-    
-  $ar=$listado['nomArea'];
-  
+  $resultado=$nuevo->login($con,$area,$pass);
+  if($resultado){
+  $listado=$resultado->fetch();
+  $nomArea=$listado['nomArea'];
+  }
   if($resultado !== false){
-    $_SESSION['usuario'] = $ar;
+    $_SESSION['usuario'] = $nomArea;
     header('Location: Index.php');
   }else {
     $errores .= '<p>Datos incorrectos</p>';

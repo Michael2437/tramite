@@ -24,17 +24,18 @@ if(isset($_GET['iduser'])){
   $resultado = $nuevo->buscaruser($con,$dni,$iduser);
 
   $dni=$resultado['dni'];
-  $nombres=$resultado['nomUsuario'];
-  $apellidos=$resultado['apeUsuario'];
+  $nombres=$resultado['nomUser'];
+  $apellidos=$resultado['apeUser'];
 }
 if(isset($_GET['idDoc'])){
   $e=$_GET['e'];
   $idDoc=$_GET['idDoc'];
   $resultado=$nuevo->expIdDoc($con,$idDoc);
-  $id=$resultado['iduser'];
-  $nExp=$resultado['idDoc'];
-  $detalle=$resultado['detalleExp'];
-  $areaAct=$resultado['nomArea'];
+  $id=$resultado['idUser'];
+  $nExp=$resultado['idExp'];
+  $detalle=$resultado['detalle'];
+  $idarea=$resultado['idArea'];
+  $areaAct=$nuevo->obtenerdescarea($con,$idarea);
 
   $statement = $nuevo->mostrarexp($con,$id);
   $script="

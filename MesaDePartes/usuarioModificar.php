@@ -21,6 +21,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $apellidos = $_POST['apellidos'];
             $direccion = $_POST['direccion'];
             $telefono = $_POST['telefono'];
+            $correo=$_POST['correo'];
             
             $error='';
            $sql=$nuevo->modificaruser($con,$dni,$nombres,$apellidos,$direccion,$telefono,$dnir);
@@ -42,10 +43,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           $resultado=$nuevo->buscaruser($con,$dni,$iduser);
 
           $dni=$resultado['dni'];
-          $nombres = $resultado['nomUsuario'];
-          $apellidos =$resultado['apeUsuario'];
-          $direccion =$resultado['dirUsuario'];
-          $telefono=$resultado['telUsuario'];
+          $nombres = $resultado['nomUser'];
+          $apellidos =$resultado['apeUser'];
+          $direccion =$resultado['dirUser'];
+          $telefono=$resultado['telUser'];
+          $correo=$resultado['correo'];
+          $ruc=$resultado['ruc'];
+          $razonsocial=$resultado['razonsocial'];
+          
 }
 
 

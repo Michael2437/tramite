@@ -1,15 +1,15 @@
 <?php session_start();
 
 include_once '../Funciones.php';
+// Configuración para todas las paginas, explicado en index de MDP
 $nuevo= new Conexion();
-
 $user =$_SESSION['usuario'];
 $con =$nuevo->conectar();
 $listado= $nuevo->roles($con,$user);
-
 $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
+// Inicio de funcionalidades
 $salida="";
 
 if (isset($_POST['dni'])) {
@@ -20,7 +20,7 @@ if (isset($_POST['dni'])) {
   $telefono = $_POST['telefono'];
   $correo=$_POST['correo'];
   $tipouser=$_POST['tipo'];
-  if($tipouser=="Normal"){
+  if($tipouser=="1"){
     $ruc=""; $razonsocial="";
   } else{
     $ruc=$_POST['ruc']; $razonsocial=$_POST['razonsocial'];

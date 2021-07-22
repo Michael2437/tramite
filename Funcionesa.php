@@ -5,23 +5,13 @@ use Conexion as GlobalConexion;
 Class Conexion{
     public function conectar(){
         try {
-            $conexion = new PDO('mysql:host=localhost;dbname=mejorado', 'root','');
+            $conexion = new PDO('mysql:host=localhost;dbname=tramite', 'root','');
           }catch(PDOException $e){
             echo "Error:" . $e->getMessage();;
           }
            return $conexion;      
     }
-    // Funcion solo para LOGIN.PHP, verifica contraseña
-    public function login($conexion,$area,$pass){
-      $statement = $conexion->prepare('
-      SELECT * FROM area WHERE nomArea= :area  AND codArea= :pass');
-      $statement->execute(array(
-        ':area' => $area,
-        ':pass'=> $pass
-      ));
-      return $statement;
-  }
-    /*Funcion para el acceso con rol y mostrarlo*/
+    /*Funciones de login para el acceso con rol*/
     public function roles($conexion,$area){
         $statement = $conexion->prepare('
         SELECT * FROM area WHERE nomArea= :area');
@@ -31,7 +21,16 @@ Class Conexion{
         $resultado = $statement->fetch();
         return $resultado;  
     }
-    
+    public function login($conexion,$area,$pass){
+        $statement = $conexion->prepare('
+        SELECT * FROM area WHERE nomArea= :area  AND codArea= :pass');
+        $statement->execute(array(
+          ':area' => $area,
+          ':pass'=> $pass
+        ));
+        $resultado = $statement->fetch();
+        return $resultado;
+    }
     /* Funciones para registro, modificacion y buscar usuario*/
     public function validardni($conexion,$dni){
         $validar = $conexion->prepare('
@@ -43,10 +42,10 @@ Class Conexion{
         $validacion = $validar->fetch();
         return $validacion;
     }
-    //  registrar usuario
+     
     public function registrouser($conexion,$dni,$nombres,$apellidos,$direccion,$telefono,$correo,$tipouser,$ruc,$razonsocial){
         $statement = $conexion->prepare('
-        INSERT INTO `usuario` (`dni`, `nomUser`, `apeUser`, `dirUser`, `telUser`, `correo`,`idTipoUser`,`ruc`,`razonsocial`) VALUES (:dni,  :nombres ,  :apellidos ,  :direccion,  :telefono, :correo, :tipouser, :ruc, :razonsocial );');
+        INSERT INTO `usuario` (`dni`, `nomUsuario`, `apeUsuario`, `dirUsuario`, `telUsuario`, `Correo`,`tipoUsuario`,`ruc`,`razonSocial`) VALUES (:dni,  :nombres ,  :apellidos ,  :direccion,  :telefono, :correo, :tipouser, :ruc, :razonsocial );');
         $statement->execute(array(
         ':dni' => $dni,
         ':nombres' => $nombres,
@@ -60,10 +59,10 @@ Class Conexion{
         ));
         return $statement;
     }
-    // buscar usuario
+    
     public function buscaruser($conexion,$dni,$iduser){
         $statement = $conexion->prepare('
-        SELECT * FROM `usuario` WHERE `idUser` = :iduser OR `dni` = :dni');
+        SELECT * FROM `usuario` WHERE `iduser` = :iduser OR `dni` = :dni');
         $statement->execute(array(
           ':iduser' =>$iduser,
           ':dni' => $dni
@@ -71,55 +70,9 @@ Class Conexion{
         $resultado = $statement->fetch();
         return $resultado;
     }
-// funciones para obtener el tipo de usuario, con el id
-    public function obtenerTipoUser($con,$idtipo){
-      $statement=$con->prepare('
-      SELECT descTipoUser FROM `tipousuario` WHERE idTipoUser=:idtipo
-      ');
-      $statement->execute(array(
-        ':idtipo'=>$idtipo
-      ));
-      $resultado=$statement->fetch();
-      $desctipo=$resultado['descTipoUser'];
-      return $desctipo;
-    }
-    public function obtenerdescarea($con,$idarea){
-      $statement=$con->prepare('
-      SELECT nomArea FROM `area` WHERE idArea=:idarea
-      ');
-      $statement->execute(array(
-        ':idarea'=>$idarea
-      ));
-      $resultado=$statement->fetch();
-      $nomArea=$resultado['nomArea'];
-      return $nomArea;
-    }
-    public function obtenerTipoExp($con,$idtipoexp){
-      $statement=$con->prepare('
-      SELECT descTipoExp FROM `tipoexp` WHERE idTipoExp=:idtipoexp
-      ');
-      $statement->execute(array(
-        ':idtipoexp'=>$idtipoexp
-      ));
-      $resultado=$statement->fetch();
-      $tipoexp=$resultado['descTipoExp'];
-      return $tipoexp;
-    }
-    public function obtenerNomEstado($con,$idestado){
-      $statement=$con->prepare('
-      SELECT nomEstado FROM `estadoexp` WHERE idEstado=:idestado
-      ');
-      $statement->execute(array(
-        ':idestado'=>$idestado
-      ));
-      $resultado=$statement->fetch();
-      $estadoexp=$resultado['nomEstado'];
-      return $estadoexp;
-    }
-  // modificar el usuario
     public function modificaruser($conexion,$dni,$nombres,$apellidos,$direccion,$telefono,$dniantiguo){
       $sql = $conexion->prepare('
-            UPDATE `usuario` SET `dni` = :dnimod, `nomUser` = :nombresmod, `apeUser` = :apellidosmod, `dirUser` = :direccionmod, `telUser` = :telefonomod WHERE `usuario`.`dni` = :dniantiguo;
+            UPDATE `usuario` SET `dni` = :dnimod, `nomUsuario` = :nombresmod, `apeUsuario` = :apellidosmod, `dirUsuario` = :direccionmod, `telUsuario` = :telefonomod WHERE `usuario`.`dni` = :dniantiguo;
             ');
       $sql->execute(array(
         ':dnimod'=> $dni,
@@ -135,7 +88,7 @@ Class Conexion{
     /*estas 2 funciones son para los select de tipo de expediente y area respectivamente. */
           public function tipoExp($conexion){
             $statement=$conexion->prepare(
-              'SELECT * FROM `tipoexp`'
+              'SELECT * FROM `tipodocumento`'
             );
             $statement->execute();
             return $statement;
@@ -162,7 +115,7 @@ Class Conexion{
 
           public function selectArea($conexion){
             $statement=$conexion->prepare(
-              'SELECT * FROM `area`'
+              'SELECT * FROM `listadoarea`'
             );
             $statement->execute();
             return $statement;
@@ -170,29 +123,29 @@ Class Conexion{
     /*Funciones concernientes a Expedientes*/
     public function buscarIdDoc($conexion){
       $statement=$conexion->prepare(
-        'SELECT idExp FROM `expediente` ORDER BY idExp DESC LIMIT 1'
+        'SELECT idDoc FROM `documento` ORDER BY idDoc DESC LIMIT 1'
       );
       $statement->execute();
       $resultado=$statement->fetch();
       return $resultado;
     }
-    public function registroexp($conexion,$iduser,$nArea,$tipoExp,$estadoDoc,$fecha,$asunto,$remitente,$detalle){
+    public function registroexp($conexion,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc,$detalle){
       $statement = $conexion->prepare('
-      INSERT INTO `expediente` ( `idUser`,`idArea`,`idTipoExp`,`idEstado`, `fechaExp`,`remitente` , `asuntoExp`,`detalle`) VALUES (:iduser,:nArea,:tipoExp ,:estadoExp,:fecha,:remitente, :asunto ,:detalle)');
+      INSERT INTO `documento` ( `iduser`, `fecha`, `Asunto`,`remitente` ,`nomArea`,`tipoExp`,`estadoExp`,`detalleExp`) VALUES (:iduser, :fecha, :asunto,:remitente, :nArea,:tipoExp,:estadoExp,:detalle)');
       $statement->execute(array(
       ':iduser' =>$iduser,
-      ':nArea'  =>$nArea,
-      ':tipoExp' =>$tipoExp,
-      ':estadoExp'=>$estadoDoc,
       ':fecha'  =>$fecha,
       ':remitente'=>$remitente,
       ':asunto' =>$asunto,
+      ':nArea'  =>$nArea,
+      ':tipoExp' =>$tipoExp,
+      ':estadoExp'=>$estadoDoc,
       ':detalle'=>$detalle
       ));
     }
     public function mostrarexp($conexion,$iduser){
         $statement = $conexion->prepare('
-        SELECT * FROM `expediente` WHERE `idUser` = :iduser');
+        SELECT * FROM `documento` WHERE `iduser` = :iduser');
         $statement->execute(array(
           ':iduser' => $iduser
         ));
@@ -202,12 +155,12 @@ Class Conexion{
     /*Filtrar expediente por usuario */
     public function filtrarexpUser($conexion,$estado,$iduser){
       switch ($estado){
-        case 2: $e="3"; break;
-        case 3: $e="1"; break;
-        case 4: $e="2"; break;
+        case 2: $e="Completado"; break;
+        case 3: $e="Nuevo"; break;
+        case 4: $e="Abierto"; break;
       }
       $statement=$conexion->prepare('
-      SELECT * FROM `expediente` where `expediente`.`idEstado` =:e and `expediente`.`iduser`=:iduser');
+      SELECT * FROM `documento` where `documento`.`estadoExp` =:e and `documento`.`iduser`=:iduser');
       $statement->execute(array(
         ':iduser'=>$iduser,
         ':e'=>$e
@@ -217,19 +170,19 @@ Class Conexion{
     /*Filtrar expediente por area */
     public function filtrarexpArea($conexion,$estado,$nomarea,$start,$cant){
       switch ($estado){
-        case 2: $e="3"; break;
-        case 3: $e="1"; break;
-        case 4: $e="2"; break;
+        case 2: $e="Completado"; break;
+        case 3: $e="Nuevo"; break;
+        case 4: $e="Abierto"; break;
       }
       if($estado ==1){
         $statement=$conexion->prepare('
-        SELECT * FROM `expediente` D left join estadoexp E on E.idEstado=D.idEstado WHERE D.idArea=:nomArea ORDER BY E.idEstado  LIMIT '.$start.', '.$cant);
+        SELECT * FROM `documento` D left join estadodoc E on E.estado=D.estadoExp WHERE D.nomArea=:nomArea ORDER BY E.id  LIMIT '.$start.', '.$cant);
         $statement->execute(array(
           ':nomArea'=>$nomarea
         ));
       }else{
         $statement=$conexion->prepare('
-        SELECT * FROM `expediente` where `estadoExp` =:e and `nomArea`=:nomarea ORDER BY `fecha` ASC LIMIT '.$start.', '.$cant);
+        SELECT * FROM `documento` where `estadoExp` =:e and `nomArea`=:nomarea ORDER BY `fecha` ASC LIMIT '.$start.', '.$cant);
         $statement->execute(array(
           ':nomarea'=>$nomarea,
           ':e'=>$e
@@ -246,14 +199,14 @@ Class Conexion{
       }
       if($estado ==1){
         $statement=$conexion->prepare('
-        SELECT COUNT(*) FROM `expediente` WHERE `idArea` = :nomArea'
+        SELECT COUNT(*) FROM `documento` WHERE `nomArea` = :nomArea'
         );
         $statement->execute(array(
           ':nomArea'=>$nomarea
         ));
       }else{
         $statement=$conexion->prepare('
-        SELECT COUNT(*) FROM `expediente` where `nomArea` = :nomArea and `estadoExp` =:estado'
+        SELECT COUNT(*) FROM `documento` where `nomArea` = :nomArea and `estadoExp` =:estado'
         );
         $statement->execute(array(
           ':nomArea'=>$nomarea,
@@ -262,10 +215,10 @@ Class Conexion{
       }
       return $statement;
     }
-// funcion para buscar expediente por ID
+
     public function buscarExp($conexion,$nExp){
       $statement = $conexion->prepare('
-      SELECT * FROM `expediente` WHERE `idExp` = :idDoc');
+      SELECT * FROM `documento` WHERE `idDoc` = :idDoc');
       $statement->execute(array(
         ':idDoc' => $nExp
       ));
@@ -274,7 +227,7 @@ Class Conexion{
     /*Funciones para las areas */
     public function expArea($conexion,$area){
       $consulta=$conexion-> prepare('
-      SELECT * FROM `expediente` WHERE idArea = :area');
+      SELECT * FROM `documento` WHERE nomArea = :area');
       $consulta->execute(array(
         ':area'=>$area
       ));
@@ -285,7 +238,7 @@ Class Conexion{
 /** */
     public function expIdDoc($conexion,$idDoc){
       $consulta=$conexion-> prepare('
-      SELECT * FROM `expediente` WHERE idExp = :idDoc');
+      SELECT * FROM `documento` WHERE idDoc = :idDoc');
       $consulta->execute(array(
         ':idDoc'=>$idDoc
       ));
@@ -294,7 +247,7 @@ Class Conexion{
     }
     public function cambioestado($conexion,$idDoc){
       $consulta=$conexion->prepare(
-        'UPDATE `expediente` SET `estadoExp` = "Abierto" WHERE `expediente`.`idDoc` = :idDoc'
+        'UPDATE `documento` SET `estadoExp` = "Abierto" WHERE `documento`.`idDoc` = :idDoc'
       );
       $consulta ->execute(array(
         'idDoc'=> $idDoc
@@ -302,7 +255,7 @@ Class Conexion{
     }
     public function estadocompleto($conexion,$idDoc,$detalle){
       $consulta=$conexion->prepare(
-        'UPDATE `expediente` SET `estadoExp` = "Completado",`detalleExp`=:detalleDoc WHERE `expediente`.`idDoc` = :idDoc'
+        'UPDATE `documento` SET `estadoExp` = "Completado",`detalleExp`=:detalleDoc WHERE `documento`.`idDoc` = :idDoc'
       );
       $consulta ->execute(array(
         'idDoc'=> $idDoc,
@@ -313,7 +266,7 @@ Class Conexion{
 
     public function derivar($conexion,$remitente,$nomArea,$mensaje,$idDoc){
       $consulta=$conexion->prepare(
-        'UPDATE `expediente` SET `remitente` = :remitente,`nomArea`=:nomArea,`estadoExp` ="Nuevo",`mensaje`=:mensaje WHERE `expediente`.`idDoc` = :idDoc'
+        'UPDATE `documento` SET `remitente` = :remitente,`nomArea`=:nomArea,`estadoExp` ="Nuevo",`mensaje`=:mensaje WHERE `documento`.`idDoc` = :idDoc'
       );
       $consulta ->execute(array(
         ':remitente'=>$remitente,
@@ -326,7 +279,7 @@ Class Conexion{
     }
     public function detalle($conexion,$detalle,$idDoc){
       $consulta=$conexion->prepare(
-        'UPDATE `expediente` SET `detalleExp` = :detalle WHERE `expediente`.`idDoc` = :idDoc'
+        'UPDATE `documento` SET `detalleExp` = :detalle WHERE `documento`.`idDoc` = :idDoc'
       );
       $consulta ->execute(array(
         ':detalle'=>$detalle,
@@ -398,7 +351,7 @@ Class Conexion{
 
 public function modificarexp($conexion,$nExp,$fecha,$asunto,$nArea,$nExpAntes){
       $statement = $conexion->prepare('
-      UPDATE `expediente` SET `idDoc`=:nExp, `fecha`=:fecha,`Asunto`=:asunto ,`nomArea`=:nArea WHERE `expediente`.`idDoc`=:nExpAntes');
+      UPDATE `documento` SET `idDoc`=:nExp, `fecha`=:fecha,`Asunto`=:asunto ,`nomArea`=:nArea WHERE `documento`.`idDoc`=:nExpAntes');
      try{
       $statement->execute(array(
       ':nExp' =>$nExp,

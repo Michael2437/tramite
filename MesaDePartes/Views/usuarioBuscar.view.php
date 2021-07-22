@@ -229,8 +229,8 @@
                               <div class="col-md-3"></div>
                             </div>
                             
-                            <?php if(isset($resultado)){if(!empty($dni)){echo $salida ;}}?>
-                            
+                            <?php if(!empty($dni)){if(isset($resultado)) {echo $salida;}}?>
+                               
                             <!-- fin del formulario-->
                           </div>
                       </div>

@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link href="../Views/main.css" rel="stylesheet">
     <title>Nuevo Usuario</title>
 </head>
 <body>
-
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
@@ -247,8 +245,8 @@
                                                         <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo Usuario</label>
                                                             <select name="tipo" id="tipo" onchange="buscar_archivos()" type="select" class="mb-2 form-control" required>
                                                                 <option></option>
-                                                                <option value="Normal">Normal</option>
-                                                                <option value="Jurídico">Jurídico</option>
+                                                                <option value="1">Normal</option>
+                                                                <option value="2">Jurídico</option>
                                                             </select>
                                                         </div>
                                                     </div>

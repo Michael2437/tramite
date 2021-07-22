@@ -11,7 +11,7 @@ $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
 $buscando=$nuevo->buscarIdDoc($con);
-$idDoc=$buscando['idDoc']+1;
+$idDoc=$buscando['idExp']+1;
 
 $listaTipo=$nuevo->tipoExp($con);
 $listaArea=$nuevo->selectArea($con);
@@ -25,41 +25,42 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $fecha = date("Y-m-d H:i:s"); 
     $asunto=$_POST['asunto'];
     $nArea=$_POST['selectArea'];
+    $nomarea=$nuevo->obtenerdescarea($con,$nArea);
     $tipoExp=$_POST['tipExp'];
     $estadoDoc=$_POST['estadoDoc'];
-    $detalle ="Registrado el: ".$fecha.". Enviado a: ".$nArea."\n";
-    $nuevo->registroexp($con,$iduser,$fecha,$asunto,$remitente,$nArea,$tipoExp,$estadoDoc,$detalle);
+    $detalle ="Registrado el: ".$fecha.". Enviado a: ".$nomarea."\n";
+    $nuevo->registroexp($con,$iduser,$nArea,$tipoExp,$estadoDoc,$fecha,$asunto,$remitente,$detalle);
 }
 if(!empty($_GET['iduser'])){
     $dni="";
     $resultado=$nuevo->buscaruser($con,$dni,$iduser);
     $salida = "";
     if ($resultado) {
-        $id = $resultado['iduser'];
+        $id = $resultado['idUser'];
         $dni=$resultado['dni'];
-        $nombres = $resultado['nomUsuario'];
-        $apellidos = $resultado['apeUsuario'];
+        $nombres = $resultado['nomUser'];
+        $apellidos = $resultado['apeUser'];
         $salida .= "<form name='datos' method='post' >
             <div class='form-row'>
                 <div class='col-md-6'>
                     <div class='position-relative form-group'><label  class=''>N° Expediente</label>
-                    <input name='idDoc' disabled=»disabled» id='idDoc' value=' " . $idDoc . " 'type='text' class='form-control text-center'>
+                    <input name='idDoc' disabled=»disabled» id='idDoc' value='" . $idDoc . "'type='text' class='form-control text-center'>
                   </div>
               </div>
               <div class='col-md-6'>
                     <div class='position-relative form-group'><label  class=''>DNI</label>
-                    <input name='dnir' disabled=»disabled» id='nombres' value=' " . $dni . " 'type='text' class='form-control text-center'>
+                    <input name='dnir' disabled=»disabled» id='nombres' value='" . $dni . "'type='text' class='form-control text-center'>
                   </div>
               </div>
             
               <div class='col-md-6'>
                   <div class='position-relative form-group'><label  class=''>Nombres</label>
-                    <input name='nombresreg' disabled=»disabled» id='nombres' value= ' " . $nombres . " ' type='text' class='form-control text-center'>
+                    <input name='nombresreg' disabled=»disabled» id='nombres' value= '" . $nombres . "' type='text' class='form-control text-center'>
                   </div>
               </div>
               <div class='col-md-6'>
                   <div class='position-relative form-group'><label  class=''>Apellidos</label>
-                    <input name='apellidosreg' disabled=»disabled» id='apellidos' value= ' " . $apellidos . " ' type='text' class='form-control text-center'>
+                    <input name='apellidosreg' disabled=»disabled» id='apellidos' value= '" . $apellidos . "' type='text' class='form-control text-center'>
                   </div>
               </div>
             </div>
@@ -69,7 +70,7 @@ if(!empty($_GET['iduser'])){
                 <select class='form-control' id='tipExp' name='tipExp'>";
 
                 while($tipExp=$listaTipo->fetch()){
-                    $salida.="<option value='".$tipExp['descTipoDoc']."'>".$tipExp['descTipoDoc']."</option>";
+                    $salida.="<option value='".$tipExp['idTipoExp']."'>".$tipExp['descTipoExp']."</option>";
                     }
               
                 $salida.= "</select>
@@ -80,7 +81,7 @@ if(!empty($_GET['iduser'])){
                     <select class='form-control' id='selectArea' name='selectArea'>";
 
                     while($selectArea=$listaArea->fetch()){
-                        $salida.="<option value='".$selectArea['nomArea']."'>".$selectArea['nomArea']."</option>";
+                        $salida.="<option value='".$selectArea['idArea']."'>".$selectArea['nomArea']."</option>";
                         }
                 
                     $salida.= "</select>
@@ -93,7 +94,8 @@ if(!empty($_GET['iduser'])){
             </div>
             <div class='col-md-6'>
                 <div class='position-relative form-group text-center'><label for='exampleAddress' class=''>Estado</label>
-                <input name='estadoDoc' id='estadoDoc' value='Nuevo' readonly type='text' class='form-control text-center'>
+                <input name='estadoDoc' id='estadoDoc' value='1' type='hidden'>
+                <input  value='Nuevo' readonly type='text' class='form-control text-center'>
                 </div>
             </div>
         </div>
