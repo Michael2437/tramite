@@ -20,20 +20,21 @@ if(isset($_GET['idDoc'])){
     $id=$_GET['idDoc'];
     $result=$nuevo->expIdDoc($con,$id);
 
-    $idDoc=$result['idDoc'];
-    $detalle =$result['detalleExp'];
+    $idDoc=$result['idExp'];
+    $detalle =$result['detalle'];
     $nuevo->cambioestado($con,$id);
 }
  if(isset($_POST['selectArea'])){
   $nExp=$_POST['nExp'];
-  $selectArea =$_POST['selectArea'];
+  $idselectArea =$_POST['selectArea'];
+  $selectArea=$nuevo->obtenerdescarea($con,$idselectArea);
   $mensaje=$_POST['mensaje'];
   $fecha = date("Y-m-d H:i:s"); 
 
   $result=$nuevo->expIdDoc($con,$nExp);
-  $detalle =$result['detalleExp'];
-  $detalle .="Derivado el: ".$fecha.". De: ".$area." A: ".$selectArea."<br>";
-  $derivado=$nuevo->derivar($con,$area,$selectArea,$mensaje,$nExp);
+  $detalle =$result['detalle'];
+  $detalle .="<br>Derivado el: ".$fecha.". De: ".$area." A: ".$selectArea;
+  $derivado=$nuevo->derivar($con,$area,$idselectArea,$mensaje,$nExp);
   $nuevo->detalle($con,$detalle,$nExp);
   $script="<script>
   $( document ).ready(function() {

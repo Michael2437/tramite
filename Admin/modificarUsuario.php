@@ -34,12 +34,13 @@ if(isset($_GET['iduser'])){
 $resultado=$nuevo->buscaruser($con,$dni,$iduser);
 
           if($resultado){
-            $id=$resultado['iduser'];
+            $id=$resultado['idUser'];
             $dni=$resultado['dni'];
-            $nombres = $resultado['nomUsuario'];
-            $apellidos =$resultado['apeUsuario'];
-            $direccion =$resultado['dirUsuario'];
-            $telefono=$resultado['telUsuario'];
+            $nombres = $resultado['nomUser'];
+            $apellidos =$resultado['apeUser'];
+            $direccion =$resultado['dirUser'];
+            $telefono=$resultado['telUser'];
+            $correo=$resultado['correo'];
 
             $salida .= "<div class='row'>
             <div class='col-md-2'></div>
@@ -83,31 +84,21 @@ $resultado=$nuevo->buscaruser($con,$dni,$iduser);
             <div class='form-row'>
               <div class='col-md-8'>
                 <div class='position-relative form-group'><label for='examplePassword11' class=''>Correo</label>
-                  <input name='correo' id='correo' placeholder='Ingrese correo electrónico' type='email' class='form-control'>
+                  <input name='correo' id='correo' value='".$correo."' type='email' class='form-control'>
                 </div>
               </div>
               <div class='col-md-4'>
                 <div class='position-relative form-group'><label for='exampleAddress' class=''>Tipo Usuario</label>
-                  <select class='mb-2 form-control'>
-                    <option value='tipouse'>Normal</option>
-                    <option value='tipouser'>Jurídico</option>
+                  <select class='mb-2 form-control' name='tipo' id='tipo' onchange='buscar_archivos()'>
+                    <option></option>
+                    <option value='1'>Normal</option>
+                    <option value='2'>Jurídico</option>
                   </select>
                 </div>
               </div>
             </div>
-            <div class='form-row'>
-              <div class='col-md-6'>
-                <div class='position-relative form-group'><label for='exampleAddress' class=''>RUC</label>
-                  <input name='ruc' id='ruc' placeholder='Ingrese RUC' type='text' class='form-control'>
-                </div>
-              </div>
-              <div class='col-md-6'>
-                <div class='position-relative form-group'><label for='exampleAddress2' class=''>Razón Social</label>
-                  <input name='razonsocial' id='razonsocial' placeholder='Ingrese razón social' type='text' class='form-control'>
-                </div>
-              </div>
-
-            </div>
+            <div id='selectorder'></div>
+            
             <div class='form-row'>
               <div class='col-md-12'>
                 <div class='text-center'>

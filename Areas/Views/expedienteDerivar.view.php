@@ -163,7 +163,7 @@
                                                             <?php
                                                             while($selectArea=$listaArea->fetch()){
                                                                 if($area != $selectArea['nomArea']){?>
-                                                            <option value="<?php echo $selectArea['nomArea'];?>"><?php echo $selectArea['nomArea'];?></option>
+                                                            <option value="<?php echo $selectArea['idArea'];?>"><?php echo $selectArea['nomArea'];?></option>
                                                             <?php }} ?>
                                                         </select>
                                                     </div>

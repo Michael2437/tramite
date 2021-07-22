@@ -216,7 +216,7 @@
                                                 <form action="modificarArea.php" method="POST" name="modificarArea">
                                                     <div class="position-relative form-group">
                                                         <label for="exampleEmail" class="">Nombre de Area</label>
-                                                        <input name="idArea" id="idArea" placeholder="Ingrese Nuevo Nombre" type="hidden" class="form-control" value="<?php echo $idArea; ?>">
+                                                        <input name="idArea" id="idArea" type="hidden" class="form-control" value="<?php echo $idArea; ?>">
                                                         <input name="nomArea" id="nomArea" placeholder="Ingrese Nuevo Nombre" type="text" class="form-control" value="<?php echo $nomArea; ?>">
                                                     </div>
                                                     <div class="position-relative form-group">

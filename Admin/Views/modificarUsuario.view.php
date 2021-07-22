@@ -250,6 +250,7 @@
         </div>
     </div>
 
- 
-<script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
+    <script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
+<script type="text/javascript" src="../Views/assets/scripts/funciones.js"></script>
+<script type="text/javascript" src="../Views/assets/scripts/jquery.min.js"></script>
 </html>

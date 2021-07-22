@@ -116,6 +116,17 @@ Class Conexion{
       $estadoexp=$resultado['nomEstado'];
       return $estadoexp;
     }
+    public function obteneridarea($con,$nomarea){
+      $statement=$con->prepare('
+      SELECT idArea FROM `area` WHERE nomArea=:nomarea
+      ');
+      $statement->execute(array(
+        ':nomarea'=>$nomarea
+      ));
+      $resultado=$statement->fetch();
+      $estadoexp=$resultado['idArea'];
+      return $estadoexp;
+    }
   // modificar el usuario
     public function modificaruser($conexion,$dni,$nombres,$apellidos,$direccion,$telefono,$dniantiguo){
       $sql = $conexion->prepare('
@@ -142,7 +153,7 @@ Class Conexion{
           }
           public function nuevoTexp($con,$tipExp){
             $statement=$con->prepare(
-              'INSERT INTO `tipodocumento` ( `descTipoDoc`) VALUES (:tipExp)'
+              'INSERT INTO `tipoexp` ( `descTipoExp`) VALUES (:tipExp)'
             );
             $statement->execute(array(
               ':tipExp'=>$tipExp
@@ -151,7 +162,7 @@ Class Conexion{
           }
           public function eliminarTexp($con,$idTexp){
             $statement=$con->prepare(
-              'DELETE FROM `tipodocumento` WHERE `tipodocumento`.`idTipoDoc` = :idTexp'
+              'DELETE FROM `tipoexp` WHERE `tipoexp`.`idTipoExp` = :idTexp'
             );
             $statement->execute(array(
               ':idTexp'=>$idTexp
@@ -229,7 +240,7 @@ Class Conexion{
         ));
       }else{
         $statement=$conexion->prepare('
-        SELECT * FROM `expediente` where `estadoExp` =:e and `nomArea`=:nomarea ORDER BY `fecha` ASC LIMIT '.$start.', '.$cant);
+        SELECT * FROM `expediente` where `idEstado` =:e and `idArea`=:nomarea ORDER BY `fechaExp` ASC LIMIT '.$start.', '.$cant);
         $statement->execute(array(
           ':nomarea'=>$nomarea,
           ':e'=>$e
@@ -240,9 +251,9 @@ Class Conexion{
     /*Contador de expedientes totales, completados,nuevos, abiertos */
     public function contarExp($conexion,$estado,$nomarea){
       switch ($estado){
-        case 2: $e="Completado"; break;
-        case 3: $e="Nuevo"; break;
-        case 4: $e="Abierto"; break;
+        case 2: $e="3"; break;
+        case 3: $e="1"; break;
+        case 4: $e="2"; break;
       }
       if($estado ==1){
         $statement=$conexion->prepare('
@@ -253,7 +264,7 @@ Class Conexion{
         ));
       }else{
         $statement=$conexion->prepare('
-        SELECT COUNT(*) FROM `expediente` where `nomArea` = :nomArea and `estadoExp` =:estado'
+        SELECT COUNT(*) FROM `expediente` where `idArea` = :nomArea and `idEstado` =:estado'
         );
         $statement->execute(array(
           ':nomArea'=>$nomarea,
@@ -294,7 +305,7 @@ Class Conexion{
     }
     public function cambioestado($conexion,$idDoc){
       $consulta=$conexion->prepare(
-        'UPDATE `expediente` SET `estadoExp` = "Abierto" WHERE `expediente`.`idDoc` = :idDoc'
+        'UPDATE `expediente` SET `idEstado` = "2" WHERE `expediente`.`idExp` = :idDoc'
       );
       $consulta ->execute(array(
         'idDoc'=> $idDoc
@@ -302,7 +313,7 @@ Class Conexion{
     }
     public function estadocompleto($conexion,$idDoc,$detalle){
       $consulta=$conexion->prepare(
-        'UPDATE `expediente` SET `estadoExp` = "Completado",`detalleExp`=:detalleDoc WHERE `expediente`.`idDoc` = :idDoc'
+        'UPDATE `expediente` SET `idEstado` = "3",`detalle`=:detalleDoc WHERE `expediente`.`idExp` = :idDoc'
       );
       $consulta ->execute(array(
         'idDoc'=> $idDoc,
@@ -313,20 +324,20 @@ Class Conexion{
 
     public function derivar($conexion,$remitente,$nomArea,$mensaje,$idDoc){
       $consulta=$conexion->prepare(
-        'UPDATE `expediente` SET `remitente` = :remitente,`nomArea`=:nomArea,`estadoExp` ="Nuevo",`mensaje`=:mensaje WHERE `expediente`.`idDoc` = :idDoc'
+        'UPDATE `expediente` SET `remitente` = :remitente,`idArea`=:nomArea,`idEstado` ="1",`mensaje`=:mensaje WHERE `expediente`.`idExp` = :idDoc'
       );
       $consulta ->execute(array(
         ':remitente'=>$remitente,
         ':nomArea'=>$nomArea,
         ':mensaje'=>$mensaje,
-        'idDoc'=> $idDoc
+        ':idDoc'=> $idDoc
       ));
       
       return $consulta;
     }
     public function detalle($conexion,$detalle,$idDoc){
       $consulta=$conexion->prepare(
-        'UPDATE `expediente` SET `detalleExp` = :detalle WHERE `expediente`.`idDoc` = :idDoc'
+        'UPDATE `expediente` SET `detalle` = :detalle WHERE `expediente`.`idExp` = :idDoc'
       );
       $consulta ->execute(array(
         ':detalle'=>$detalle,
@@ -398,7 +409,7 @@ Class Conexion{
 
 public function modificarexp($conexion,$nExp,$fecha,$asunto,$nArea,$nExpAntes){
       $statement = $conexion->prepare('
-      UPDATE `expediente` SET `idDoc`=:nExp, `fecha`=:fecha,`Asunto`=:asunto ,`nomArea`=:nArea WHERE `expediente`.`idDoc`=:nExpAntes');
+      UPDATE `expediente` SET `idExp`=:nExp, `fechaExp`=:fecha,`asuntoExp`=:asunto ,`idArea`=:nArea WHERE `expediente`.`idExp`=:nExpAntes');
      try{
       $statement->execute(array(
       ':nExp' =>$nExp,

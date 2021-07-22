@@ -229,8 +229,8 @@
                                             </thead>
                                             <tbody>
                                                 <?php while($fila=$areas->fetch()){
-                                                    $id=$fila['idTipoDoc'];
-                                                    $nomTipoDoc=$fila['descTipoDoc'];
+                                                    $id=$fila['idTipoExp'];
+                                                    $nomTipoDoc=$fila['descTipoExp'];
                                                 ?>
                                             <tr>
                                                 <td  class="text-center">

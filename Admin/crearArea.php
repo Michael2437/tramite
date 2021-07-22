@@ -17,9 +17,9 @@ if(isset($_POST['nomArea'])){
 
   if($pass ==$passCon){
     $resultado=$nuevo->crearArea($con,$nomArea,$pass);
-    if($resultado){
-      $nuevo->crearListadoArea($con,$nomArea);
-      }
+    // if($resultado){
+    //   $nuevo->crearListadoArea($con,$nomArea);
+    //   }
     }
     
 }

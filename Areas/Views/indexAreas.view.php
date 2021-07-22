@@ -222,16 +222,18 @@
                                         </thead>
                                         <tbody>
                                             <?php while ($result = $consulta->fetch()) {
-                                                $idDoc = $result['idDoc'];
-                                                $tipoExp = $result['tipoExp'];
+                                                $idDoc = $result['idExp'];
+                                                $idtipoExp = $result['idTipoExp'];
+                                                $tipoExp=$nuevo->obtenerTipoExp($con,$idtipoExp);
                                                 $remitente = $result['remitente'];
-                                                $asunto = $result['Asunto'];
-                                                $fecha = $result['fecha'];
+                                                $asunto = $result['asuntoExp'];
+                                                $fecha = $result['fechaExp'];
 
                                                 $fecha15dias=date("Y-m-d H:i:s",strtotime($fecha."+ 15 days"));
                                                 $fecha30dias=date("Y-m-d H:i:s",strtotime($fecha."+ 1 month"));
                                               
-                                                $estadoDoc = $result['estadoExp'];
+                                                $idestado= $result['idEstado'];
+                                                $estadoDoc=$nuevo->obtenerNomEstado($con,$idestado);
                                             ?>
                                                 <tr>
                                                     <td class="text-center text-muted"><?php echo $idDoc; ?></td>

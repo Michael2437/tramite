@@ -21,9 +21,9 @@ if(isset($_GET['idDoc'])){
     $id=$_GET['idDoc'];
     $result=$nuevo->expIdDoc($con,$id);
 
-    $idDoc=$result['idDoc'];
-    $asunto=$result['Asunto'];
-    $detalle =$result['detalleExp'];
+    $idDoc=$result['idExp'];
+    $asunto=$result['asuntoExp'];
+    $detalle =$result['detalle'];
     $nuevo->cambioestado($con,$id);
 }
  if(isset($_POST['nExp'])){
@@ -31,7 +31,7 @@ if(isset($_GET['idDoc'])){
   $mensaje=$_POST['detalle'];
   
   $result=$nuevo->expIdDoc($con,$nExp);
-  $detalle =$result['detalleExp'];
+  $detalle =$result['detalle'];
   $detalle.="Completado el: ".$fechaactual."<br>".$mensaje;
   $completado=$nuevo->estadocompleto($con,$nExp,$detalle);
 

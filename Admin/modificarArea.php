@@ -26,7 +26,7 @@ if(isset($_POST['nomArea'])){
   $selectarea=$nuevo->selectAreas($con,$idArea);
   $nomArea=$selectarea['nomArea'];
   if($pass==$passCon){
-    $nuevo->modificarListadoArea($con,$areamod,$nomArea);
+    // $nuevo->modificarListadoArea($con,$areamod,$nomArea);
     $resultado=$nuevo->modificarArea($con,$areamod,$pass,$idArea);
   }
   $script="<script>

@@ -13,7 +13,7 @@ $area=$listado['nomArea'];
 $rol=$listado['rol'];
 $consulta=$nuevo->expArea($con,$area);
 $fechaactual = date("Y-m-d H:i:s"); 
-
+$idarea=$nuevo->obteneridarea($con,$area);
 
 /*Añadiendo paginación a la tabla */
 if(isset($_GET['page'])){
@@ -22,7 +22,7 @@ if(isset($_GET['page'])){
     $e=$_GET['e'];
     $class="active";
     if($e==1){
-      $o=$nuevo->contarExp($con,$e,$area);
+      $o=$nuevo->contarExp($con,$e,$idarea);
       if(!$page){
         $start =0;
         $page=1;
@@ -31,9 +31,9 @@ if(isset($_GET['page'])){
       }
       $total=$o->fetchColumn();
       $totalpag=ceil($total/CANT_EXP);
-      $consulta=$nuevo->filtrarexpArea($con,$e,$area,$start,CANT_EXP);
+      $consulta=$nuevo->filtrarexpArea($con,$e,$idarea,$start,CANT_EXP);
     }else{
-      $o=$nuevo->contarExp($con,$e,$area);
+      $o=$nuevo->contarExp($con,$e,$idarea);
       if(!$page){
         $start =0;
         $page=1;
@@ -42,7 +42,7 @@ if(isset($_GET['page'])){
       }
       $total=$o->fetchColumn();
       $totalpag=ceil($total/CANT_EXP);
-      $consulta=$nuevo->filtrarexpArea($con,$e,$area,$start,CANT_EXP);}
+      $consulta=$nuevo->filtrarexpArea($con,$e,$idarea,$start,CANT_EXP);}
   }
   
 }
@@ -53,8 +53,9 @@ if(isset($_GET['idDoc'])){
   $idDocu=$_GET['idDoc'];
 
   $resultado=$nuevo->expIdDoc($con,$idDocu);
-  $detalle=$resultado['detalleExp'];
-  $nomArea=$resultado['nomArea'];
+  $detalle=$resultado['detalle'];
+  $idarea=$resultado['idArea'];
+  $nomArea=$nuevo->obtenerdescarea($con,$idarea);
   $script="
   <script>
   $( document ).ready(function() {

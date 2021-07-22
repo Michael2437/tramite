@@ -18,7 +18,8 @@ if(isset($_POST['idDoc'])){
   $asunto=$_POST['Asunto'];
   $fecha=$_POST['fecha'];
   $nomArea=$_POST['nomArea'];
-  $result=$nuevo->modificarexp($con,$nExp,$fecha,$asunto,$nomArea,$nExpAntes);
+  $idarea=$nuevo->obteneridarea($con,$nomArea);
+  $result=$nuevo->modificarexp($con,$nExp,$fecha,$asunto,$idarea,$nExpAntes);
   if($result){
     $error="<div class='text-center'> Modificado Exitosamente</div>";
   }else{$error="<div class='text-center'>No se puede modificar porque ya existe el numero de expediente</div>";}
@@ -33,11 +34,12 @@ $resultado=$nuevo->buscarExp($con,$nExp);
 $fila= $resultado->fetch();
 $salida="";
 if($fila){
-    $idDoc=$fila['idDoc'];
-    $id=$fila['iduser'];
-    $asunto=$fila['Asunto'];
-    $fecha = $fila['fecha'];
-    $nomArea =$fila['nomArea'];
+    $idDoc=$fila['idExp'];
+    $id=$fila['idUser'];
+    $asunto=$fila['asuntoExp'];
+    $fecha = $fila['fechaExp'];
+    $idarea =$fila['idArea'];
+    $nomArea=$nuevo->obtenerdescarea($con,$idarea);
 
     $salida .= "
     <div class='row'>

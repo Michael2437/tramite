@@ -19,15 +19,16 @@ if(isset($_GET['idDoc'])){
     $e=$_GET['e'];
     $result=$nuevo->expIdDoc($con,$id);
 
-    $idDoc=$result['idDoc'];
+    $idDoc=$result['idExp'];
     $remitente=$result['remitente'];
-    $tipoExp=$result['tipoExp'];
-    $asunto=$result['Asunto'];
+    $idtipoexp=$result['idTipoExp'];
+    $tipoExp=$nuevo->obtenerTipoExp($con,$idtipoexp);
+    $asunto=$result['asuntoExp'];
     $mensaje=$result['mensaje'];
     
-    $estadoDoc=$result['estadoExp'];
+    $estadoDoc=$result['idEstado'];
 
-    if($estadoDoc=="Nuevo"){
+    if($estadoDoc=="1"){
     $nuevo->cambioestado($con,$id);}
 
 }
