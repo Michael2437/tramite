@@ -423,5 +423,21 @@ public function modificarexp($conexion,$nExp,$fecha,$asunto,$nArea,$nExpAntes){
       }
       return $statement;
     }
+
+    public function archivo($conexion,$iddoc){
+    $statement=$conexion->prepare('
+        Select * from archivoexp where idExp= :iddoc
+    ');
+    $statement->execute(array(
+      ':iddoc'=>$iddoc
+    ));
+    $fila=$statement->fetch();
+    $contenido=$fila['nomArchivo'];
+    return $contenido;
+    }
+
+
   }
+
+  
 ?>

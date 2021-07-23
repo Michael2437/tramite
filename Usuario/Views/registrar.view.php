@@ -33,6 +33,7 @@
                                                     <div class="col-md-2">
                                                         <div class="position-relative form-group">
                                                             <label for="">DNI</label>
+                                                            <input type="hidden" name="iduser" id="iduser" value="">
                                                             <input name="dni" id="dni" placeholder="N° DNI" type="number" class="form-control" autocomplete="off">
                                                         </div>
                                                     </div>
@@ -75,8 +76,8 @@
                                                             <label for="">Tipo de Usuario</label>
                                                             <select class="form-control" id="tipo" name="tipo" onchange="buscar_archivos()" type="select">
                                                             <option></option>
-                                                                <option value="Normal">Normal</option>
-                                                                <option value="Jurídico">Juridico</option>
+                                                                <option value="1">Normal</option>
+                                                                <option value="2">Juridico</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -89,7 +90,7 @@
                                                             <select name="tipExp" id="tipExp" type="text" class="form-control">
                                                                 <option></option>
                                                              <?php while($fila=$listaTipo->fetch()){  ?> 
-                                                                <option value="<?php echo $fila['descTipoDoc'];?>"><?php echo $fila['descTipoDoc'];?></option>
+                                                                <option value="<?php echo $fila['idTipoExp'];?>"><?php echo $fila['descTipoExp'];?></option>
                                                             <?php }
                                                                ?>
                                                             </select>
@@ -101,7 +102,7 @@
                                                             <select name="nomArea" id="nomArea" type="text" class="form-control">
                                                                 <option></option>
                                                             <?php while($selectArea=$listaArea->fetch()){?>
-                                                                <option value="<?php echo $selectArea['nomArea'];?>"><?php echo $selectArea['nomArea'];?></option>
+                                                                <option value="<?php echo $selectArea['idArea'];?>"><?php echo $selectArea['nomArea'];?></option>
                                                              <?php }?>
                                                             </select>
                                                         </div>
@@ -114,10 +115,10 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                <input name="userfile" type="file" id="userfile"> 
+                                                <input name="userfile" type="file" id="userfile" required> 
                                                 </div>
                                             </div>
-                                            <button class="mt-1 btn btn-primary ">Registrar</button>
+                                            <button type="submit" class="mt-1 btn btn-primary ">Registrar</button>
                                             <a href="index.php" class="mt-1 btn btn-primary">Volver</a>
                                         </form>
                                     </div>

@@ -11,9 +11,10 @@ if(isset($_POST['nExp'])){
     
     $fila=$resultado->fetch();
         if($fila){
-        $idDoc=$fila['idDoc'];
-        $asunto=$fila['Asunto'];
-        $areaA=$fila['nomArea'];
+        $idDoc=$fila['idExp'];
+        $asunto=$fila['asuntoExp'];
+        $idarea=$fila['idArea'];
+        $areaA=$nuevo->obtenerdescarea($con,$idarea);
         }
     else{
         $error.="<div class='text-center'>El expediente NO está registrado</div>";
@@ -26,10 +27,11 @@ if(isset($_POST['idD'])){
     
     $fila=$resultado->fetch();
     if($fila){
-    $idDoc=$fila['idDoc'];
-    $asunto=$fila['Asunto'];
-    $areaA=$fila['nomArea'];
-    $detalle=$fila['detalleExp'];
+    $idDoc=$fila['idExp'];
+    $asunto=$fila['asuntoExp'];
+    $idarea=$fila['idArea'];
+    $areaA=$nuevo->obtenerdescarea($con,$idarea);
+    $detalle=$fila['detalle'];
     }
     $script="<script>
     $( document ).ready(function() {

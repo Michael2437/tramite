@@ -44,9 +44,10 @@
                                             <tbody>
                                                 <?php if(isset($resultado)){
                                                  while($fila=$resultado->fetch()){
-                                                        $nExp=$fila['idDoc'];
-                                                        $asunto=$fila['Asunto'];
-                                                        $areaA=$fila['nomArea'];
+                                                        $nExp=$fila['idExp'];
+                                                        $asunto=$fila['asuntoExp'];
+                                                        $idarea=$fila['idArea'];
+                                                        $areaA=$nuevo->obtenerdescarea($con,$idarea);
                                                     ?>
                                                 <tr>
                                                     <th><?php echo $nExp;?></th>

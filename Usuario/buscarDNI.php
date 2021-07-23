@@ -10,7 +10,7 @@ if(isset($_POST['dni'])){
     $dni=$_POST['dni'];
     $datos=$nuevo->buscaruser($con,$dni,$iduser);
     if($datos){
-    $iduser=$datos['iduser'];
+    $iduser=$datos['idUser'];
     $resultado=$nuevo->mostrarexp($con,$iduser);
     }else {
         $error.="<div class='text-center'>El DNI no está registrado</div>";
@@ -21,7 +21,7 @@ if(isset($_POST['idDoc'])){
     $idDoc=$_POST['idDoc'];
     $datos=$nuevo->buscarExp($con,$idDoc);
     $fila=$datos->fetch();
-    $iduser=$fila['iduser'];
+    $iduser=$fila['idUser'];
 
     $resultado=$nuevo->mostrarexp($con,$iduser);
 }
@@ -30,8 +30,8 @@ if(isset($_POST['idmodal'])){
     $idmodal=$_POST['idmodal'];
     $datos=$nuevo->buscarExp($con,$idmodal);
     $fi=$datos->fetch();
-    $detalle=$fi['detalleExp'];
-    $iduser=$fi['iduser'];
+    $detalle=$fi['detalle'];
+    $iduser=$fi['idUser'];
 
     $resultado=$nuevo->mostrarexp($con,$iduser);
     $script="<script>

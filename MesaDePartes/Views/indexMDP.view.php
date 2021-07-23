@@ -172,15 +172,11 @@
                                     </ul>
                                 </li>
 
-                                <li class="app-sidebar__heading">Seguimiento</li>
+                                <li class="app-sidebar__heading">Recibidos</li>
                                 <li>
-                                    <a href="dashboard-boxes.html">
+                                    <a href="expedienteRecibido.php">
                                         <i class="metismenu-icon pe-7s-display2"></i>
-                                        Usuarios
-                                    </a>
-                                    <a href="dashboard-boxes.html">
-                                        <i class="metismenu-icon pe-7s-display2"></i>
-                                        Expediente
+                                        Expedientes
                                     </a>
                                 </li>
 

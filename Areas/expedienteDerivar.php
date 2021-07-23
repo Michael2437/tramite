@@ -24,6 +24,7 @@ if(isset($_GET['idDoc'])){
     $detalle =$result['detalle'];
     $nuevo->cambioestado($con,$id);
 }
+
  if(isset($_POST['selectArea'])){
   $nExp=$_POST['nExp'];
   $idselectArea =$_POST['selectArea'];
