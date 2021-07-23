@@ -162,9 +162,10 @@
                                                         <select class="form-control" id="selectArea" name="selectArea">";
                                                             <?php
                                                             while($selectArea=$listaArea->fetch()){
-                                                                if($area != $selectArea['nomArea']){?>
+                                                                if($area != $selectArea['nomArea']){
+                                                                    if($selectArea['nomArea'] != "Mesa de Partes" && $selectArea['nomArea']!= "Administrador"){?>
                                                             <option value="<?php echo $selectArea['idArea'];?>"><?php echo $selectArea['nomArea'];?></option>
-                                                            <?php }} ?>
+                                                            <?php }} }?>
                                                         </select>
                                                     </div>
                                                 </div>

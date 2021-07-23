@@ -89,7 +89,7 @@ if(isset($_GET['idDoc'])){
       $nExp=$_POST['nExp'];
       $sArea=$_POST['nomArea'];
       $mensaje="";
-      $nuevo->derivar($con,$user,$sArea,$mensaje,$nExp);
+      $derivado=$nuevo->derivar($con,$user,$sArea,$mensaje,$nExp);
 
       $namearea=$nuevo->obtenerdescarea($con,$sArea);
       $fecha = date("Y-m-d H:i:s");
@@ -97,6 +97,11 @@ if(isset($_GET['idDoc'])){
       $detalle =$result['detalle'];
       $detalle.="<br>El expediente fue aprobado el: ".$fecha." y enviado a: ".$namearea;
       $nuevo->detalle($con,$detalle,$nExp);
+      $script="<script>
+  $( document ).ready(function() {
+      $('#myConfir').modal('toggle')
+  });
+  </script>";
   }
 
 //   modal de derivado exitoso

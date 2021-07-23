@@ -182,7 +182,7 @@
                                           
                                         </div>
                                         
-                                                <?php if(isset($idDoc)){if($estadoDoc!="Completado"){ ?>  
+                                                <?php if(isset($idDoc)){if($estadoDoc!="3"){ ?>  
                                                 <div class="form-row">
                                                     <div class="col-md-6 text-center">
                                                         <a href="expedienteDerivar.php?idDoc=<?php echo $idDoc;?>&page=<?php echo $page;?>&e=<?php echo $e;?>" type="input" name="derivar" class="mt-2 btn btn-primary">Derivar</a>

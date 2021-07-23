@@ -262,6 +262,7 @@
    </div>
    <?php if(isset($_GET['idDoc'])){ echo $script;} ?>
    <?php if(isset($_GET['derivar'])){ echo $script;} ?>
+   <?php if(isset($derivado)){if($derivado){echo $script;}}?>
 <script type="text/javascript" src="../Views/assets/scripts/main.js"></script></body>
 </html>
 
@@ -303,16 +304,36 @@
                     <input type="hidden" name="nExp" id="nExp" value="<?php echo $nExp;?>">
                     <select name="nomArea" id="nomArea" type="text" class="form-control">
                             <option></option>
-                        <?php while($selectArea=$listaArea->fetch()){?>
+                        <?php while($selectArea=$listaArea->fetch()){
+                            if($selectArea['nomArea']!="Mesa de Partes" && $selectArea['nomArea']!= "Administrador"){?>
                             <option value="<?php echo $selectArea['idArea'];?>"><?php echo $selectArea['nomArea'];?></option>
-                        <?php }?>
+                        <?php }}?>
                     </select>
-                    <button type="submit" class="btn btn-primary"> Derivar</button>
                 </form>
             </div>
             <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" onclick="derivar.submit()"> Derivar</button>
                 <a href="expedienteRecibido.php" type="button" class="btn btn-primary">Cancelar</a>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->
+
+<!-- MODAL -->
+<div id="myConfir" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div>
+                <h5 class="modal-title" id="exampleModalLabel">Enviado Correctamente</h5>
+                </div>
+                <div>
+                <a href="expedienteRecibido.php" class="btn btn-secondary" >Aceptar</a>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>

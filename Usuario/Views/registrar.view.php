@@ -101,9 +101,10 @@
                                                             <label for="">Área de recepción</label>
                                                             <select name="nomArea" id="nomArea" type="text" class="form-control">
                                                                 <option></option>
-                                                            <?php while($selectArea=$listaArea->fetch()){?>
+                                                            <?php while($selectArea=$listaArea->fetch()){
+                                                                if($selectArea['nomArea']!="Mesa de Partes" && $selectArea['nomArea']!="Administrador"){?>
                                                                 <option value="<?php echo $selectArea['idArea'];?>"><?php echo $selectArea['nomArea'];?></option>
-                                                             <?php }?>
+                                                             <?php } }?>
                                                             </select>
                                                         </div>
                                                     </div>

@@ -32,7 +32,7 @@ if(isset($_GET['idDoc'])){
   
   $result=$nuevo->expIdDoc($con,$nExp);
   $detalle =$result['detalle'];
-  $detalle.="Completado el: ".$fechaactual."<br>".$mensaje;
+  $detalle.="<br>Completado el: ".$fechaactual."<br>".$mensaje;
   $completado=$nuevo->estadocompleto($con,$nExp,$detalle);
 
   $script="<script>
