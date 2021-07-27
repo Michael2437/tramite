@@ -33,24 +33,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       }
     $nuevo->registrouser($con,$dni,$nombre,$apellidos,$dirección,$telefono,$correo,$tipouser,$ruc,$razonsocial);
 
-//obteniendo el id user del usuario registrado para registrar expediente
-    $fila=$nuevo->buscaruser($con,$dni,$iduser);
-    $iduser=$fila['idUser'];
-//recepcion de los datos del expediente
-    $tipoExp=$_POST['tipExp'];
-    $mdp=2;// Area a donde se enviará para su evaluación
-    $asunto=$_POST['asunto'];
-    $nArea=$_POST['nomArea'];//Area a la que solicita enviar
-    $nomarea=$nuevo->obtenerdescarea($con,$nArea);
-    $remitente=$nombre." ".$apellidos;
-    $fecha = date("Y-m-d H:i:s"); 
-    $estadoDoc=4;//Solo cuando se registra virtual, espera confirmacion de documentos
-    $detalle ="El documento llego el: ".$fecha." será evaluado y enviado a: ".$nomarea;
-    
-    $nuevo->registroexp($con,$iduser,$mdp,$tipoExp,$estadoDoc,$fecha,$asunto,$remitente,$detalle);
 
-    $buscando=$nuevo->buscarIdDoc($con);
-    $idDoc=$buscando['idExp'];
     //Detalles del archivo
     $fileName = $_FILES['userfile']['name'];
     $tmpName  = $_FILES['userfile']['tmp_name'];
@@ -64,11 +47,29 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     fclose($fp);
     $fileName = addslashes($fileName);
     if($conexion){
-    $query = "INSERT INTO archivoexp (idExp,nomArchivo,tamArchivo,tipArchivo,contenido) ".
-    "VALUES ('$idDoc','$fileName', '$fileSize','$fileType','$content')";
+    $query = "INSERT INTO archivoexp (nomArchivo,tamArchivo,tipArchivo,contenido) ".
+    "VALUES ('$fileName', '$fileSize','$fileType','$content')";
     mysqli_query($conexion,$query) or die('Error, query failed'); 
     mysqli_close($conexion);
     }
+
+
+//obteniendo el id user del usuario registrado para registrar expediente
+    $fila=$nuevo->buscaruser($con,$dni,$iduser);
+    $iduser=$fila['idUser'];
+// datos del archiv
+    $buscando=$nuevo->buscarIdarchivo($con);
+    $idarchivo=$buscando['idArchivo'];
+//recepcion de los datos del expediente
+    $tipoExp=$_POST['tipExp'];
+    $asunto=$_POST['asunto'];
+    $nArea=$_POST['nomArea'];//Area a la que solicita enviar
+    $nomarea=$nuevo->obtenerdescarea($con,$nArea);
+    $remitente=$nombre." ".$apellidos;
+    $fecha = date("Y-m-d H:i:s"); 
+    $estadoDoc=4;//Solo cuando se registra virtual, espera confirmacion de documentos
+    $detalle ="El documento llego el: ".$fecha." será evaluado y enviado a: ".$nomarea;
+    $nuevo->registroVirtual($con,$iduser,$nArea,$tipoExp,$estadoDoc,$idarchivo,$fecha,$asunto,$remitente,$detalle);
 }
 
 require 'Views/registrar.view.php';

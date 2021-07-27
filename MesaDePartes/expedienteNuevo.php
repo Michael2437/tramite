@@ -22,6 +22,7 @@ if(isset($_GET['iduser'])){
   }
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $remitente=$area;
+    $recepcion=1;
     $fecha = date("Y-m-d H:i:s"); 
     $asunto=$_POST['asunto'];
     $nArea=$_POST['selectArea'];
@@ -29,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $tipoExp=$_POST['tipExp'];
     $estadoDoc=$_POST['estadoDoc'];
     $detalle ="Registrado el: ".$fecha.". Enviado a: ".$nomarea."\n";
-    $nuevo->registroexp($con,$iduser,$nArea,$tipoExp,$estadoDoc,$fecha,$asunto,$remitente,$detalle);
+    $nuevo->registroexp($con,$iduser,$recepcion,$nArea,$tipoExp,$estadoDoc,$fecha,$asunto,$remitente,$detalle);
 }
 if(!empty($_GET['iduser'])){
     $dni="";

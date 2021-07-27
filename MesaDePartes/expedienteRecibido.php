@@ -15,7 +15,7 @@ $rol=$listado['rol'];
 $listaArea=$nuevo->selectArea($con);
 
 $statement=$con->prepare('
-    Select * From `expediente` where `idArea`=2
+    Select * From `mdpvirtual` 
 ');
 $statement->execute();
 
@@ -23,6 +23,8 @@ $statement->execute();
 if(isset($_GET['id'])) 
 {
     $id =$_GET['id'];
+    $fila= $statement->fetch();
+    $idarchi=$fila['idArchivo'];
 $conexion= mysqli_connect("localhost","root","");
 if($conexion)
 {
@@ -32,7 +34,7 @@ if($conexion)
      echo "could not connect to the database".die(mysqli_error($conexion));
 }
 $query = "SELECT nomArchivo, tipArchivo, tamArchivo, contenido " .
-         "FROM archivoexp WHERE idExp = '$id'";
+         "FROM archivoexp WHERE idArchivo = '$idarchi'";
 $result = mysqli_query($conexion,$query) or die('Error, query failed');
 list($name, $type, $size, $content) = mysqli_fetch_array($result);
 header("Content-length: $size");
@@ -48,14 +50,13 @@ exit;
 // Ver detalle de archivo
 if(isset($_GET['idDoc'])){
     $idDoc=$_GET['idDoc'];
-    $resultado=$nuevo->expIdDoc($con,$idDoc);
+    $resultado=$nuevo->expIdVirtual($con,$idDoc);
     $id=$resultado['idUser'];
-    $nExp=$resultado['idExp'];
-    $detalle=$resultado['detalle'];
+    $nExp=$resultado['IDmdpV'];
+    $detalle=$resultado['detalleV'];
     $idarea=$resultado['idArea'];
     $areaAct=$nuevo->obtenerdescarea($con,$idarea);
-  
-    $statement = $nuevo->mostrarexp($con,$id);
+
     $script="
     <script>
     $( document ).ready(function() {
@@ -68,18 +69,21 @@ if(isset($_GET['idDoc'])){
 //   modal de derivación
   if(isset($_GET['derivar'])){
     $idDoc=$_GET['derivar'];
-    $resultado=$nuevo->expIdDoc($con,$idDoc);
+    $resultado=$nuevo->expIdVirtual($con,$idDoc);
     $id=$resultado['idUser'];
-    $nExp=$resultado['idExp'];
-    $detalle=$resultado['detalle'];
-    $idarea=$resultado['idArea'];
-    $areaAct=$nuevo->obtenerdescarea($con,$idarea);
+    $nExp=$resultado['IDmdpV'];
+    $detalle=$resultado['detalleV'];
   
-    $statement = $nuevo->mostrarexp($con,$id);
+    $e=$_GET['e'];
+  if($e==1){
+    $modal="myDerivar";
+  }elseif($e==2){
+    $modal="myRechazar";
+  }
     $script="
     <script>
     $( document ).ready(function() {
-        $('#myDerivar').modal('toggle')
+        $('#".$modal."').modal('toggle')
     });
     </script>";
   }
@@ -87,16 +91,30 @@ if(isset($_GET['idDoc'])){
 //   envio de derivación
   if(isset($_POST['nExp'])){
       $nExp=$_POST['nExp'];
-      $sArea=$_POST['nomArea'];
-      $mensaje="";
-      $derivado=$nuevo->derivar($con,$user,$sArea,$mensaje,$nExp);
-
-      $namearea=$nuevo->obtenerdescarea($con,$sArea);
+      $fila=$nuevo->expIdVirtual($con,$nExp);
+      $iduser=$fila['idUser'];
+      $recepcion=2;
+      $idarea=$fila['idArea'];
+      $idTipoExp=$fila['idTipoExp'];
+      $idEstado=1;
+      $idArchivo=$fila['idArchivo'];
+      $remitente=$user;
       $fecha = date("Y-m-d H:i:s");
-      $result=$nuevo->expIdDoc($con,$nExp);
-      $detalle =$result['detalle'];
+      $asunto=$fila['asuntoV'];
+      $detalle=$fila['detalleV'];
+      $namearea=$nuevo->obtenerdescarea($con,$idarea);
       $detalle.="<br>El expediente fue aprobado el: ".$fecha." y enviado a: ".$namearea;
-      $nuevo->detalle($con,$detalle,$nExp);
+      
+      $derivado=$nuevo->registroexp($con,$iduser,$recepcion,$idarea,$idTipoExp,$idEstado,$idArchivo,$fecha,$asunto,$remitente,$detalle);
+  $nuevo->changestatus($con,$nExp);
+  
+      $respuesta=$nuevo->buscaruser($con,"",$iduser);
+      $correo=$respuesta['correo'];
+      $asuntocorreo="Respuesta";
+      $doc=$nuevo->buscarIdDoc($con);
+      $asignado=$doc['idExp'];
+      $mensajecorreo="Su expediente fue aceptado y con el numero de expediente N°". $asignado;
+      mail($correo,$asuntocorreo,$mensajecorreo);
       $script="<script>
   $( document ).ready(function() {
       $('#myConfir').modal('toggle')

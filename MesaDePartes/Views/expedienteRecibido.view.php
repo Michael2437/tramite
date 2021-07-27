@@ -176,7 +176,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="app-sidebar__heading">Recibidos</li>
+                                <li class="app-sidebar__heading">VIRTUAL</li>
                                 <li>
                                     <a href="expedienteRecibido.php" class="mm-active">
                                         <i class="metismenu-icon pe-7s-display2"></i>
@@ -190,71 +190,92 @@
                 </div>
                 <div class="app-main__outer">
                     <div class="app-main__inner">
-                        <div class="table-responsive">
-                                        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th class="text-center">#</th>
-                                                <th class="text-center">Tipo</th>
-                                                <th>Asunto y Area</th>
-                                                <th>Archivo</th>
-                                                <th class="text-center">Fecha</th>
-                                                <th class="text-center">Estado</th>
-                                                <th class="text-center">Acciones</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <?php while($fila= $statement->fetch()){
-                                                $idDoc=$fila['idExp'];
-                                                $idtipoExp=$fila['idTipoExp'];
-                                                $tipoExp=$nuevo->obtenerTipoExp($con,$idtipoExp);
-                                                $asunto=$fila['asuntoExp'];
-                                                $idarea=$fila['idArea'];
-                                                $nomArea=$nuevo->obtenerdescarea($con,$idarea);
-                                                $fecha=$fila['fechaExp'];
-                                                $idestado=$fila['idEstado'];
-                                                $estadoDoc=$nuevo->obtenerNomEstado($con,$idestado);
-                                                $content=$nuevo->archivo($con,$idDoc);
-                                                ?>
-                                            <tr>
-                                                <td class="text-center text-muted"><?php echo $idDoc;?></td>
-                                                <td class="text-center"><?php echo $tipoExp;?></td>
-                                                <td>
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            
-                                                            <div class="widget-content-left flex2">
-                                                                <div class="widget-heading"><?php echo $asunto;?></div>
-                                                                <div class="widget-subheading opacity-7"><?php echo $nomArea;?></div>
+                        <div class="main-card mb-3 card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center">#</th>
+                                                    <th class="text-center">Tipo</th>
+                                                    <th>Asunto y Area</th>
+                                                    <th>Archivo</th>
+                                                    <th class="text-center">Fecha</th>
+                                                    <th class="text-center">Acciones</th>
+                                                    <th class="text-center"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php $i=1; while($fila= $statement->fetch()){
+                                                    $idDoc=$fila['IDmdpV'];
+                                                    $idtipoExp=$fila['idTipoExp'];
+                                                    $tipoExp=$nuevo->obtenerTipoExp($con,$idtipoExp);
+                                                    $asunto=$fila['asuntoV'];
+                                                    $idarea=$fila['idArea'];
+                                                    $nomArea=$nuevo->obtenerdescarea($con,$idarea);
+                                                    $fecha=$fila['fechaV'];
+                                                    $idestado=$fila['idEstado'];
+                                                    $estadoDoc=$nuevo->obtenerNomEstado($con,$idestado);
+                                                    $idarc=$fila['idArchivo'];
+                                                    $content=$nuevo->archivo($con,$idarc); if($idestado==4){
+                                                        
+                                                    ?>
+                                                <tr>
+                                                    <td class="text-center text-muted"><?php echo $idDoc;?></td>
+                                                    <td class="text-center"><?php echo $tipoExp;?></td>
+                                                    <td>
+                                                        <div class="widget-content p-0">
+                                                            <div class="widget-content-wrapper">
+                                                                
+                                                                <div class="widget-content-left flex2">
+                                                                    <div class="widget-heading"><?php echo $asunto;?></div>
+                                                                    <div class="widget-subheading opacity-7"><?php echo $nomArea;?></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td><?php echo $content;?> </td>
+                                                    <td class="text-center"><?php echo $fecha;?></td>
+                                                    <td class="text-center">
+                                                        <a href="expedienteRecibido.php?idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
+                                                        <a href="expedienteRecibido.php?id=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Descargar</a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                    
+                                                    <div class="page-title-actions">
+                                                        <div class="d-inline-block dropdown">
+                                                            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
+                                                            Acción
+                                                            </button>
+                                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                                                <ul class="nav flex-column">
+                                                                    <li class="nav-item">
+                                                                        <a href="expedienteRecibido.php?derivar=<?php echo $idDoc?>&e=1" class="nav-link">
+                                                                            <span>
+                                                                                Aceptar
+                                                                            </span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a href="expedienteRecibido.php?derivar=<?php echo $idDoc?>&e=2" class="nav-link">
+                                                                            <span>
+                                                                                Rechazar
+                                                                            </span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td><?php echo $content;?> </td>
-                                                <td class="text-center"><?php echo $fecha;?></td>
-                                                <td class="text-center">
-                                                    <div class="badge <?php switch($estadoDoc){
-                                                        case "Nuevo":
-                                                            echo "badge-warning";
-                                                            break;
-                                                        case "Abierto":
-                                                            echo "badge-danger";
-                                                            break;
-                                                        case "Completado":
-                                                            echo "badge-success";
-                                                            break;
-                                                    }?>"><?php echo $estadoDoc;?></div>
-                                                </td>
-                                                <td class="text-center">
-                                                <a href="expedienteRecibido.php?idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
-                                                <a href="expedienteRecibido.php?id=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Descargar</a>
-                                                <a href="expedienteRecibido.php?derivar=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Derivar</a>
-                                            </td>
-                                            </tr>
-                                            <?php } ?>
+                                                </tr>
+                                                <?php $i++;}} ?>
 
-                                            </tbody>
+                                                </tbody>
                                         </table>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -278,7 +299,6 @@
             </div>
             <div class="modal-body">
             <p><?php echo $detalle; ?></p>
-            <p><?php echo "Ahora está en: ".$areaAct; ?></p>
             </div>
             <div class="modal-footer">
                 <a href="expedienteRecibido.php" type="button" class="btn btn-primary">Aceptar</a>
@@ -294,7 +314,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Derivar Expediente <?php echo $nExp; ?></h5>
+                <h5 class="modal-title" id="exampleModalLabel">Derivar Documento <?php echo $nExp; ?></h5>
                 <a href="expedienteRecibido.php" type="button" class="close"  aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </a>
@@ -302,18 +322,19 @@
             <div class="modal-body">
                 <form action="expedienteRecibido.php" method="POST" name="derivar" id="derivar">
                     <input type="hidden" name="nExp" id="nExp" value="<?php echo $nExp;?>">
-                    <select name="nomArea" id="nomArea" type="text" class="form-control">
+                    <!-- <select name="nomArea" id="nomArea" type="text" class="form-control">
                             <option></option>
                         <?php while($selectArea=$listaArea->fetch()){
                             if($selectArea['nomArea']!="Mesa de Partes" && $selectArea['nomArea']!= "Administrador"){?>
                             <option value="<?php echo $selectArea['idArea'];?>"><?php echo $selectArea['nomArea'];?></option>
                         <?php }}?>
-                    </select>
+                    </select> -->
                 </form>
+                <p>Está seguro de aceptar el documento?</p>
             </div>
             <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" onclick="derivar.submit()"> Derivar</button>
-                <a href="expedienteRecibido.php" type="button" class="btn btn-primary">Cancelar</a>
+            <button type="submit" class="btn btn-primary" onclick="derivar.submit()">Si</button>
+                <a href="expedienteRecibido.php" type="button" class="btn btn-primary">No</a>
             </div>
         </div>
     </div>
@@ -334,6 +355,35 @@
                 </div>
             </div>
             
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->
+
+
+<!-- MODAL -->
+<div id="myRechazar" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Rechazar Documento <?php echo $nExp; ?></h5>
+                <a href="expedienteRecibido.php" type="button" class="close"  aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form action="expedienteRecibido.php" method="POST" name="rechazar" id="rechazar">
+                    <input type="hidden" name="iddoc" id="iddoc" value="<?php echo $nExp;?>">
+                    <p>Ingrese un mensaje para el usuario</p>
+                    <input type="text" class="form-control" required>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p>Está seguro de rechazar el documento?</p>
+                <button type="submit" class="btn btn-primary" onclick="rechazar.submit()">Si</button>
+                <a href="expedienteRecibido.php" type="button" class="btn btn-primary">No</a>
+            </div>
         </div>
     </div>
 </div>

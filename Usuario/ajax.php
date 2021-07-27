@@ -2,7 +2,7 @@
 $salida="";
     if(isset($_POST['consulta'])){
         $consulta=$_POST['consulta'];
-        if($consulta =="Jurídico"){
+        if($consulta =="2"){
             $salida.="
             <div class='form-row'>
                 <div class='col-md-6'>

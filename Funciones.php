@@ -187,19 +187,38 @@ Class Conexion{
       $resultado=$statement->fetch();
       return $resultado;
     }
-    public function registroexp($conexion,$iduser,$nArea,$tipoExp,$estadoDoc,$fecha,$asunto,$remitente,$detalle){
+    public function buscarIdVirtual($conexion){
+      $statement=$conexion->prepare(
+        'SELECT IDmdpV FROM `mdpvirtual` ORDER BY IDmdpV DESC LIMIT 1'
+      );
+      $statement->execute();
+      $resultado=$statement->fetch();
+      return $resultado;
+    }
+    public function buscarIdarchivo($conexion){
+      $statement=$conexion->prepare(
+        'SELECT idArchivo FROM `archivoexp` ORDER BY idArchivo DESC LIMIT 1'
+      );
+      $statement->execute();
+      $resultado=$statement->fetch();
+      return $resultado;
+    }
+    public function registroexp($conexion,$iduser,$idrecepcion,$nArea,$tipoExp,$estadoDoc,$idarchivo,$fecha,$asunto,$remitente,$detalle){
       $statement = $conexion->prepare('
-      INSERT INTO `expediente` ( `idUser`,`idArea`,`idTipoExp`,`idEstado`, `fechaExp`,`remitente` , `asuntoExp`,`detalle`) VALUES (:iduser,:nArea,:tipoExp ,:estadoExp,:fecha,:remitente, :asunto ,:detalle)');
+      INSERT INTO `expediente` ( `idUser`,`idRecepcion`,`idArea`,`idTipoExp`,`idEstado`,`idarchivo`, `fechaExp`,`remitente` , `asuntoExp`,`detalle`) VALUES (:iduser,:idrec,:nArea,:tipoExp ,:estadoExp,:idarchivo,:fecha,:remitente, :asunto ,:detalle)');
       $statement->execute(array(
       ':iduser' =>$iduser,
+      ':idrec'=>$idrecepcion,
       ':nArea'  =>$nArea,
       ':tipoExp' =>$tipoExp,
       ':estadoExp'=>$estadoDoc,
+      ':idarchivo'=>$idarchivo,
       ':fecha'  =>$fecha,
       ':remitente'=>$remitente,
       ':asunto' =>$asunto,
       ':detalle'=>$detalle
       ));
+      return $statement;
     }
     public function mostrarexp($conexion,$iduser){
         $statement = $conexion->prepare('
@@ -209,6 +228,14 @@ Class Conexion{
         ));
         return $statement;
     }
+    public function mostrarexpVirtual($conexion,$iduser){
+      $statement = $conexion->prepare('
+      SELECT * FROM `mdpvirtual` WHERE `idUser` = :iduser');
+      $statement->execute(array(
+        ':iduser' => $iduser
+      ));
+      return $statement;
+  }
 
     /*Filtrar expediente por usuario */
     public function filtrarexpUser($conexion,$estado,$iduser){
@@ -302,6 +329,23 @@ Class Conexion{
       ));
       $resultado=$consulta->fetch();
       return $resultado;
+    }
+    public function expIdVirtual($conexion,$idDoc){
+      $consulta=$conexion-> prepare('
+      SELECT * FROM `mdpvirtual` WHERE IDmdpV = :idDoc');
+      $consulta->execute(array(
+        ':idDoc'=>$idDoc
+      ));
+      $resultado=$consulta->fetch();
+      return $resultado;
+    }
+    public function changestatus($conexion,$idDoc){
+      $consulta=$conexion->prepare(
+        'UPDATE `mdpvirtual` SET `idEstado` = "1" WHERE `mdpvirtual`.`IDmdpV` = :idDoc'
+      );
+      $consulta ->execute(array(
+        ':idDoc'=> $idDoc
+      ));
     }
     public function cambioestado($conexion,$idDoc){
       $consulta=$conexion->prepare(
@@ -426,7 +470,7 @@ public function modificarexp($conexion,$nExp,$fecha,$asunto,$nArea,$nExpAntes){
 
     public function archivo($conexion,$iddoc){
     $statement=$conexion->prepare('
-        Select * from archivoexp where idExp= :iddoc
+        Select * from archivoexp where idArchivo= :iddoc
     ');
     $statement->execute(array(
       ':iddoc'=>$iddoc
@@ -436,7 +480,22 @@ public function modificarexp($conexion,$nExp,$fecha,$asunto,$nArea,$nExpAntes){
     return $contenido;
     }
 
-
+    public function registroVirtual($conexion,$iduser,$nArea,$tipoExp,$estadoDoc,$idarchivo,$fecha,$asunto,$remitente,$detalle){
+      $statement=$conexion->prepare(
+        'INSERT INTO `mdpvirtual` (`idUser`,`idArea`,`idTipoExp`,`idEstado`,`idArchivo`,`fechaV`,`remitenteV`,`asuntoV`,`detalleV`) VALUES (:iduser,:narea,:tipoExp,:estadoExp,:idarchivo,:fecha,:remitente,:asunto,:detalle)'
+      );
+      $statement->execute(array(
+        ':iduser'=>$iduser,
+        ':narea'=>$nArea,
+        ':tipoExp'=>$tipoExp,
+        ':estadoExp'=>$estadoDoc,
+        ':idarchivo'=>$idarchivo,
+        ':fecha'=>$fecha,
+        ':remitente'=>$remitente,
+        ':asunto'=>$asunto,
+        ':detalle'=>$detalle
+      ));
+    }
   }
 
   

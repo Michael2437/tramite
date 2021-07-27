@@ -176,7 +176,7 @@
                               </ul>
                           </li>
 
-                          <li class="app-sidebar__heading">Seguimiento</li>
+                          <li class="app-sidebar__heading">VIRTUAL</li>
                           <li>
                           <a href="expedienteRecibido.php">
                                         <i class="metismenu-icon pe-7s-display2"></i>
