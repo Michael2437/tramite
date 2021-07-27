@@ -374,9 +374,9 @@
             </div>
             <div class="modal-body">
                 <form action="expedienteRecibido.php" method="POST" name="rechazar" id="rechazar">
-                    <input type="hidden" name="iddoc" id="iddoc" value="<?php echo $nExp;?>">
+                    <input type="hidden" name="rechazo" id="rechazo" value="<?php echo $nExp;?>">
                     <p>Ingrese un mensaje para el usuario</p>
-                    <input type="text" class="form-control" required>
+                    <input type="text" id="mensaje" name="mensaje" class="form-control" required>
                 </form>
             </div>
             <div class="modal-footer">
@@ -384,6 +384,24 @@
                 <button type="submit" class="btn btn-primary" onclick="rechazar.submit()">Si</button>
                 <a href="expedienteRecibido.php" type="button" class="btn btn-primary">No</a>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->
+<!-- MODAL -->
+<div id="conRechazo" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div>
+                <h5 class="modal-title" id="exampleModalLabel">Rechazado</h5>
+                </div>
+                <div>
+                <a href="expedienteRecibido.php" class="btn btn-secondary" >Aceptar</a>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>

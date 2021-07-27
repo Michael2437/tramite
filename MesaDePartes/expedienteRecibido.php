@@ -106,14 +106,15 @@ if(isset($_GET['idDoc'])){
       $detalle.="<br>El expediente fue aprobado el: ".$fecha." y enviado a: ".$namearea;
       
       $derivado=$nuevo->registroexp($con,$iduser,$recepcion,$idarea,$idTipoExp,$idEstado,$idArchivo,$fecha,$asunto,$remitente,$detalle);
-  $nuevo->changestatus($con,$nExp);
+      $e=1;
+      $nuevo->changestatus($con,$nExp,$e);
   
       $respuesta=$nuevo->buscaruser($con,"",$iduser);
       $correo=$respuesta['correo'];
       $asuntocorreo="Respuesta";
       $doc=$nuevo->buscarIdDoc($con);
       $asignado=$doc['idExp'];
-      $mensajecorreo="Su expediente fue aceptado y con el numero de expediente N°". $asignado;
+      $mensajecorreo="Su expediente fue aceptado y con el numero de expediente N". $asignado;
       mail($correo,$asuntocorreo,$mensajecorreo);
       $script="<script>
   $( document ).ready(function() {
@@ -122,6 +123,25 @@ if(isset($_GET['idDoc'])){
   </script>";
   }
 
+  if(isset($_POST['rechazo'])){
+    $e=5;
+    $dni="";
+    $idrechazo=$_POST['rechazo'];
+    $fila=$nuevo->expIdVirtual($con,$idrechazo);
+    $iduser=$fila['idUser'];
+    $columna=$nuevo->buscaruser($con,$dni,$iduser);
+    $correo=$columna['correo'];
+    $asunto="Rechazado";
+    $mensaje=$_POST['mensaje'];
+
+    $derivado=$nuevo->changestatus($con,$idrechazo,$e);
+    mail($correo,$asunto,$mensaje);
+    $script="<script>
+  $( document ).ready(function() {
+      $('#conRechazo').modal('toggle')
+  });
+  </script>";
+  }
 //   modal de derivado exitoso
 if(isset($_SESSION['usuario'])){
   require 'Views/expedienteRecibido.view.php';

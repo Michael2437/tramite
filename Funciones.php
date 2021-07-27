@@ -361,13 +361,15 @@ Class Conexion{
       $resultado=$consulta->fetch();
       return $resultado;
     }
-    public function changestatus($conexion,$idDoc){
+    public function changestatus($conexion,$idDoc,$e){
       $consulta=$conexion->prepare(
-        'UPDATE `mdpvirtual` SET `idEstado` = "1" WHERE `mdpvirtual`.`IDmdpV` = :idDoc'
+        'UPDATE `mdpvirtual` SET `idEstado` = :e WHERE `mdpvirtual`.`IDmdpV` = :idDoc'
       );
       $consulta ->execute(array(
-        ':idDoc'=> $idDoc
+        ':idDoc'=> $idDoc,
+        ':e'=>$e
       ));
+      return $consulta;
     }
     public function cambioestado($conexion,$idDoc){
       $consulta=$conexion->prepare(
