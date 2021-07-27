@@ -8,7 +8,23 @@ $listado=$nuevo->roles($con,$user);
 $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
+
+$script="";
 $nExp="";
+if(isset($_GET['id'])){
+  $idDoc=$_GET['id'];
+  $resultado=$nuevo->expIdDoc($con,$idDoc);
+  $id=$resultado['idUser'];
+  $nExp=$resultado['idExp'];
+  $detalle=$resultado['detalle'];
+  $idarea=$resultado['idArea'];
+  $areaAct=$nuevo->obtenerdescarea($con,$idarea);
+  $script.="<script>
+              $( document ).ready(function() {
+                  $('#myModal').modal('toggle')
+              });
+              </script>";
+}
 if(isset($_POST['nExp'])){
     $nExp=$_POST['nExp'];
 }
@@ -61,7 +77,7 @@ if($fila){
                   <div class='col-md-4'></div>
                     <div class='col-md-4'>
                       <div class='text-center'>
-                        <a href='expedienteVer.php?iduser=". $id."&e=1 ' class='mt-2 btn btn-primary'>Ver Expedientes</a> 
+                        <a href='expedienteBuscar.php?id=".$idDoc."' class='mt-2 btn btn-primary'>Detalle</a> 
                       </div>
                     </div>
                   <div class='col-md-4'></div>

@@ -15,7 +15,7 @@ $idDoc=$buscando['idExp']+1;
 
 $listaTipo=$nuevo->tipoExp($con);
 $listaArea=$nuevo->selectArea($con);
-
+$script="";
 
 if(isset($_GET['iduser'])){
     $iduser= $_GET['iduser'];
@@ -30,7 +30,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $tipoExp=$_POST['tipExp'];
     $estadoDoc=$_POST['estadoDoc'];
     $detalle ="Registrado el: ".$fecha.". Enviado a: ".$nomarea."\n";
-    $nuevo->registroexp($con,$iduser,$recepcion,$nArea,$tipoExp,$estadoDoc,$fecha,$asunto,$remitente,$detalle);
+    $nuevo->registroexp($con,$iduser,$recepcion,$nArea,$tipoExp,$estadoDoc,"",$fecha,$asunto,$remitente,$detalle);
+    $script.="<script>
+  $( document ).ready(function() {
+      $('#myModal').modal('toggle')
+  });
+  </script>";
 }
 if(!empty($_GET['iduser'])){
     $dni="";

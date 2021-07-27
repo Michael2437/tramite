@@ -12,7 +12,7 @@ $rol=$listado['rol'];
 
 $dni="";
 $iduser="";
-$salida="";
+$salida="";$script="";
 
 if(isset($_POST['nombresreg'])){
   $dniantiguo=$_POST['dni'];
@@ -21,8 +21,19 @@ if(isset($_POST['nombresreg'])){
   $apellidosreg=$_POST['apellidosreg'];
   $direccionreg=$_POST['direccionreg'];
   $telefonoreg=$_POST['telefonoreg'];
-  $result=$nuevo->modificaruser($con,$dni,$nombresreg,$apellidosreg,$direccionreg,$telefonoreg,$dniantiguo);
-    
+  $correo=$_POST['correo'];
+  $tipo=$_POST['tipo'];
+            if($tipo==1){
+              $ruc=""; $razonsocial="";
+            }elseif($tipo==2){
+              $ruc=$_POST['ruc']; $razonsocial=$_POST['razonsocial'];
+            }
+  $result=$nuevo->modificaruser($con,$dni,$nombresreg,$apellidosreg,$direccionreg,$telefonoreg,$correo,$tipo,$ruc,$razonsocial,$dniantiguo);
+  $script.="<script>
+  $( document ).ready(function() {
+      $('#myModal').modal('toggle')
+  });
+  </script>";
 }
 
 if(isset($_POST['dni']) ){
@@ -89,7 +100,7 @@ $resultado=$nuevo->buscaruser($con,$dni,$iduser);
               </div>
               <div class='col-md-4'>
                 <div class='position-relative form-group'><label for='exampleAddress' class=''>Tipo Usuario</label>
-                  <select class='mb-2 form-control' name='tipo' id='tipo' onchange='buscar_archivos()'>
+                  <select class='mb-2 form-control' name='tipo' id='tipo' onchange='buscar_archivos()' required>
                     <option></option>
                     <option value='1'>Normal</option>
                     <option value='2'>Jurídico</option>

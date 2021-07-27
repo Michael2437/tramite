@@ -11,7 +11,7 @@ $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
 $nExp="";
-
+$script="";
 if(isset($_POST['idDoc'])){
   $nExp=$_POST['idDoc'];
   $nExpAntes=$_POST['nExpAntes'];
@@ -22,6 +22,11 @@ if(isset($_POST['idDoc'])){
   $result=$nuevo->modificarexp($con,$nExp,$fecha,$asunto,$idarea,$nExpAntes);
   if($result){
     $error="<div class='text-center'> Modificado Exitosamente</div>";
+    $script.="<script>
+    $( document ).ready(function() {
+        $('#myModal').modal('toggle')
+    });
+    </script>";
   }else{$error="<div class='text-center'>No se puede modificar porque ya existe el numero de expediente</div>";}
     
 }

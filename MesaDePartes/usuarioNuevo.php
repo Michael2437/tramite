@@ -11,7 +11,7 @@ $rol=$listado['rol'];
 
 // Inicio de funcionalidades
 $salida="";
-
+$script="";
 if (isset($_POST['dni'])) {
   $dni = $_POST['dni'];
   $nombres = $_POST['nombres'];
@@ -33,6 +33,11 @@ if (isset($_POST['dni'])) {
   } else {
     $nuevo->registrouser($con,$dni,$nombres,$apellidos,$direccion,$telefono,$correo,$tipouser,$ruc,$razonsocial);
     $error .= '<p>Registrado correctamente</p>';
+    $script.="<script>
+  $( document ).ready(function() {
+      $('#myModal').modal('toggle')
+  });
+  </script>";
   }
 }
 

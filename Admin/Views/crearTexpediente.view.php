@@ -248,7 +248,7 @@
                                                 </td>
                                                 
                                                 <td class="text-center">
-                                                    <a href="#" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Modificar</a>
+                                                    <a href="crearTexpediente.php?id=<?php echo $id?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Modificar</a>
                                                     <a href="#" id="<?php echo $id;?>" class="mr-2 btn-icon btn-icon-only btn btn-outline-danger abrirmodal" data-toggle="modal" data-target="#Eliminar"><i class="pe-7s-trash btn-icon-wrapper"> </i></a>
                                                 </td>
                                             </tr><?php }?>
@@ -320,6 +320,48 @@ $(".abrirmodal").click(function() {
         </div>
     </div>
 </div>
+
+<!-- FIN MODAL-->
+
+<!-- MODAL DE modificar tipo de EXPEDIENTE-->
+<div id="myModificar" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar Tipo de Expediente</h5>
+                <button data-dismiss="modal" type="button" class="close"  aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="crearTexpediente.php" method="POST" name="modTexp">
+                <div class="modal-body">
+                <label>Cambie el Nombre</label>
+                <input type="hidden" name="idmod" id="idmod" value="<?php echo $idtipo;?>">
+                <input class="form-control" value="<?php echo $eliminar;?>" id="tipMod" name="tipMod" type="text" placeholder="Tipo de Expediente" autocomplete="off">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" type="button" class="btn btn-primary">Modificar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- MODAL DE CONFIRMACION DE modificacion de tipo de  EXPEDIENTE-->
+<div id="conModificar" class="modal fade bd-example-modal-sm">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificado Existosamente</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="crearTexpediente.php"  type="button" class="btn btn-primary">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->
 
 <!-- FIN MODAL-->
 

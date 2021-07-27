@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../Views/main.css" rel="stylesheet">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../Views/assets/scripts/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
     <title>Nuevo Usuario</title>
 </head>
 <body>
+
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
@@ -86,8 +92,7 @@
                     </div>
                   </div>
             </div>
-        </div>
-        
+        </div>       
         <div class="app-main">
             <div class="app-sidebar sidebar-shadow">
               <div class="app-header__logo">
@@ -187,8 +192,7 @@
                       </ul>
                   </div>
               </div>
-            </div>
-          
+            </div>    
             <div class="app-main__outer">
                 <div class="app-main__inner">
                     <div class="tab-content">
@@ -227,7 +231,7 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="position-relative form-group"><label for="exampleEmail11" class="">Telefono</label>
-                                                            <input name="telefono" id="telefono" placeholder="123-456-789" type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" >
+                                                            <input name="telefono" id="telefono" placeholder="123-456-789" type="tel" class="form-control" >
                                                         </div>
                                                     </div>
                                                 </div>
@@ -248,8 +252,7 @@
                                                     </div>
                                                 </div>
                                                 <div id ="selectorder"></div>
-                                                <?php if(!empty($error)):echo $error; endif;?>
-                                        
+                                               
                                                 <div class="text-center">
                                                     <button type="input" name="registrar" class="mt-2 btn btn-primary" >Registrar</button>
                                                 </div>
@@ -267,11 +270,28 @@
             </div>
         </div>
     </div>
-    
-
+    <?php if(!empty($script)){echo $script;}?>
 <script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
 <script type="text/javascript" src="../Views/assets/scripts/funciones.js"></script>
-<script type="text/javascript" src="../Views/assets/scripts/jquery.min.js"></script>
 
 </body>
 </html>
+
+<!-- MODAL -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div>
+                <h5 class="modal-title" id="exampleModalLabel">Registrado Correctamente</h5>
+                </div>
+                <div>
+                <a href="indexMDP.php" class="btn btn-secondary" >Aceptar</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->

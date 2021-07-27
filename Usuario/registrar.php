@@ -3,7 +3,7 @@ include_once '../Funciones.php';
 date_default_timezone_set('America/Lima');
 $nuevo=new Conexion();
 $con=$nuevo->conectar();
-
+$script="";
 $conexion= mysqli_connect("localhost","root","");
 if($conexion)
 {
@@ -70,6 +70,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $estadoDoc=4;//Solo cuando se registra virtual, espera confirmacion de documentos
     $detalle ="El documento llego el: ".$fecha." será evaluado y enviado a: ".$nomarea;
     $nuevo->registroVirtual($con,$iduser,$nArea,$tipoExp,$estadoDoc,$idarchivo,$fecha,$asunto,$remitente,$detalle);
+
+    $script.="<script>
+$( document ).ready(function() {
+    $('#myModal').modal('toggle')
+});
+</script>";
+ 
 }
 
 require 'Views/registrar.view.php';

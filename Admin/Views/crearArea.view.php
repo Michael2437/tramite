@@ -10,10 +10,10 @@
     <meta name="description" content="Wide selection of forms controls, using the Bootstrap 4 code base, but built with React.">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="../Views/main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>    
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -214,12 +214,12 @@
                                                 <form action="crearArea.php" method="Post" name="crearArea">
                                                     <div class="position-relative form-group">
                                                         <label for="exampleEmail" class="">Nombre de Area</label>
-                                                        <input name="nomArea" id="nomArea" placeholder="Ingrese el nombre del Area" type="text" class="form-control" autocomplete="off">
+                                                        <input name="nomArea" id="nomArea" placeholder="Ingrese el nombre del Area" type="text" class="form-control" autocomplete="off" required>
                                                     </div>
                                                     <div class="position-relative form-group">
                                                         <label for="examplePassword" class="">Contraseña</label>
                                                         <div class="input-group">
-                                                        <input name="pass" id="pass" placeholder="Ingrese la contraseña" type="password"class="form-control">
+                                                        <input name="pass" id="pass" placeholder="Ingrese la contraseña" type="password"class="form-control" required>
                                                         <div class="input-group-append">
                                                             <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
                                                         </div>            
@@ -228,7 +228,7 @@
                                                     <div class="position-relative form-group">
                                                         <label for="examplePassword" class="">Confirmar Contraseña</label>
                                                         <div class="input-group">
-                                                        <input name="passCon" id="passCon" placeholder="Confirme la contraseña" type="password"class="form-control">
+                                                        <input name="passCon" id="passCon" placeholder="Confirme la contraseña" type="password"class="form-control" required>
                                                         <div class="input-group-append">
                                                             <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarConfirm()"> <span class="fa fa-eye-slash icon"></span> </button>
                                                         </div>
@@ -250,7 +250,27 @@
                 </div>  
         </div>
     </div>
+    <?php if(!empty($script)){echo $script;}?>
 <script type="text/javascript" src="Views/js/funciones.js"></script> 
 <script type="text/javascript" src="../Views/assets/scripts/main.js"></script>
 </body>
 </html>
+
+<!-- MODAL -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div>
+                <h5 class="modal-title" id="exampleModalLabel">Área Creada</h5>
+                </div>
+                <div>
+                <a href="adminAreas.php" class="btn btn-secondary" >Aceptar</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL-->

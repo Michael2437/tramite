@@ -9,7 +9,7 @@ $listado= $nuevo->roles($con,$user);
 
 $area=$listado['nomArea'];
 $rol=$listado['rol'];
-
+$script="";
 if(isset($_POST['nomArea'])){
   $nomArea=$_POST['nomArea'];
   $pass=$_POST['pass'];
@@ -17,9 +17,14 @@ if(isset($_POST['nomArea'])){
 
   if($pass ==$passCon){
     $resultado=$nuevo->crearArea($con,$nomArea,$pass);
-    // if($resultado){
-    //   $nuevo->crearListadoArea($con,$nomArea);
-    //   }
+    
+     if($resultado){
+     $script.="<script>
+          $( document ).ready(function() {
+            $('#myModal').modal('toggle')
+        });
+        </script>";
+       }
     }
     
 }

@@ -128,9 +128,9 @@ Class Conexion{
       return $estadoexp;
     }
   // modificar el usuario
-    public function modificaruser($conexion,$dni,$nombres,$apellidos,$direccion,$telefono,$dniantiguo){
+    public function modificaruser($conexion,$dni,$nombres,$apellidos,$direccion,$telefono,$correo,$idtipo,$ruc,$razonsocial,$dniantiguo){
       $sql = $conexion->prepare('
-            UPDATE `usuario` SET `dni` = :dnimod, `nomUser` = :nombresmod, `apeUser` = :apellidosmod, `dirUser` = :direccionmod, `telUser` = :telefonomod WHERE `usuario`.`dni` = :dniantiguo;
+            UPDATE `usuario` SET `dni` = :dnimod, `nomUser` = :nombresmod, `apeUser` = :apellidosmod, `dirUser` = :direccionmod, `telUser` = :telefonomod,`correo`=:correo,`idTipoUser`=:idtipo,`ruc`=:ruc,`razonsocial`=:razonsocial WHERE `usuario`.`dni` = :dniantiguo;
             ');
       $sql->execute(array(
         ':dnimod'=> $dni,
@@ -138,6 +138,10 @@ Class Conexion{
         ':apellidosmod'=>$apellidos,
         ':direccionmod' =>$direccion,
         ':telefonomod' =>$telefono,
+        ':correo'=>$correo,
+        ':idtipo'=>$idtipo,
+        ':ruc'=>$ruc,
+        ':razonsocial'=>$razonsocial,
         ':dniantiguo'=>$dniantiguo
       ));
       return $sql;
@@ -150,6 +154,14 @@ Class Conexion{
             );
             $statement->execute();
             return $statement;
+          }
+          public function buscarTExp($conexion,$id){
+            $statement=$conexion->prepare(
+              'SELECT * FROM `tipoexp` Where `idTipoExp`=:id'
+            );
+            $statement->execute(array(':id'=>$id));
+            $fila=$statement->fetch();
+            return $fila;
           }
           public function nuevoTexp($con,$tipExp){
             $statement=$con->prepare(
@@ -166,6 +178,16 @@ Class Conexion{
             );
             $statement->execute(array(
               ':idTexp'=>$idTexp
+            ));
+            return $statement;
+          }
+          public function modificarTexp($con,$id,$idTexp){
+            $statement=$con->prepare(
+              'UPDATE `tipoexp` SET `descTipoExp` = :desctipo WHERE `tipoexp`.`idTipoExp` = :tipo;'
+            );
+            $statement->execute(array(
+              ':tipo'=>$id,
+              ':desctipo'=>$idTexp
             ));
             return $statement;
           }

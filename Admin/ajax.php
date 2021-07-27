@@ -6,7 +6,7 @@ $salida="";
             $salida.="<div class='form-row'>
             <div class='col-md-6'>
             <label>Ruc</label>
-            <input id='ruc' name='ruc' type='text' placeholder='Ingrese RUC' class='form-control' required>
+            <input id='ruc' name='ruc' type='text'  placeholder='Ingrese RUC' class='form-control' required>
             </div>
                 <div class='col-md-6'>
                 <label>Razon Social</label>

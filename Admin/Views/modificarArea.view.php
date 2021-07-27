@@ -275,7 +275,7 @@
             <p>Modificado Existosamente</p>
             </div>
             <div class="modal-footer">
-                <a href="indexAdmin.php" type="button" class="btn btn-primary">Aceptar</a>
+                <a href="adminAreas.php" type="button" class="btn btn-primary">Aceptar</a>
             </div>
         </div>
     </div>
