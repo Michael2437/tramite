@@ -280,6 +280,7 @@
                                                     <td class="text-center">
                                                         <a href="expedienteAbrir.php?page=<?php echo $page;?>&e=<?php echo $e;?>&idDoc=<?php echo $idDoc?>" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Abrir</a>
                                                         <a href="indexAreas.php?page=<?php echo $page;?>&e=<?php echo $e;?>&idDoc=<?php echo $idDoc?>" class="btn btn-primary btn-sm order-submit ">Detalles</a>
+                                                        <a href="indexAreas.php?page=<?php echo $page;?>&e=<?php echo $e;?>&id=<?php echo $idDoc;?>" class="btn btn-primary"><i class="pe-7s-cloud-download"> </i></a>
                                                      </td>
                                                 </tr>
 

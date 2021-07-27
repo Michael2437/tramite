@@ -64,6 +64,38 @@ if(isset($_GET['idDoc'])){
   </script>";
 }
 
+// Descargar el archivo 
+if(isset($_GET['id'])){
+  $idDocu=$_GET['id'];
+
+          $statement=$con->prepare('
+            Select * From `mdpvirtual` 
+        ');
+        $statement->execute();
+        $fila= $statement->fetch();
+            $idarchi=$fila['idArchivo'];
+        $conexion= mysqli_connect("localhost","root","");
+        if($conexion)
+        {
+            mysqli_select_db($conexion,"mejorado");
+        }
+        else {
+            echo "could not connect to the database".die(mysqli_error($conexion));
+        }
+        $query = "SELECT nomArchivo, tipArchivo, tamArchivo, contenido " .
+                "FROM archivoexp WHERE idArchivo = '$idarchi'";
+        $result = mysqli_query($conexion,$query) or die('Error, query failed');
+        list($name, $type, $size, $content) = mysqli_fetch_array($result);
+        header("Content-length: $size");
+        header("Content-type: $type");
+        header("Content-Disposition: attachment; filename=$name");
+        ob_clean();
+        flush();
+        echo $content;
+        mysqli_close($conexion);
+        exit;
+}
+
 /*SU VIEW */
 if(isset($_SESSION['usuario'])){
     require 'Views/indexAreas.view.php';
