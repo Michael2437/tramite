@@ -10,9 +10,6 @@ $listado= $nuevo->roles($con,$user);
 $area=$listado['nomArea'];
 $rol=$listado['rol'];
 
-$buscando=$nuevo->buscarIdDoc($con);
-$idDoc=$buscando['idExp']+1;
-
 $listaTipo=$nuevo->tipoExp($con);
 $listaArea=$nuevo->selectArea($con);
 $script="";
@@ -30,7 +27,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $tipoExp=$_POST['tipExp'];
     $estadoDoc=$_POST['estadoDoc'];
     $detalle ="Registrado el: ".$fecha.". Enviado a: ".$nomarea."\n";
-    $nuevo->registroexp($con,$iduser,$recepcion,$nArea,$tipoExp,$estadoDoc,"",$fecha,$asunto,$remitente,$detalle);
+//id archivo ira con valor 1, que significa que no hay ningun archivo.
+    $nuevo->registroexp($con,$iduser,$recepcion,$nArea,$tipoExp,$estadoDoc,1,$fecha,$asunto,$remitente,$detalle);
     $script.="<script>
   $( document ).ready(function() {
       $('#myModal').modal('toggle')
@@ -38,6 +36,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   </script>";
 }
 if(!empty($_GET['iduser'])){
+    $iduser= $_GET['iduser'];
+    $buscando=$nuevo->buscarIdDoc($con);
+    if($buscando){
+        $idDoc=$buscando['idExp']+1;
+    }else{
+        $idDoc=1;
+    }
     $dni="";
     $resultado=$nuevo->buscaruser($con,$dni,$iduser);
     $salida = "";
@@ -87,8 +92,9 @@ if(!empty($_GET['iduser'])){
                     <select class='form-control' id='selectArea' name='selectArea'>";
 
                     while($selectArea=$listaArea->fetch()){
+                        if($selectArea['nomArea']!="Administrador"&&$selectArea['nomArea']!="Mesa de Partes"){
                         $salida.="<option value='".$selectArea['idArea']."'>".$selectArea['nomArea']."</option>";
-                        }
+                      }  }
                 
                     $salida.= "</select>
                 </div>

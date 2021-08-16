@@ -1,8 +1,10 @@
 # tramite
-Sistema de Trámite Documentario( con Mesa de Partes Virtual)
+Sistema de Trámite Documentario(con Mesa de Partes Virtual)
 
-Este es un sistema creado con una Plantilla, Architec creado en Boostrap
-La funcionalidad PHP la agregué yo, asi como las vistas
-El login tiene otro css, y otro js
-Lo hice sin saber js, solo copiaba codigo para añadir ciertas funcionalidades, como mostrar ruc y razon social.
-Aun falta completar más cosas
+
+Luego de instalar, hace falta ejecutar la consulta que genere
+la bd que se usará, con datos predefinidos
+'sql tramite' es el archivo a importar en el xampp
+cambiar 'mejorado' por el nombre de la base de datos a usar
+Luego de ello, en 'Funciones.php' en la funcion de conectar
+cambiar 'mejorado' por el nombre asignado a la bd a usar

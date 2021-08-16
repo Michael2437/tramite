@@ -206,7 +206,7 @@ Class Conexion{
         'SELECT idExp FROM `expediente` ORDER BY idExp DESC LIMIT 1'
       );
       $statement->execute();
-      $resultado=$statement->fetch();
+      $resultado =$statement->fetch();
       return $resultado;
     }
     public function buscarIdVirtual($conexion){
